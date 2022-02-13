@@ -9,9 +9,13 @@ const options = {
   preferredNetwork: preferredNetwork,
 };
 
-const rpcURL = "https://hangzhounet.smartpy.io";
+export const rpcURL = "https://hangzhounet.smartpy.io";
 
-const wallet = new BeaconWallet(options);
+export const wallet = new BeaconWallet(options);
+
+export const tz = new TezosToolkit(rpcURL);
+
+tz.setWalletProvider(wallet);
 
 const getActiveAccount = async () => {
   return await wallet.client.getActiveAccount();
@@ -24,9 +28,10 @@ const connectWallet = async () => {
     await wallet.requestPermissions({
       network: { type: preferredNetwork },
     });
+    tz.setWalletProvider(wallet);
     account = await wallet.client.getActiveAccount();
   }
-  return { success: true, wallet: account.address };
+  return { success: true, wallet: account };
 };
 
 const disconnectWallet = async () => {
@@ -53,11 +58,16 @@ const checkIfWalletConnected = async (wallet) => {
   }
 };
 
+const getBalanceXtz = async() => {
+    
+  return (await tz.tz.getBalance(await wallet.getPKH())).toNumber()/1_000_000 + 'ꜩ';
 
+}
 
 export {
   connectWallet,
   disconnectWallet,
   getActiveAccount,
   checkIfWalletConnected,
+  getBalanceXtz
 };
