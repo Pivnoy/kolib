@@ -1,12 +1,9 @@
 import React from 'react';
-import Hello from "./components/Hello/Hello";
 import Wallet from './components/Wallet/Wallet';
 
 function App() {
     return (
-        <div>
-            Hello MAx!
-            <Hello />
+        <div className="bg-gray-900 min-h-screen">
             <Wallet />
         </div>
     )

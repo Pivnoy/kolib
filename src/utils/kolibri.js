@@ -10,7 +10,15 @@ import {
     TokenClient,
 } from "@hover-labs/kolibri-js";
 
+import { Asset, estimateSwap, Token } from "@quipuswap/sdk";
+
+
 const ovenAddress = "KT1VXhDpn5sqQEmhS2H3wmGALVimkLcD9AKH";
+
+const factories = {
+    fa1_2Factory: "KT1HrQWkSFe7ugihjoMWwQ7p8ja9e18LdUFn",
+    fa2Factory: "KT1Dx3SZ6r4h2BZNQM8xri1CtsdNcAoXLGZB",
+  };
 
 const tokenClient = new TokenClient(rpcURL, CONTRACTS.TEST.TOKEN);
 
@@ -42,4 +50,17 @@ export const getBalanceKolibri = async () => {
 
     return (await tokenClient.getBalance(await wallet.getPKH())).dividedBy(1_000_000_000_000_000_000).precision(6).toNumber();
 
+}
+
+export const estimateOutput = async(from, to, amount) => {
+
+    const value = await estimateSwap(
+        tz,
+        factories,
+        from,
+        to,
+        { inputValue: amount }
+    )
+    
+    return value.toNumber();
 }

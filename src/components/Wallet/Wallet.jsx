@@ -1,4 +1,3 @@
-import './wallet.css';
 import {
     connectWallet,
     getActiveAccount,
@@ -8,6 +7,7 @@ import {
   } from "../../utils/wallet";
   import { React, useEffect, useState } from "react";
 import { getBalanceKolibri } from '../../utils/kolibri';
+import Transaction from '../Transaction/Transaction';
 
 function Wallet() {
 
@@ -54,12 +54,17 @@ function Wallet() {
   }
 
   return (
+    <>
     <nav className="bg-gray-800 h-14 flex items-center px-10 justify-between">
-      <div>
+        <div className="text-white">
+          { xtzBalance ? "User xtz balance: " + xtzBalance : "No account connected"}
+        </div>
+        <div className="text-white">
+          { kolibriBalance ? "User kUSD balance: " + kolibriBalance : "No account connected"}
+        </div>
         <button
-          style={btnStyle}
           onClick={walletInfo ? handleDisconnectWallet : handleConnectWallet}
-          className="bg-red-500 px-6 py-2 rounded-sm text-xs font-semibold text-white cursor-pointer"
+          className="bg-red-500 px-6 py-2  rounded-sm text-xs font-semibold text-white cursor-pointer"
         >
           💳{" "}
           {walletInfo
@@ -68,14 +73,9 @@ function Wallet() {
               walletInfo.address.slice(walletInfo.address.length - 4, walletInfo.address.length)
             : "Connect"}
         </button>
-        <div>
-          { xtzBalance ? "User xtz balance: " + xtzBalance : "No account connected"}
-        </div>
-        <div>
-          { kolibriBalance ? "User kUSD balance: " + kolibriBalance : "No account connected"}
-        </div>
-      </div>
     </nav>
+    <Transaction />
+    </>
   );
 
 }
