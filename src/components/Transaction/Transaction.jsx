@@ -5,29 +5,39 @@ import {
     getBalanceXtz,
     wallet
 } from "../../utils/wallet";
-import { Button, FormControl, IconButton, InputAdornment, InputLabel, MenuItem, OutlinedInput, 
-    Select, SelectChangeEvent } from "@mui/material";
+import {
+    Button, FormControl, IconButton, InputAdornment, InputLabel, MenuItem, OutlinedInput,
+    Select, SelectChangeEvent
+} from "@mui/material";
 import CompareArrowsOutlinedIcon from '@mui/icons-material/CompareArrowsOutlined';
 import { React, useEffect, useState } from "react";
-import { getBalanceKolibri } from '../../utils/kolibri';
+import { estimateOutput, getBalanceKolibri } from '../../utils/kolibri';
 import { CONTRACTS } from "@hover-labs/kolibri-js";
+import { KOLIBRI_TOKEN_ADDRESS } from "../../utils/values";
 
 function Transaction() {
- 
-    const [currencyFrom, setCurrencyFrom] = useState('xtz');
-    const [currencyFromNumber, setCurrencyFromNumber] = useState(undefined);
-    const [currencyTo, setCurrencyTo] = useState(CONTRACTS.TEST.TOKEN);
-    const [currencyToNumber, setCurrencyToNumber] = useState(undefined);
-    
-    const handleChangeFromNumber = (e) => {
+
+    const [currencyFrom, setCurrencyFrom] = useState('tez');
+    const [currencyFromNumber, setCurrencyFromNumber] = useState("");
+    const [currencyTo, setCurrencyTo] = useState(KOLIBRI_TOKEN_ADDRESS);
+    const [currencyToNumber, setCurrencyToNumber] = useState("");
+
+    const handleChangeFromNumber = async (e) => {
         console.log(e.target.value);
         setCurrencyFromNumber(Number(e.target.value));
+        handleChangeToNumber({
+            target: {
+                value:
+                    await estimateOutput(currencyFrom, currencyTo, Number(e.target.value))
+            }
+        });
     }
+
     const handleChangeToNumber = (e) => {
         console.log(e.target.value);
         setCurrencyToNumber(Number(e.target.value));
     }
-    
+
     const onFromSelectChange = (e) => {
         console.log(e.target.value);
         setCurrencyFrom(e.target.value);
@@ -37,6 +47,11 @@ function Transaction() {
         setCurrencyTo(e.target.value);
     }
 
+    const handleChangeCurrencies = () => {
+        const temp = currencyFrom;
+        setCurrencyFrom(currencyTo);
+        setCurrencyTo(temp);
+    }
 
     return (
         <div>
@@ -51,7 +66,7 @@ function Transaction() {
                                     value={currencyFromNumber}
                                     onChange={handleChangeFromNumber}
                                     type="number"
-                                    placeholder="0"
+                                    placeholder="0.0"
                                     startAdornment={
                                         <InputAdornment position="start">
                                             <Select
@@ -59,13 +74,13 @@ function Transaction() {
                                                 onChange={onFromSelectChange}
                                                 value={currencyFrom}
                                             >
-                                                <MenuItem value='xtz'>
+                                                <MenuItem value='tez'>
                                                     XTZ
                                                 </MenuItem>
                                                 <MenuItem value='USD'>
                                                     USD
                                                 </MenuItem>
-                                                <MenuItem value={CONTRACTS.TEST.TOKEN}>
+                                                <MenuItem value={KOLIBRI_TOKEN_ADDRESS}>
                                                     kUSD
                                                 </MenuItem>
                                             </Select>
@@ -79,7 +94,9 @@ function Transaction() {
                             <p>
                                 Rate: 1.3%
                             </p>
-                            <IconButton style={{ height: "45px", width: "45px" }}>
+                            <IconButton
+                                style={{ height: "45px", width: "45px" }}
+                                onClick={handleChangeCurrencies}>
                                 <CompareArrowsOutlinedIcon />
                             </IconButton>
                         </div>
@@ -92,7 +109,7 @@ function Transaction() {
                                     value={currencyToNumber}
                                     onChange={handleChangeToNumber}
                                     type="number"
-                                    placeholder="0"
+                                    placeholder="0.0"
                                     startAdornment={
                                         <InputAdornment position="start">
                                             <Select
@@ -100,13 +117,13 @@ function Transaction() {
                                                 onChange={onToSelectChange}
                                                 value={currencyTo}
                                             >
-                                                <MenuItem value='xtz'>
+                                                <MenuItem value='tez'>
                                                     XTZ
                                                 </MenuItem>
                                                 <MenuItem value='USD'>
                                                     USD
                                                 </MenuItem>
-                                                <MenuItem value={CONTRACTS.TEST.TOKEN}>
+                                                <MenuItem value={KOLIBRI_TOKEN_ADDRESS}>
                                                     kUSD
                                                 </MenuItem>
                                             </Select>

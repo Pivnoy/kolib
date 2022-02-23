@@ -1,11 +1,11 @@
 import {
-    connectWallet,
-    getActiveAccount,
-    disconnectWallet,
-    getBalanceXtz,
-    wallet
-  } from "../../utils/wallet";
-  import { React, useEffect, useState } from "react";
+  connectWallet,
+  getActiveAccount,
+  disconnectWallet,
+  getBalanceXtz,
+  wallet
+} from "../../utils/wallet";
+import { React, useEffect, useState } from "react";
 import { getBalanceKolibri } from '../../utils/kolibri';
 import Transaction from '../Transaction/Transaction';
 
@@ -21,7 +21,7 @@ function Wallet() {
     setXtzBalance(await getBalanceXtz());
     setKolibriBalance(await getBalanceKolibri());
   };
-  
+
   const handleDisconnectWallet = async () => {
     const { wallet: walletAddress } = await disconnectWallet();
     setWalletInfo(walletAddress);
@@ -35,9 +35,14 @@ function Wallet() {
       const account = await getActiveAccount();
 
       if (account) {
-        setWalletInfo(account);
-        setXtzBalance(await getBalanceXtz());
-        setKolibriBalance(await getBalanceKolibri());
+        try {
+          setWalletInfo(account);
+          setXtzBalance(await getBalanceXtz());
+          setKolibriBalance(await getBalanceKolibri());
+        }
+        catch (e) {
+          console.log("Use effect error: ", e);
+        }
       }
     };
 
@@ -46,21 +51,14 @@ function Wallet() {
   }, []);
 
 
-  const btnStyle = {
-    color: "gray",
-    fontSize: 40,
-    width: 200,
-    height: 200
-  }
-
   return (
     <>
-    <nav className="bg-gray-800 h-14 flex items-center px-10 justify-between">
+      <nav className="bg-gray-800 h-14 flex items-center px-10 justify-between">
         <div className="text-white">
-          { xtzBalance ? "User xtz balance: " + xtzBalance : "No account connected"}
+          {xtzBalance ? "User xtz balance: " + xtzBalance : "No account connected"}
         </div>
         <div className="text-white">
-          { kolibriBalance ? "User kUSD balance: " + kolibriBalance : "No account connected"}
+          {kolibriBalance != null ? "User kUSD balance: " + kolibriBalance : "No account connected"}
         </div>
         <button
           onClick={walletInfo ? handleDisconnectWallet : handleConnectWallet}
@@ -69,12 +67,12 @@ function Wallet() {
           💳{" "}
           {walletInfo
             ? walletInfo.address.slice(0, 4) +
-              "..." +
-              walletInfo.address.slice(walletInfo.address.length - 4, walletInfo.address.length)
+            "..." +
+            walletInfo.address.slice(walletInfo.address.length - 4, walletInfo.address.length)
             : "Connect"}
         </button>
-    </nav>
-    <Transaction />
+      </nav>
+      <Transaction />
     </>
   );
 

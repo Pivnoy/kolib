@@ -1,4 +1,4 @@
-import { rpcURL, tz, wallet } from "./wallet"
+import { tz, wallet } from "./wallet"
 
 
 import {
@@ -10,57 +10,90 @@ import {
     TokenClient,
 } from "@hover-labs/kolibri-js";
 
-import { Asset, estimateSwap, Token } from "@quipuswap/sdk";
+import { estimateSwap } from "@quipuswap/sdk";
+import { FACTORIES, HARBRINGER, KOLIBRI_TOKEN_ADDRESS, MINTER_ADDRESS, NETWORK, OVEN_ADDRESS, OVEN_FACTORY_ADDRESS, OVEN_REGISTRY_ADDRESS, RPC_URL } from "./values";
 
 
-const ovenAddress = "KT1VXhDpn5sqQEmhS2H3wmGALVimkLcD9AKH";
-
-const factories = {
-    fa1_2Factory: "KT1HrQWkSFe7ugihjoMWwQ7p8ja9e18LdUFn",
-    fa2Factory: "KT1Dx3SZ6r4h2BZNQM8xri1CtsdNcAoXLGZB",
-  };
-
-const tokenClient = new TokenClient(rpcURL, CONTRACTS.TEST.TOKEN);
+const tokenClient = new TokenClient(RPC_URL, KOLIBRI_TOKEN_ADDRESS);
 
 
 const stableCoinClient = new StableCoinClient(
-    rpcURL,
-    Network.Hangzhou,
-    CONTRACTS.TEST.OVEN_REGISTRY,
-    CONTRACTS.TEST.MINTER,
-    CONTRACTS.TEST.OVEN_FACTORY
+    RPC_URL,
+    NETWORK,
+    OVEN_REGISTRY_ADDRESS,
+    MINTER_ADDRESS,
+    OVEN_FACTORY_ADDRESS
 );
 
 const harbringerClient = new HarbingerClient(
-    rpcURL,
-    CONTRACTS.TEST.HARBINGER_NORMALIZER
+    RPC_URL,
+    HARBRINGER
 );
 
 const ovenClient = new OvenClient(
-    rpcURL,
+    RPC_URL,
     tz.memorySigner,
-    ovenAddress,
+    OVEN_ADDRESS,
     stableCoinClient,
     harbringerClient
 );
 
 
 
-export const getBalanceKolibri = async () => {
+const getBalanceKolibri = async () => {
 
-    return (await tokenClient.getBalance(await wallet.getPKH())).dividedBy(1_000_000_000_000_000_000).precision(6).toNumber();
-
+    try {
+        let kUSD_balance = 12;
+        kUSD_balance = (await tokenClient
+            .getBalance(await wallet.getPKH())).dividedBy(1_000_000_000_000_000_000).precision(6).toNumber();
+        console.log(kUSD_balance);
+        return kUSD_balance;
+    }
+    catch (e) {
+        console.log("Error in getting kUSD balance: ", e);
+    }
 }
 
-export const estimateOutput = async(from, to, amount) => {
+const estimateOutput = async (from, to, amount) => {
 
-    const value = await estimateSwap(
-        tz,
-        factories,
-        from,
-        to,
-        { inputValue: amount }
-    )
-    
-    return value.toNumber();
+    if (from !== 'tez') {
+        from = { contract: from };
+    }
+
+    if (to !== 'tez') {
+        to = { contract: to };
+    }
+
+    try {
+        console.log(from, to, amount);
+        const value = await estimateSwap(
+            tz,
+            FACTORIES,
+            from,
+            to,
+            { inputValue: amount }
+        );
+
+        if (from === 'tez') {
+            return value.dividedBy(1_000_000_000_000_000_000).precision(3).toNumber();
+        }
+
+        if (to === 'tez') {
+            return value.dividedBy(1_000_000).precision(3).toNumber();
+        }
+
+    }
+    catch (e) {
+        console.log(e);
+        return 0;
+    }
+}
+
+
+
+
+
+export {
+    estimateOutput,
+    getBalanceKolibri
 }

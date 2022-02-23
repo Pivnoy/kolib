@@ -1,19 +1,20 @@
 import { TezosToolkit } from "@taquito/taquito";
+import { importKey, InMemorySigner } from "@taquito/signer";
+import acc from "./hangzhounet.json";
 import { BeaconWallet } from "@taquito/beacon-wallet";
+import { NETWORK, RPC_URL } from "./values";
 
-const preferredNetwork = "hangzhounet";
 
 const options = {
   name: "Kolibri project",
   iconUrl: "https://ibb.co/Qcsqq30",
-  preferredNetwork: preferredNetwork,
+  preferredNetwork: NETWORK,
 };
 
-export const rpcURL = "https://hangzhounet.smartpy.io";
+const wallet = new BeaconWallet(options);
 
-export const wallet = new BeaconWallet(options);
+const tz = new TezosToolkit(RPC_URL);
 
-export const tz = new TezosToolkit(rpcURL);
 
 tz.setWalletProvider(wallet);
 
@@ -26,7 +27,7 @@ const connectWallet = async () => {
 
   if (!account) {
     await wallet.requestPermissions({
-      network: { type: preferredNetwork },
+      network: { type: NETWORK },
     });
     tz.setWalletProvider(wallet);
     account = await wallet.client.getActiveAccount();
@@ -44,7 +45,7 @@ const checkIfWalletConnected = async (wallet) => {
     const activeAccount = await wallet.client.getActiveAccount();
     if (!activeAccount) {
       await wallet.client.requestPermissions({
-        type: { network: preferredNetwork },
+        type: { network: NETWORK },
       });
     }
     return {
@@ -58,9 +59,9 @@ const checkIfWalletConnected = async (wallet) => {
   }
 };
 
-const getBalanceXtz = async() => {
-    
-  return (await tz.tz.getBalance(await wallet.getPKH())).toNumber()/1_000_000 + 'ꜩ';
+const getBalanceXtz = async () => {
+
+  return (await tz.tz.getBalance(await wallet.getPKH())).toNumber() / 1_000_000 + 'ꜩ';
 
 }
 
@@ -69,5 +70,7 @@ export {
   disconnectWallet,
   getActiveAccount,
   checkIfWalletConnected,
-  getBalanceXtz
+  getBalanceXtz,
+  tz,
+  wallet,
 };
