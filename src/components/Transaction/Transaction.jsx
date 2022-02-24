@@ -3,7 +3,7 @@ import {
     getActiveAccount,
     disconnectWallet,
     getBalanceXtz,
-    wallet
+    wallet,
 } from "../../utils/wallet";
 import {
     Button, FormControl, IconButton, InputAdornment, InputLabel, MenuItem, OutlinedInput,

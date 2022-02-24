@@ -6,14 +6,26 @@ import {
   wallet
 } from "../../utils/wallet";
 import { React, useEffect, useState } from "react";
+import {
+  Button, FormControl, IconButton, InputAdornment, InputLabel, MenuItem, OutlinedInput,
+  Select, SelectChangeEvent
+} from "@mui/material";
 import { getBalanceKolibri } from '../../utils/kolibri';
 import Transaction from '../Transaction/Transaction';
+import { changeTESTNET } from "../../utils/values";
 
 function Wallet() {
 
   const [walletInfo, setWalletInfo] = useState(null);
   const [xtzBalance, setXtzBalance] = useState(null);
+  const [TESTNET, setTESTNET] = useState(true);
   const [kolibriBalance, setKolibriBalance] = useState(null);
+
+  const handleChangeTESTNET = (e) => {
+    changeTESTNET(e.target.value);
+    setTESTNET(e.target.value);
+    console.log(e.target.value);
+  }
 
   const handleConnectWallet = async () => {
     const { wallet: walletAddress } = await connectWallet();
@@ -71,6 +83,20 @@ function Wallet() {
             walletInfo.address.slice(walletInfo.address.length - 4, walletInfo.address.length)
             : "Connect"}
         </button>
+        <InputAdornment position="start">
+          <Select
+            variant="standard"
+            onChange={handleChangeTESTNET}
+            value={TESTNET}
+          >
+            <MenuItem value={false}>
+              MAINNET
+            </MenuItem>
+            <MenuItem value={true}>
+              TESTNET
+            </MenuItem>
+          </Select>
+        </InputAdornment>
       </nav>
       <Transaction />
     </>

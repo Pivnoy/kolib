@@ -1,6 +1,12 @@
 import { CONTRACTS } from "@hover-labs/kolibri-js";
 
-const TESTNET = false;
+
+
+let TESTNET = true;
+
+const changeTESTNET = (testnet) => {
+    TESTNET = testnet;
+}
 
 const FACTORIES = TESTNET ?
     {
@@ -43,6 +49,7 @@ export {
     OVEN_FACTORY_ADDRESS,
     OVEN_REGISTRY_ADDRESS,
     MINTER_ADDRESS,
-    HARBRINGER
+    HARBRINGER,
+    changeTESTNET
 }
 
