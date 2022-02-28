@@ -24,7 +24,6 @@ function Wallet() {
   const handleChangeTESTNET = (e) => {
     changeTESTNET(e.target.value);
     setTESTNET(e.target.value);
-    console.log(e.target.value);
   }
 
   const handleConnectWallet = async () => {
@@ -83,22 +82,26 @@ function Wallet() {
             walletInfo.address.slice(walletInfo.address.length - 4, walletInfo.address.length)
             : "Connect"}
         </button>
-        <InputAdornment position="start">
+        <InputAdornment
+          position="start">
           <Select
             variant="standard"
+            style={{ color: "white" }}
             onChange={handleChangeTESTNET}
             value={TESTNET}
           >
-            <MenuItem value={false}>
+            <MenuItem
+              value={false}>
               MAINNET
             </MenuItem>
-            <MenuItem value={true}>
+            <MenuItem
+              value={true}>
               TESTNET
             </MenuItem>
           </Select>
         </InputAdornment>
       </nav>
-      <Transaction />
+      <Transaction TESTNET={TESTNET}/>
     </>
   );
 

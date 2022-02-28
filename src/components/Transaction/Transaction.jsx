@@ -12,15 +12,16 @@ import {
 import CompareArrowsOutlinedIcon from '@mui/icons-material/CompareArrowsOutlined';
 import { React, useEffect, useState } from "react";
 import { estimateOutput, getBalanceKolibri } from '../../utils/kolibri';
-import { CONTRACTS } from "@hover-labs/kolibri-js";
 import { KOLIBRI_TOKEN_ADDRESS } from "../../utils/values";
 
-function Transaction() {
+function Transaction(props) {
 
     const [currencyFrom, setCurrencyFrom] = useState('tez');
     const [currencyFromNumber, setCurrencyFromNumber] = useState("");
     const [currencyTo, setCurrencyTo] = useState(KOLIBRI_TOKEN_ADDRESS);
     const [currencyToNumber, setCurrencyToNumber] = useState("");
+
+    const { TESTNET } = props;
 
     const handleChangeFromNumber = async (e) => {
         console.log(e.target.value);
@@ -52,6 +53,11 @@ function Transaction() {
         setCurrencyFrom(currencyTo);
         setCurrencyTo(temp);
     }
+
+    // to handle mui change
+    useEffect(() => {
+        setCurrencyTo(KOLIBRI_TOKEN_ADDRESS);
+    }, [TESTNET]);
 
     return (
         <div>
