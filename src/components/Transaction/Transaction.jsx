@@ -4,6 +4,7 @@ import {
     disconnectWallet,
     getBalanceXtz,
     wallet,
+    tz
 } from "../../utils/wallet";
 import {
     Button, FormControl, IconButton, InputAdornment, InputLabel, MenuItem, OutlinedInput,
@@ -13,6 +14,7 @@ import CompareArrowsOutlinedIcon from '@mui/icons-material/CompareArrowsOutlined
 import { React, useEffect, useState } from "react";
 import { estimateOutput, getBalanceKolibri } from '../../utils/kolibri';
 import { KOLIBRI_TOKEN_ADDRESS } from "../../utils/values";
+import { swapToken } from "../../utils/swap";
 
 function Transaction(props) {
 
@@ -52,6 +54,10 @@ function Transaction(props) {
         const temp = currencyFrom;
         setCurrencyFrom(currencyTo);
         setCurrencyTo(temp);
+    }
+
+    const handleSwapToken = async () => {
+        await swapToken(currencyFrom, currencyTo, currencyFromNumber);
     }
 
     // to handle mui change
@@ -141,7 +147,9 @@ function Transaction(props) {
 
                     </div>
 
-                    <button className="py-2 px-10 place-self-center bg-white hover:shadow-sm text-black rounded transition duration-500">
+                    <button
+                        onClick={handleSwapToken}
+                        className="py-2 px-10 place-self-center bg-white hover:shadow-sm text-black rounded transition duration-500">
                         Swap
                     </button>
                 </div>
