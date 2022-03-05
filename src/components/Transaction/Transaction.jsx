@@ -5,8 +5,7 @@ import {
     getBalanceXtz,
     wallet,
 } from "../../utils/wallet";
-import {
-    Button, FormControl, IconButton, InputAdornment, InputLabel, MenuItem, OutlinedInput,
+import { Box, Button, Container, FormControl, IconButton, InputAdornment, InputLabel, MenuItem, OutlinedInput,
     Select, SelectChangeEvent
 } from "@mui/material";
 import CompareArrowsOutlinedIcon from '@mui/icons-material/CompareArrowsOutlined';
@@ -55,8 +54,12 @@ function Transaction() {
 
     return (
         <div>
-            <div className="bg-gray-600 py-7 md:rounded-b-2xl">
-                <div className="grid space-y-9 bg-slate-400">
+            <Container sx={{
+            width: 600,
+            height: 600,
+            backgroundColor: 'transparent', 
+                }}> 
+                 <div className="grid  bg-blue-200 rounded space-y-9 bg-slate-400">
                     <div className="flex items-center justify-around space-x-3 flex-col">
                         <div>
                             <FormControl fullWidth sx={{ m: 1 }}>
@@ -132,18 +135,14 @@ function Transaction() {
                                 />
                             </FormControl>
                         </div>
-
                     </div>
-
-                    <button className="py-2 px-10 place-self-center bg-white hover:shadow-sm text-black rounded transition duration-500">
+                    <button className="bg-blue-600 hover:bg-blue-700 py-2 px-10 place-self-center text-white rounded transition duration-500">
                         Swap
                     </button>
-                </div>
-            </div>
-        </div>
+                    </div>           
+                 </Container>        
+            </div>     
     )
-
-
 };
 
 export default Transaction;
