@@ -14,10 +14,19 @@ import { estimateSwap } from "@quipuswap/sdk";
 import { FACTORIES, HARBRINGER, KOLIBRI_TOKEN_ADDRESS, MINTER_ADDRESS, NETWORK, OVEN_ADDRESS, OVEN_FACTORY_ADDRESS, OVEN_REGISTRY_ADDRESS, RPC_URL } from "./values";
 
 
-const tokenClient = new TokenClient(RPC_URL, KOLIBRI_TOKEN_ADDRESS);
+let tokenClient = null;
 
+let stableCoinClient = null;
 
-const stableCoinClient = new StableCoinClient(
+let harbringerClient = null;
+
+let ovenClient = null;
+
+const createOvens = () => {
+
+tokenClient = new TokenClient(RPC_URL, KOLIBRI_TOKEN_ADDRESS);
+
+stableCoinClient = new StableCoinClient(
     RPC_URL,
     NETWORK,
     OVEN_REGISTRY_ADDRESS,
@@ -25,12 +34,12 @@ const stableCoinClient = new StableCoinClient(
     OVEN_FACTORY_ADDRESS
 );
 
-const harbringerClient = new HarbingerClient(
+harbringerClient = new HarbingerClient(
     RPC_URL,
     HARBRINGER
 );
 
-const ovenClient = new OvenClient(
+ovenClient = new OvenClient(
     RPC_URL,
     tz.memorySigner,
     OVEN_ADDRESS,
@@ -38,7 +47,7 @@ const ovenClient = new OvenClient(
     harbringerClient
 );
 
-
+}
 
 const getBalanceKolibri = async () => {
 
@@ -75,7 +84,7 @@ const estimateOutput = async (from, to, amount) => {
         );
 
         if (from === 'tez') {
-            return value.dividedBy(1_000_000_000_000_000_000).precision(3).toNumber();
+            return value.dividedBy(1_000_000_000_000).precision(3).toNumber();
         }
 
         if (to === 'tez') {
@@ -93,5 +102,6 @@ const estimateOutput = async (from, to, amount) => {
 
 export {
     estimateOutput,
-    getBalanceKolibri
+    getBalanceKolibri,
+    createOvens,
 }

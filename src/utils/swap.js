@@ -22,6 +22,8 @@ export async function swapToken(
 
         console.log(TESTNET, tz);
 
+        amount = amount * 1_000_000;
+
         const swapParams = await swap(
             tz,
             FACTORIES,
@@ -30,6 +32,8 @@ export async function swapToken(
             amount,
             slippageTolerance
         );
+
+        console.log(amount);
 
         const operationDetails = await batchify(
             tz.wallet.batch([]),

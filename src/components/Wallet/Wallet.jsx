@@ -3,25 +3,27 @@ import {
   getActiveAccount,
   disconnectWallet,
   getBalanceXtz,
-  wallet
+  wallet,
+  createTezosKit
 } from "../../utils/wallet";
 import { React, useEffect, useState } from "react";
 import {
   Button, FormControl, IconButton, InputAdornment, InputLabel, MenuItem, OutlinedInput,
   Select, SelectChangeEvent
 } from "@mui/material";
-import { getBalanceKolibri } from '../../utils/kolibri';
+import { createOvens, getBalanceKolibri } from '../../utils/kolibri';
 import Transaction from '../Transaction/Transaction';
-import { changeTESTNET } from "../../utils/values";
+import { changeTESTNET, TESTNET as t1 } from "../../utils/values";
 
 function Wallet() {
 
   const [walletInfo, setWalletInfo] = useState(null);
   const [xtzBalance, setXtzBalance] = useState(null);
-  const [TESTNET, setTESTNET] = useState(true);
+  const [TESTNET, setTESTNET] = useState(t1);
   const [kolibriBalance, setKolibriBalance] = useState(null);
 
-  const handleChangeTESTNET = (e) => {
+  const handleChangeTESTNET = async(e) => {
+    await handleDisconnectWallet();
     changeTESTNET(e.target.value);
     setTESTNET(e.target.value);
   }
@@ -34,8 +36,8 @@ function Wallet() {
   };
 
   const handleDisconnectWallet = async () => {
-    const { wallet: walletAddress } = await disconnectWallet();
-    setWalletInfo(walletAddress);
+    await disconnectWallet();
+    setWalletInfo(null);
     setXtzBalance(null);
     setKolibriBalance(null);
   };
@@ -44,6 +46,10 @@ function Wallet() {
     const func = async () => {
 
       const account = await getActiveAccount();
+
+      await createTezosKit();
+
+      createOvens();
 
       if (account) {
         try {
