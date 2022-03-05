@@ -3,14 +3,16 @@ import {
   getActiveAccount,
   disconnectWallet,
   getBalanceXtz,
-  wallet
+  wallet,
+  createTezosKit
 } from "../../utils/wallet";
+
 import { React, useEffect, useState, Fragment } from "react";
 import {Button, FormControl, IconButton, InputAdornment, InputLabel, MenuItem, OutlinedInput,
   Popover,Select, SelectChangeEvent} from "@mui/material"; 
-import { getBalanceKolibri } from '../../utils/kolibri';
+import { createOvens, getBalanceKolibri } from '../../utils/kolibri';
 import Transaction from '../Transaction/Transaction';
-import { changeTESTNET } from "../../utils/values";
+import { changeTESTNET, TESTNET as t1 } from "../../utils/values";
 import { Disclosure, Menu, Transition} from '@headlessui/react';
 import { CreditCardIcon, DatabaseIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 
@@ -26,13 +28,13 @@ function Wallet() {
 
   const [walletInfo, setWalletInfo] = useState(null);
   const [xtzBalance, setXtzBalance] = useState(null);
-  const [TESTNET, setTESTNET] = useState(true);
+  const [TESTNET, setTESTNET] = useState(t1);
   const [kolibriBalance, setKolibriBalance] = useState(null);
 
-  const handleChangeTESTNET = (e) => {
+  const handleChangeTESTNET = async(e) => {
+    await handleDisconnectWallet();
     changeTESTNET(e.target.value);
     setTESTNET(e.target.value);
-    console.log(e.target.value);
   }
 
   const handleConnectWallet = async () => {
@@ -43,8 +45,8 @@ function Wallet() {
   };
 
   const handleDisconnectWallet = async () => {
-    const { wallet: walletAddress } = await disconnectWallet();
-    setWalletInfo(walletAddress);
+    await disconnectWallet();
+    setWalletInfo(null);
     setXtzBalance(null);
     setKolibriBalance(null);
   };
@@ -53,6 +55,10 @@ function Wallet() {
     const func = async () => {
 
       const account = await getActiveAccount();
+
+      await createTezosKit();
+
+      createOvens();
 
       if (account) {
         try {
@@ -169,7 +175,7 @@ function Wallet() {
                           <a
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
-                            MAIN NET
+                            MAINNET
                           </a>
                         )}
                       </Menu.Item>
@@ -178,7 +184,7 @@ function Wallet() {
                           <a
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
-                            TEST NET
+                            TESTNET
                           </a>
                         )}
                       </Menu.Item>
@@ -219,7 +225,6 @@ function Wallet() {
           {kolibriBalance != null ? "User kUSD balance: " + kolibriBalance : " No account connected (kUSD)"}
           </div> 
         </div>
-    </div>
 
     {/*footer */}
     <footer className="absolute inset-x-0 bottom-0  p-4 bg-transparent rounded-lg shadow md:px-6 md:py-8 dark:bg-gray-800">

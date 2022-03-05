@@ -4,6 +4,7 @@ import {
     disconnectWallet,
     getBalanceXtz,
     wallet,
+    tz
 } from "../../utils/wallet";
 import { Box, Button, Container, FormControl, IconButton, InputAdornment, InputLabel, MenuItem, OutlinedInput,
     Select, SelectChangeEvent
@@ -11,15 +12,17 @@ import { Box, Button, Container, FormControl, IconButton, InputAdornment, InputL
 import CompareArrowsOutlinedIcon from '@mui/icons-material/CompareArrowsOutlined';
 import { React, useEffect, useState } from "react";
 import { estimateOutput, getBalanceKolibri } from '../../utils/kolibri';
-import { CONTRACTS } from "@hover-labs/kolibri-js";
 import { KOLIBRI_TOKEN_ADDRESS } from "../../utils/values";
+import { swapToken } from "../../utils/swap";
 
-function Transaction() {
+function Transaction(props) {
 
     const [currencyFrom, setCurrencyFrom] = useState('tez');
     const [currencyFromNumber, setCurrencyFromNumber] = useState("");
     const [currencyTo, setCurrencyTo] = useState(KOLIBRI_TOKEN_ADDRESS);
     const [currencyToNumber, setCurrencyToNumber] = useState("");
+
+    const { TESTNET } = props;
 
     const handleChangeFromNumber = async (e) => {
         console.log(e.target.value);
@@ -51,6 +54,15 @@ function Transaction() {
         setCurrencyFrom(currencyTo);
         setCurrencyTo(temp);
     }
+
+    const handleSwapToken = async () => {
+        await swapToken(currencyFrom, currencyTo, currencyFromNumber);
+    }
+
+    // to handle mui change
+    useEffect(() => {
+        setCurrencyTo(KOLIBRI_TOKEN_ADDRESS);
+    }, [TESTNET]);
 
     return (
         <div>
@@ -136,7 +148,10 @@ function Transaction() {
                             </FormControl>
                         </div>
                     </div>
-                    <button className="bg-blue-600 hover:bg-blue-700 py-2 px-10 place-self-center text-white rounded transition duration-500">
+
+                    <button
+                        onClick={handleSwapToken}
+                        className="bg-blue-600 hover:bg-blue-700 py-2 px-10 place-self-center text-white rounded transition duration-500"
                         Swap
                     </button>
                     </div>           
