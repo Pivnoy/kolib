@@ -55,7 +55,6 @@ const getBalanceKolibri = async () => {
         let kUSD_balance = 12;
         kUSD_balance = (await tokenClient
             .getBalance(await wallet.getPKH())).dividedBy(1_000_000_000_000_000_000).precision(6).toNumber();
-        console.log(kUSD_balance);
         return kUSD_balance;
     }
     catch (e) {
@@ -66,6 +65,7 @@ const getBalanceKolibri = async () => {
 const estimateOutput = async (from, to, amount) => {
 
     if (from !== 'tez') {
+        amount = amount * 1_000_000_000_000_000_000;
         from = { contract: from };
     }
 
@@ -93,7 +93,7 @@ const estimateOutput = async (from, to, amount) => {
 
     }
     catch (e) {
-        console.log(e);
+        console.log('Estimated swap conducted error: ', e);
         return 0;
     }
 }

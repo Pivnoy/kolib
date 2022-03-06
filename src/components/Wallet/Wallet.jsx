@@ -21,6 +21,7 @@ function Wallet() {
   const [xtzBalance, setXtzBalance] = useState(null);
   const [TESTNET, setTESTNET] = useState(t1);
   const [kolibriBalance, setKolibriBalance] = useState(null);
+  const [regetbalance, setRegetbalance] = useState(false);
 
   const handleChangeTESTNET = async(e) => {
     await handleDisconnectWallet();
@@ -62,10 +63,9 @@ function Wallet() {
         }
       }
     };
-
     func();
 
-  }, []);
+  }, [regetbalance]);
 
 
   return (
@@ -107,7 +107,7 @@ function Wallet() {
           </Select>
         </InputAdornment>
       </nav>
-      <Transaction TESTNET={TESTNET}/>
+      <Transaction TESTNET={TESTNET} reget={{regetbalance: regetbalance, setRegetbalance: setRegetbalance}}/>
     </>
   );
 

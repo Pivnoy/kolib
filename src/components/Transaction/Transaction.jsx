@@ -23,10 +23,9 @@ function Transaction(props) {
     const [currencyTo, setCurrencyTo] = useState(KOLIBRI_TOKEN_ADDRESS);
     const [currencyToNumber, setCurrencyToNumber] = useState("");
 
-    const { TESTNET } = props;
+    const { TESTNET, reget } = props;
 
     const handleChangeFromNumber = async (e) => {
-        console.log(e.target.value);
         setCurrencyFromNumber(Number(e.target.value));
         handleChangeToNumber({
             target: {
@@ -37,32 +36,46 @@ function Transaction(props) {
     }
 
     const handleChangeToNumber = (e) => {
-        console.log(e.target.value);
         setCurrencyToNumber(Number(e.target.value));
     }
 
     const onFromSelectChange = (e) => {
-        console.log(e.target.value);
         setCurrencyFrom(e.target.value);
     }
     const onToSelectChange = (e) => {
-        console.log(e.target.value);
         setCurrencyTo(e.target.value);
     }
 
-    const handleChangeCurrencies = () => {
+    const handleChangeCurrencies = async() => {
         const temp = currencyFrom;
         setCurrencyFrom(currencyTo);
         setCurrencyTo(temp);
+        handleChangeToNumber({
+            target: {
+                value:
+                    await estimateOutput(currencyTo, temp, currencyFromNumber)
+            }
+        });
     }
 
     const handleSwapToken = async () => {
         await swapToken(currencyFrom, currencyTo, currencyFromNumber);
+        reget.setRegetbalance(!reget.regetBalance);
     }
 
     // to handle mui change
     useEffect(() => {
-        setCurrencyTo(KOLIBRI_TOKEN_ADDRESS);
+
+        if (currencyFrom === 'tez') {
+            setCurrencyFrom('tez');
+            setCurrencyTo(KOLIBRI_TOKEN_ADDRESS);
+        }
+        else {
+            setCurrencyFrom(KOLIBRI_TOKEN_ADDRESS);
+            setCurrencyTo('tez');
+        }
+        
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [TESTNET]);
 
     return (

@@ -2,7 +2,7 @@ import { CONTRACTS } from "@hover-labs/kolibri-js";
 
 
 
-let TESTNET = false;
+let TESTNET = true;
 
 const changeTESTNET = (testnet) => {
 
