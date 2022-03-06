@@ -4,11 +4,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        //for navbar
+        'gray_1': '#0f0f0f',
+        'dark-emerald':'#012620',
         // for bg
         'dark-blue':'#14171e',
-        'not-dark-blue': '#020024',
-        'emerald': '#082f29',
-        'dark-emerald':'#012620',
+        'not-dark-blue': '#161616',
+
       },
     },
   },

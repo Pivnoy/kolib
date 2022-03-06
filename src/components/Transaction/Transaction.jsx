@@ -24,6 +24,7 @@ function Transaction(props) {
 
     const { TESTNET } = props;
 
+
     const handleChangeFromNumber = async (e) => {
         console.log(e.target.value);
         setCurrencyFromNumber(Number(e.target.value));
@@ -65,16 +66,13 @@ function Transaction(props) {
     }, [TESTNET]);
 
     return (
-        <div>
-            <Container sx={{
-            width: 600,
-            height: 600,
-            backgroundColor: 'transparent', 
-                }}> 
-                 <div className="grid  bg-blue-200 rounded space-y-9 bg-slate-400">
-                    <div className="flex items-center justify-around space-x-3 flex-col">
-                        <div>
-                            <FormControl fullWidth sx={{ m: 1 }}>
+        <body className="h-full bg-transparent flex items-center justify-center">
+        <div className="m-10"></div>
+        <div className="absolute insert-0 top-10 m-40 h-fit w-96 bg-white p-8 shadow-lg rounded-lg">
+            <div className="text-black">
+                <div className="pb-5 text-center font-bold">TRADER(meow)</div>
+                <div className="">
+                <FormControl fullWidth sx={{ m: 1 }}>
                                 <InputLabel htmlFor="outlined-adornment-amount">From</InputLabel>
                                 <OutlinedInput
                                     id="outlined-adornment-amount"
@@ -116,8 +114,8 @@ function Transaction(props) {
                             </IconButton>
                         </div>
 
-                        <div >
-                            <FormControl>
+                        <div>
+                            <FormControl className="flex items-center justify-center">
                                 <InputLabel htmlFor="outlined-adornment-amount">To</InputLabel>
                                 <OutlinedInput
                                     id="outlined-adornment-amount"
@@ -146,18 +144,45 @@ function Transaction(props) {
                                     label="Amount"
                                 />
                             </FormControl>
+                            <div className="pt-4 flex items-center justify-center">
+                            <button
+                                onClick={handleSwapToken}
+                                className="m-4 w-40 bg-blue-600 hover:bg-blue-700 p-2 text-white rounded-lg shadow-lg">
+                                    Swap
+                            </button>
+                            </div>
                         </div>
                     </div>
+              </div>
+          {/* footer */}
+         <footer className="absolute inset-x-0 bottom-0  p-4 bg-transparent rounded-lg shadow dark:bg-gray-800">
+            <div className="sm:flex sm:items-center sm:justify-between">
+                <a href="#" class="flex items-center mb-4 sm:mb-0">
+                    <img src="https://kolibri.finance/img/kolibri-brand.b0cd3374.png" class="mr-3 h-8" alt="Kolibri Logo" />
+                </a>
+                <ul class="flex flex-wrap items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
+                    <li>
+                        <a href="#" class="mr-4 hover:underline md:mr-6 ">About</a>
+                    </li>
+                    <li>
+                        <a href="#" class="mr-4 hover:underline md:mr-6">Privacy Policy</a>
+                    </li>
+                    <li>
+                        <a href="#" class="mr-4 hover:underline md:mr-6 ">Licensing</a>
+                    </li>
+                    <li>
+                        <a href="#" class="hover:underline">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+            <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2022 <a href="#" class="hover:underline">Kolibri™</a>. All Rights Reserved.
+            </span>
+           
+        </footer>   
+    </body>  
 
-                    <button
-                        onClick={handleSwapToken}
-                        className="bg-blue-600 hover:bg-blue-700 py-2 px-10 place-self-center text-white rounded transition duration-500"
-                        Swap
-                    </button>
-                    </div>           
-                 </Container>        
-            </div>     
     )
-};
+}
 
 export default Transaction;
