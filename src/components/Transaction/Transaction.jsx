@@ -70,7 +70,7 @@ function Transaction(props) {
         <div className="m-10"></div>
         <div className="absolute insert-0 top-10 m-40 h-fit w-96 bg-white p-8 shadow-lg rounded-lg">
             <div className="text-black">
-                <div className="pb-5 text-center font-bold">TRADER(meow)</div>
+                <div className="pb-5 text-center font-bold">TRADER</div>
                 <div className="">
                 <FormControl fullWidth sx={{ m: 1 }}>
                                 <InputLabel htmlFor="outlined-adornment-amount">From</InputLabel>
