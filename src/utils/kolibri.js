@@ -1,16 +1,14 @@
 import { tz, wallet } from "./wallet"
 
-
 import {
-    CONTRACTS,
     HarbingerClient,
-    Network,
     OvenClient,
     StableCoinClient,
     TokenClient,
 } from "@hover-labs/kolibri-js";
 
 import { estimateSwap } from "@quipuswap/sdk";
+
 import { FACTORIES, HARBRINGER, KOLIBRI_TOKEN_ADDRESS, MINTER_ADDRESS, NETWORK, OVEN_ADDRESS, OVEN_FACTORY_ADDRESS, OVEN_REGISTRY_ADDRESS, RPC_URL } from "./values";
 
 
@@ -20,7 +18,7 @@ let stableCoinClient = null;
 
 let harbringerClient = null;
 
-let ovenClient = null;
+export let ovenClient = null;
 
 const createOvens = () => {
 
@@ -74,7 +72,6 @@ const estimateOutput = async (from, to, amount) => {
     }
 
     try {
-        console.log(from, to, amount);
         const value = await estimateSwap(
             tz,
             FACTORIES,

@@ -14,10 +14,6 @@ const changeTESTNET = (testnet) => {
             fa2Factory: "KT1Dx3SZ6r4h2BZNQM8xri1CtsdNcAoXLGZB",
         }
         :
-        // {
-        //     fa1_2Factory: "KT1FWHLMk5tHbwuSsp31S4Jum4dTVmkXpfJw",
-        //     fa2Factory: "KT1PvEyN1xCFCgorN92QCfYjw3axS6jawCiJ",
-        // }
         {
             fa1_2Factory: ['KT1FWHLMk5tHbwuSsp31S4Jum4dTVmkXpfJw', 'KT1Lw8hCoaBrHeTeMXbqHPG4sS4K1xn7yKcD'],
             fa2Factory: ['KT1PvEyN1xCFCgorN92QCfYjw3axS6jawCiJ', 'KT1SwH9P1Tx8a58Mm6qBExQFTcy2rwZyZiXS']

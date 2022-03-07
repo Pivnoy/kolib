@@ -3,13 +3,12 @@ import {
   getActiveAccount,
   disconnectWallet,
   getBalanceXtz,
-  wallet,
   createTezosKit
 } from "../../utils/wallet";
 import { React, useEffect, useState } from "react";
 import {
-  Button, FormControl, IconButton, InputAdornment, InputLabel, MenuItem, OutlinedInput,
-  Select, SelectChangeEvent
+  InputAdornment, MenuItem,
+  Select,
 } from "@mui/material";
 import { createOvens, getBalanceKolibri } from '../../utils/kolibri';
 import Transaction from '../Transaction/Transaction';
@@ -23,7 +22,7 @@ function Wallet() {
   const [kolibriBalance, setKolibriBalance] = useState(null);
   const [regetbalance, setRegetbalance] = useState(false);
 
-  const handleChangeTESTNET = async(e) => {
+  const handleChangeTESTNET = async (e) => {
     await handleDisconnectWallet();
     changeTESTNET(e.target.value);
     setTESTNET(e.target.value);
@@ -63,9 +62,10 @@ function Wallet() {
         }
       }
     };
+
     func();
 
-  }, [regetbalance]);
+  }, [regetbalance, TESTNET]);
 
 
   return (
@@ -107,7 +107,12 @@ function Wallet() {
           </Select>
         </InputAdornment>
       </nav>
-      <Transaction TESTNET={TESTNET} reget={{regetbalance: regetbalance, setRegetbalance: setRegetbalance}}/>
+      <Transaction
+        TESTNET={TESTNET}
+        reget={{ regetbalance: regetbalance, setRegetbalance: setRegetbalance }}
+        connect={handleConnectWallet}
+        wal={walletInfo} 
+      />
     </>
   );
 

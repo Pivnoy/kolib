@@ -1,6 +1,4 @@
 import { TezosToolkit } from "@taquito/taquito";
-import { importKey, InMemorySigner } from "@taquito/signer";
-import acc from "./hangzhounet.json";
 import { BeaconWallet } from "@taquito/beacon-wallet";
 import { NETWORK, RPC_URL } from "./values";
 import { ReadOnlySigner } from "@quipuswap/sdk";
@@ -20,7 +18,6 @@ let tz = null;
 
 const getActiveAccount = async () => {
   wallet.client.preferredNetwork = NETWORK;
-  console.log(wallet);
   return await wallet.client.getActiveAccount();
 };
 

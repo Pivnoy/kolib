@@ -1,6 +1,6 @@
 import { batchify, swap } from "@quipuswap/sdk";
-import { FACTORIES, TESTNET } from "./values";
-import { wallet, tz } from "./wallet"
+import { FACTORIES } from "./values";
+import { tz } from "./wallet"
 
 export async function swapToken(
     from,

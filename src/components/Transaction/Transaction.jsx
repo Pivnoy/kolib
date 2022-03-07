@@ -1,20 +1,13 @@
 import {
-    connectWallet,
-    getActiveAccount,
-    disconnectWallet,
-    getBalanceXtz,
-    wallet,
-    tz
-} from "../../utils/wallet";
-import {
-    Button, FormControl, IconButton, InputAdornment, InputLabel, MenuItem, OutlinedInput,
-    Select, SelectChangeEvent
+    FormControl, IconButton, InputAdornment, InputLabel, MenuItem, OutlinedInput,
+    Select,
 } from "@mui/material";
 import CompareArrowsOutlinedIcon from '@mui/icons-material/CompareArrowsOutlined';
 import { React, useEffect, useState } from "react";
-import { estimateOutput, getBalanceKolibri } from '../../utils/kolibri';
+import { createOvens, estimateOutput } from '../../utils/kolibri';
 import { KOLIBRI_TOKEN_ADDRESS } from "../../utils/values";
 import { swapToken } from "../../utils/swap";
+import { createTezosKit } from "../../utils/wallet";
 
 function Transaction(props) {
 
@@ -23,7 +16,9 @@ function Transaction(props) {
     const [currencyTo, setCurrencyTo] = useState(KOLIBRI_TOKEN_ADDRESS);
     const [currencyToNumber, setCurrencyToNumber] = useState("");
 
-    const { TESTNET, reget } = props;
+    const [rate, setRate] = useState(null);
+
+    const { TESTNET, reget, connect, wal } = props;
 
     const handleChangeFromNumber = async (e) => {
         setCurrencyFromNumber(Number(e.target.value));
@@ -42,14 +37,30 @@ function Transaction(props) {
     const onFromSelectChange = (e) => {
         setCurrencyFrom(e.target.value);
     }
+
     const onToSelectChange = (e) => {
         setCurrencyTo(e.target.value);
     }
 
-    const handleChangeCurrencies = async() => {
+    // set rate between swaps btn
+    // recreate ovens and  tezos kit to avoid sinc
+    const setCurrentRate = async (f, t) => {
+        await createTezosKit();
+        createOvens();
+        setRate(await estimateOutput(f, t, 1));
+    }
+
+
+    // ->/<- button
+    const handleChangeCurrencies = async () => {
         const temp = currencyFrom;
         setCurrencyFrom(currencyTo);
         setCurrencyTo(temp);
+
+        reget.setRegetbalance(!reget.regetBalance);
+
+        await setCurrentRate(currencyTo, temp);
+
         handleChangeToNumber({
             target: {
                 value:
@@ -60,22 +71,27 @@ function Transaction(props) {
 
     const handleSwapToken = async () => {
         await swapToken(currencyFrom, currencyTo, currencyFromNumber);
+
+        // bad practice, but it works so...
+        // force this useState trigger to reload main page to rerender user balance
         reget.setRegetbalance(!reget.regetBalance);
     }
 
-    // to handle mui change
+    // to handle mui change and don't get missing value
     useEffect(() => {
 
         if (currencyFrom === 'tez') {
             setCurrencyFrom('tez');
             setCurrencyTo(KOLIBRI_TOKEN_ADDRESS);
+            setCurrentRate('tez', KOLIBRI_TOKEN_ADDRESS);
         }
         else {
             setCurrencyFrom(KOLIBRI_TOKEN_ADDRESS);
             setCurrencyTo('tez');
+            setCurrentRate(KOLIBRI_TOKEN_ADDRESS, 'tez');
         }
-        
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [TESTNET]);
 
     return (
@@ -117,7 +133,7 @@ function Transaction(props) {
 
                         <div className="flex flex-col items-center border-black">
                             <p>
-                                Rate: 1.3%
+                                Rate: {rate}
                             </p>
                             <IconButton
                                 style={{ height: "45px", width: "45px" }}
@@ -161,9 +177,9 @@ function Transaction(props) {
                     </div>
 
                     <button
-                        onClick={handleSwapToken}
+                        onClick={wal == null ? connect:  handleSwapToken}
                         className="py-2 px-10 place-self-center bg-white hover:shadow-sm text-black rounded transition duration-500">
-                        Swap
+                        {wal == null ? "Connect" : "Swap"}
                     </button>
                 </div>
             </div>
