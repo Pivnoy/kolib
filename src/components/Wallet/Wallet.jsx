@@ -132,17 +132,19 @@ function Wallet() {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <button
-                  type="button"
-                  className="bg-white p-1 rounded-full text-blue-700 hover:text-white hover:bg-blue-700  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-                  onClick={walletInfo ? handleDisconnectWallet : handleConnectWallet}
-                >
-                  {" "}
+              <div className="m-3 text-white p-1 h-auto w-auto border-solid border-2 border-white rounded-full">
+                    {" "}
                   {walletInfo
                     ? walletInfo.address.slice(0, 4) +
                     "..." +
                     walletInfo.address.slice(walletInfo.address.length - 4, walletInfo.address.length)
                     : ""}
+                    </div>
+                <button
+                  type="button"
+                  className="bg-white p-1 rounded-full text-blue-700 hover:text-white hover:bg-blue-700  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                  onClick={walletInfo ? handleDisconnectWallet : handleConnectWallet}
+                >
                   <span className="sr-only">Connect wallet</span>
                   <CreditCardIcon className="h-6 w-6" aria-hidden="true" />
                 </button>
