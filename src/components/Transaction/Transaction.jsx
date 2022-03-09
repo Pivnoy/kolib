@@ -72,7 +72,7 @@ function Transaction(props) {
             <div className="text-black">
                 <div className="pb-5 text-center font-bold">TRADER</div>
                 <div className="">
-                <FormControl fullWidth sx={{ m: 1 }}>
+                <FormControl fullWidth sx={{ m: 0 }}>
                                 <InputLabel htmlFor="outlined-adornment-amount">From</InputLabel>
                                 <OutlinedInput
                                     id="outlined-adornment-amount"
@@ -115,7 +115,7 @@ function Transaction(props) {
                         </div>
 
                         <div>
-                            <FormControl className="flex items-center justify-center">
+                            <FormControl fullWidth sx={{ m: 0 }}>
                                 <InputLabel htmlFor="outlined-adornment-amount">To</InputLabel>
                                 <OutlinedInput
                                     id="outlined-adornment-amount"
