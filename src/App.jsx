@@ -1,9 +1,4 @@
 import React from 'react';
-import {
-    BrowserRouter,
-    Routes,
-    Route,
-} from "react-router-dom";
 import Wallet from './components/Wallet/Wallet';
 
 function App() {

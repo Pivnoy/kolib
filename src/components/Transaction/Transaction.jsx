@@ -113,8 +113,8 @@ function Transaction(props) {
             <div className="absolute insert-0 top-10 m-40 h-fit w-96 bg-white p-8 shadow-lg rounded-lg">
                 <div className="text-black">
                     <div className="pb-5 text-center font-bold">TRADER</div>
-      
-      
+
+
                     <div className="mb-5">
                         <FormControl fullWidth sx={{ m: 0 }}>
                             <InputLabel htmlFor="outlined-adornment-amount">From</InputLabel>
@@ -150,15 +150,15 @@ function Transaction(props) {
 
 
                     <div className="flex flex-col items-center border-black">
-                            <p>
-                                Rate: {rate}
-                            </p>
-                            <IconButton
-                                style={{ height: "45px", width: "45px" }}
-                                onClick={handleChangeCurrencies}>
-                                <CompareArrowsOutlinedIcon />
-                            </IconButton>
-                     </div>
+                        <p>
+                            Rate: {rate}
+                        </p>
+                        <IconButton
+                            style={{ height: "45px", width: "45px" }}
+                            onClick={handleChangeCurrencies}>
+                            <CompareArrowsOutlinedIcon />
+                        </IconButton>
+                    </div>
 
 
 
@@ -192,15 +192,15 @@ function Transaction(props) {
                                 label="Amount"
                             />
                         </FormControl>
-                   </div>
+                    </div>
 
 
                     <div className="pt-4 flex items-center justify-center">
-                    <button
-                        onClick={wal == null ? connect:  handleSwapToken}
-                        className="m-4 w-40 bg-blue-600 hover:bg-blue-700 p-2 text-white rounded-lg shadow-lg">
-                        {wal == null ? "Connect" : "Swap"}
-                    </button>
+                        <button
+                            onClick={wal == null ? connect : handleSwapToken}
+                            className="m-4 w-40 bg-blue-600 hover:bg-blue-700 p-2 text-white rounded-lg shadow-lg">
+                            {wal == null ? "Connect" : "Swap"}
+                        </button>
                     </div>
 
 

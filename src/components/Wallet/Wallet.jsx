@@ -24,7 +24,7 @@ import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { CreditCardIcon, DatabaseIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 
 function Wallet() {
-  
+
   const navigation = [
     { name: 'Home', href: '#', current: true },
     { name: "All Ovens", href: '#', current: false },
@@ -34,7 +34,7 @@ function Wallet() {
     { name: "Farming", href: '#', current: false },
     { name: "Governance", href: '#', current: false }]
 
-  
+
   const [walletInfo, setWalletInfo] = useState(null);
   const [xtzBalance, setXtzBalance] = useState(null);
   const [TESTNET, setTESTNET] = useState(t1);
@@ -98,7 +98,7 @@ function Wallet() {
 
 
       {/* NavBar and kolibri logo */}
-      
+
       <Disclosure as="nav" className="relative bg-transparent">
         {({ open }) => (
           <>
@@ -152,7 +152,7 @@ function Wallet() {
 
 
 
-              {/* wallet and connection button */}
+                {/* wallet and connection button */}
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                   <div className="m-3 text-white p-1 h-auto w-auto border-solid border-2 border-white rounded-full">
 
@@ -173,27 +173,27 @@ function Wallet() {
                   </button>
                 </div>
 
-                    <InputAdornment
-                        position="start">
-                        <Select
-                          variant="standard"
-                          style={{ color: "white" }}
-                          onChange={handleChangeTESTNET}
-                          value={TESTNET}
-                        >
-                          <MenuItem
-                            value={false}>
-                            MAINNET
-                          </MenuItem>
-                          <MenuItem
-                            value={true}>
-                            TESTNET
-                          </MenuItem>
-                        </Select>
-                      </InputAdornment>
-                      
-                
-                
+                <InputAdornment
+                  position="start">
+                  <Select
+                    variant="standard"
+                    style={{ color: "white" }}
+                    onChange={handleChangeTESTNET}
+                    value={TESTNET}
+                  >
+                    <MenuItem
+                      value={false}>
+                      MAINNET
+                    </MenuItem>
+                    <MenuItem
+                      value={true}>
+                      TESTNET
+                    </MenuItem>
+                  </Select>
+                </InputAdornment>
+
+
+
               </div>
             </div>
 
@@ -237,8 +237,8 @@ function Wallet() {
       </div>
 
 
-{/* content here */}
-  <BrowserRouter>
+      {/* content here */}
+      <BrowserRouter>
         <Routes>
           <Route
             path='/'
@@ -259,9 +259,8 @@ function Wallet() {
       </BrowserRouter>
 
 
-
-
-
+      {/* footer place here */}
+      
     </div>
 
   )
