@@ -4,14 +4,13 @@ import {
     Routes,
     Route,
 } from "react-router-dom";
-import Ovens from './components/Ovens/Ovens';
 import Wallet from './components/Wallet/Wallet';
 
 function App() {
     return (
-        <div className="bg-gray-900 min-h-screen">
+        <body class="bg-gradient-to-r from-dark-blue via-not-dark-blue to-dark-blue min-h-screen">
             <Wallet />
-        </div>
+        </body>
     )
 }
 

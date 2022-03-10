@@ -5,10 +5,11 @@ import {
   getBalanceXtz,
   createTezosKit
 } from "../../utils/wallet";
-import { React, useEffect, useState } from "react";
+
+import { React, useEffect, useState, Fragment } from "react";
 import {
-  InputAdornment, MenuItem,
-  Select,
+  Button, FormControl, IconButton, InputAdornment, InputLabel, MenuItem, OutlinedInput,
+  Popover, Select, SelectChangeEvent
 } from "@mui/material";
 import Ovens from '../Ovens/Ovens';
 import {
@@ -19,9 +20,21 @@ import {
 import { createOvens, getBalanceKolibri } from '../../utils/kolibri';
 import Transaction from '../Transaction/Transaction';
 import { changeTESTNET, TESTNET as t1 } from "../../utils/values";
+import { Disclosure, Menu, Transition } from '@headlessui/react';
+import { CreditCardIcon, DatabaseIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 
 function Wallet() {
+  
+  const navigation = [
+    { name: 'Home', href: '#', current: true },
+    { name: "All Ovens", href: '#', current: false },
+    { name: "Docs", href: '#', current: false },
+    { name: "Liquidity Pool", href: '#', current: false },
+    { name: "Saving Rate", href: '#', current: false },
+    { name: "Farming", href: '#', current: false },
+    { name: "Governance", href: '#', current: false }]
 
+  
   const [walletInfo, setWalletInfo] = useState(null);
   const [xtzBalance, setXtzBalance] = useState(null);
   const [TESTNET, setTESTNET] = useState(t1);
@@ -73,47 +86,159 @@ function Wallet() {
 
   }, [regetbalance, TESTNET]);
 
+  function classNames(...classes) {
+    return classes.filter(Boolean).join(' ')
+  }
+
 
   return (
-    <>
-      <nav className="bg-gray-800 h-14 flex items-center px-10 justify-between">
-        <div className="text-white">
-          {xtzBalance ? "User xtz balance: " + xtzBalance : "No account connected"}
+
+    <div>
+
+
+
+      {/* NavBar and kolibri logo */}
+      
+      <Disclosure as="nav" className="relative bg-transparent">
+        {({ open }) => (
+          <>
+            <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+              <div className="relative flex items-center justify-between h-16">
+                <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                  {/* Mobile menu button*/}
+                  <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                    <span className="sr-only">Open main menu</span>
+                    {open ? (
+                      <XIcon className="block h-6 w-6" aria-hidden="true" />
+                    ) : (
+                      <MenuIcon className="block h-6 w-6" aria-hidden="true" />
+                    )}
+                  </Disclosure.Button>
+                </div>
+                <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+                  <div className="flex-shrink-0 flex items-center">
+                    <img
+                      className="block lg:hidden h-8 w-auto"
+                      src="https://kolibri.finance/img/kolibri-brand.b0cd3374.png"
+                      alt="Kolibri"
+                    />
+                    <img
+                      className="hidden lg:block h-8 w-auto"
+                      src="https://kolibri.finance/img/kolibri-brand.b0cd3374.png"
+                      alt="Kolibri"
+                    />
+                  </div>
+                  <div className="hidden sm:block sm:ml-6">
+                    <div className="flex space-x-4">
+                      {navigation.map((item) => (
+                        <a
+                          key={item.name}
+                          href={item.href}
+                          className={classNames(
+                            item.current ? 'bg-dark-blue text-white' : 'text-gray-300 hover:bg-blue-700 hover:text-white',
+                            'px-3 py-2 rounded-md text-sm font-medium'
+                          )}
+                          aria-current={item.current ? 'page' : undefined}
+                        >
+                          {item.name}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+
+
+              {/* wallet and connection button */}
+                <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                  <div className="m-3 text-white p-1 h-auto w-auto border-solid border-2 border-white rounded-full">
+
+                    {walletInfo
+                      ? walletInfo.address.slice(0, 4) +
+                      "..." +
+                      walletInfo.address.slice(walletInfo.address.length - 4, walletInfo.address.length)
+                      : "Connect"}
+
+                  </div>
+                  <button
+                    type="button"
+                    className="mr-3 bg-white p-1 rounded-full text-blue-700 hover:text-white hover:bg-blue-700  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                    onClick={walletInfo ? handleDisconnectWallet : handleConnectWallet}
+                  >
+                    <span className="sr-only">Connect wallet</span>
+                    <CreditCardIcon className="h-6 w-6" aria-hidden="true" />
+                  </button>
+                </div>
+
+                    <InputAdornment
+                        position="start">
+                        <Select
+                          variant="standard"
+                          style={{ color: "white" }}
+                          onChange={handleChangeTESTNET}
+                          value={TESTNET}
+                        >
+                          <MenuItem
+                            value={false}>
+                            MAINNET
+                          </MenuItem>
+                          <MenuItem
+                            value={true}>
+                            TESTNET
+                          </MenuItem>
+                        </Select>
+                      </InputAdornment>
+                      
+                
+                
+              </div>
+            </div>
+
+            <Disclosure.Panel className="sm:hidden">
+              <div className="px-2 pt-2 pb-3 space-y-1">
+                {navigation.map((item) => (
+                  <Disclosure.Button
+                    key={item.name}
+                    as="a"
+                    href={item.href}
+                    className={classNames(
+                      item.current ? 'bg-white text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                      'block px-3 py-2 rounded-md text-base font-medium'
+                    )}
+                    aria-current={item.current ? 'page' : undefined}
+                  >
+                    {item.name}
+                  </Disclosure.Button>
+                ))}
+              </div>
+
+            </Disclosure.Panel>
+          </>
+        )}
+      </Disclosure>
+
+
+
+
+
+      {/* balance windows */}
+
+      <div className="m-7 text-white relative flex items-center justify-center h-16">
+        <div className="p-3 h-auto w-auto border-solid border-2 border-white rounded-lg">
+          {xtzBalance ? "User xtz balance: " + xtzBalance : "No account connected (xtz)"}
         </div>
-        <div className="text-white">
-          {kolibriBalance != null ? "User kUSD balance: " + kolibriBalance : "No account connected"}
+        <div className="m-10"></div>
+        <div className="p-3 h-auto w-auto border-solid border-2 border-white rounded-lg">
+          {kolibriBalance != null ? "User kUSD balance: " + kolibriBalance : " No account connected (kUSD)"}
         </div>
-        <button
-          onClick={walletInfo ? handleDisconnectWallet : handleConnectWallet}
-          className="bg-red-500 px-6 py-2  rounded-sm text-xs font-semibold text-white cursor-pointer"
-        >
-          💳{" "}
-          {walletInfo
-            ? walletInfo.address.slice(0, 4) +
-            "..." +
-            walletInfo.address.slice(walletInfo.address.length - 4, walletInfo.address.length)
-            : "Connect"}
-        </button>
-        <InputAdornment
-          position="start">
-          <Select
-            variant="standard"
-            style={{ color: "white" }}
-            onChange={handleChangeTESTNET}
-            value={TESTNET}
-          >
-            <MenuItem
-              value={false}>
-              MAINNET
-            </MenuItem>
-            <MenuItem
-              value={true}>
-              TESTNET
-            </MenuItem>
-          </Select>
-        </InputAdornment>
-      </nav>
-      <BrowserRouter>
+      </div>
+
+
+{/* content here */}
+  <BrowserRouter>
         <Routes>
           <Route
             path='/'
@@ -132,8 +257,15 @@ function Wallet() {
           />
         </Routes>
       </BrowserRouter>
-    </>
-  );
+
+
+
+
+
+    </div>
+
+  )
+
 
 }
 
