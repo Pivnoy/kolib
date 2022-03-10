@@ -137,17 +137,37 @@ function Wallet() {
                     ? walletInfo.address.slice(0, 4) +
                     "..." +
                     walletInfo.address.slice(walletInfo.address.length - 4, walletInfo.address.length)
-                    : ""}
+                    : "connect"}
                     
                     </div>
-                <button
-                  type="button"
-                  className="bg-white p-1 rounded-full text-blue-700 hover:text-white hover:bg-blue-700  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-                  onClick={walletInfo ? handleDisconnectWallet : handleConnectWallet}
-                >
-                  <span className="sr-only">Connect wallet</span>
-                  <CreditCardIcon className="h-6 w-6" aria-hidden="true" />
-                </button>
+                    <button 
+                        type="button"
+                        className="mr-3 bg-white p-1 rounded-full text-blue-700 hover:text-white hover:bg-blue-700  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                        onClick={walletInfo ? handleDisconnectWallet : handleConnectWallet}
+                      >
+                        <span className="sr-only">Connect wallet</span>
+                        <CreditCardIcon className="h-6 w-6" aria-hidden="true" />
+                      </button>
+                    <InputAdornment
+                        position="start">
+                        <Select
+                          variant="standard"
+                          style={{ color: "white" }}
+                          onChange={handleChangeTESTNET}
+                          value={TESTNET}
+                        >
+                          <MenuItem
+                            value={false}>
+                            MAINNET
+                          </MenuItem>
+                          <MenuItem
+                            value={true}>
+                            TESTNET
+                          </MenuItem>
+                        </Select>
+                      </InputAdornment>
+                      
+                
                 
               </div>
             </div>
