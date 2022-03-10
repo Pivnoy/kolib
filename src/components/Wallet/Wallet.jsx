@@ -10,6 +10,12 @@ import {
   InputAdornment, MenuItem,
   Select,
 } from "@mui/material";
+import Ovens from '../Ovens/Ovens';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
 import { createOvens, getBalanceKolibri } from '../../utils/kolibri';
 import Transaction from '../Transaction/Transaction';
 import { changeTESTNET, TESTNET as t1 } from "../../utils/values";
@@ -107,12 +113,25 @@ function Wallet() {
           </Select>
         </InputAdornment>
       </nav>
-      <Transaction
-        TESTNET={TESTNET}
-        reget={{ regetbalance: regetbalance, setRegetbalance: setRegetbalance }}
-        connect={handleConnectWallet}
-        wal={walletInfo} 
-      />
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path='/'
+            element={
+              <Transaction
+                TESTNET={TESTNET}
+                reget={{ regetbalance: regetbalance, setRegetbalance: setRegetbalance }}
+                connect={handleConnectWallet}
+                wal={walletInfo}
+              />
+            }
+          />
+          <Route
+            path='/ovens'
+            element={<Ovens />}
+          />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 
