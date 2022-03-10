@@ -9,16 +9,14 @@ import {
 
 import { estimateSwap } from "@quipuswap/sdk";
 
-import { FACTORIES, HARBRINGER, KOLIBRI_TOKEN_ADDRESS, MINTER_ADDRESS, NETWORK, OVEN_ADDRESS, OVEN_FACTORY_ADDRESS, OVEN_REGISTRY_ADDRESS, RPC_URL } from "./values";
+import { FACTORIES, HARBRINGER, KOLIBRI_TOKEN_ADDRESS, MINTER_ADDRESS, NETWORK, OVEN_FACTORY_ADDRESS, OVEN_REGISTRY_ADDRESS, RPC_URL } from "./values";
 
 
 let tokenClient = null;
 
-let stableCoinClient = null;
+export let stableCoinClient = null;
 
 let harbringerClient = null;
-
-export let ovenClient = null;
 
 const createOvens = () => {
 
@@ -37,15 +35,20 @@ harbringerClient = new HarbingerClient(
     HARBRINGER
 );
 
-ovenClient = new OvenClient(
-    RPC_URL,
-    tz.memorySigner,
-    OVEN_ADDRESS,
-    stableCoinClient,
-    harbringerClient
-);
-
 }
+
+
+export const createOvenClient = (ovenAddress) => {
+    const ovenClient = new OvenClient(
+        RPC_URL,
+        wallet,
+        ovenAddress,
+        stableCoinClient,
+        harbringerClient
+    );
+    return ovenClient;
+}
+
 
 const getBalanceKolibri = async () => {
 
