@@ -3,7 +3,6 @@ import {
   getActiveAccount,
   disconnectWallet,
   getBalanceXtz,
-  wallet,
   createTezosKit
 } from "../../utils/wallet";
 
@@ -12,6 +11,12 @@ import {
   Button, FormControl, IconButton, InputAdornment, InputLabel, MenuItem, OutlinedInput,
   Popover, Select, SelectChangeEvent
 } from "@mui/material";
+import Ovens from '../Ovens/Ovens';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
 import { createOvens, getBalanceKolibri } from '../../utils/kolibri';
 import Transaction from '../Transaction/Transaction';
 import { changeTESTNET, TESTNET as t1 } from "../../utils/values";
@@ -19,6 +24,7 @@ import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { CreditCardIcon, DatabaseIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 
 function Wallet() {
+  
   const navigation = [
     { name: 'Home', href: '#', current: true },
     { name: "All Ovens", href: '#', current: false },
@@ -28,10 +34,12 @@ function Wallet() {
     { name: "Farming", href: '#', current: false },
     { name: "Governance", href: '#', current: false }]
 
+  
   const [walletInfo, setWalletInfo] = useState(null);
   const [xtzBalance, setXtzBalance] = useState(null);
   const [TESTNET, setTESTNET] = useState(t1);
   const [kolibriBalance, setKolibriBalance] = useState(null);
+  const [regetbalance, setRegetbalance] = useState(false);
 
   const handleChangeTESTNET = async (e) => {
     await handleDisconnectWallet();
@@ -76,7 +84,7 @@ function Wallet() {
 
     func();
 
-  }, []);
+  }, [regetbalance, TESTNET]);
 
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -229,7 +237,26 @@ function Wallet() {
       </div>
 
 
-
+{/* content here */}
+  <BrowserRouter>
+        <Routes>
+          <Route
+            path='/'
+            element={
+              <Transaction
+                TESTNET={TESTNET}
+                reget={{ regetbalance: regetbalance, setRegetbalance: setRegetbalance }}
+                connect={handleConnectWallet}
+                wal={walletInfo}
+              />
+            }
+          />
+          <Route
+            path='/ovens'
+            element={<Ovens />}
+          />
+        </Routes>
+      </BrowserRouter>
 
 
 
@@ -238,6 +265,7 @@ function Wallet() {
     </div>
 
   )
+
 
 }
 

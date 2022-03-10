@@ -1,26 +1,22 @@
 import { tz, wallet } from "./wallet"
 
-
 import {
-    CONTRACTS,
     HarbingerClient,
-    Network,
     OvenClient,
     StableCoinClient,
     TokenClient,
 } from "@hover-labs/kolibri-js";
 
 import { estimateSwap } from "@quipuswap/sdk";
-import { FACTORIES, HARBRINGER, KOLIBRI_TOKEN_ADDRESS, MINTER_ADDRESS, NETWORK, OVEN_ADDRESS, OVEN_FACTORY_ADDRESS, OVEN_REGISTRY_ADDRESS, RPC_URL } from "./values";
+
+import { FACTORIES, HARBRINGER, KOLIBRI_TOKEN_ADDRESS, MINTER_ADDRESS, NETWORK, OVEN_FACTORY_ADDRESS, OVEN_REGISTRY_ADDRESS, RPC_URL } from "./values";
 
 
 let tokenClient = null;
 
-let stableCoinClient = null;
+export let stableCoinClient = null;
 
 let harbringerClient = null;
-
-let ovenClient = null;
 
 const createOvens = () => {
 
@@ -39,15 +35,20 @@ harbringerClient = new HarbingerClient(
     HARBRINGER
 );
 
-ovenClient = new OvenClient(
-    RPC_URL,
-    tz.memorySigner,
-    OVEN_ADDRESS,
-    stableCoinClient,
-    harbringerClient
-);
-
 }
+
+
+export const createOvenClient = (ovenAddress) => {
+    const ovenClient = new OvenClient(
+        RPC_URL,
+        wallet,
+        ovenAddress,
+        stableCoinClient,
+        harbringerClient
+    );
+    return ovenClient;
+}
+
 
 const getBalanceKolibri = async () => {
 
@@ -55,7 +56,6 @@ const getBalanceKolibri = async () => {
         let kUSD_balance = 12;
         kUSD_balance = (await tokenClient
             .getBalance(await wallet.getPKH())).dividedBy(1_000_000_000_000_000_000).precision(6).toNumber();
-        console.log(kUSD_balance);
         return kUSD_balance;
     }
     catch (e) {
@@ -66,6 +66,7 @@ const getBalanceKolibri = async () => {
 const estimateOutput = async (from, to, amount) => {
 
     if (from !== 'tez') {
+        amount = amount * 1_000_000_000_000_000_000;
         from = { contract: from };
     }
 
@@ -74,7 +75,6 @@ const estimateOutput = async (from, to, amount) => {
     }
 
     try {
-        console.log(from, to, amount);
         const value = await estimateSwap(
             tz,
             FACTORIES,
@@ -93,7 +93,7 @@ const estimateOutput = async (from, to, amount) => {
 
     }
     catch (e) {
-        console.log(e);
+        console.log('Estimated swap conducted error: ', e);
         return 0;
     }
 }
