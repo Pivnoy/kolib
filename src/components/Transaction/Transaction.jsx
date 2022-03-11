@@ -101,7 +101,7 @@ function Transaction(props) {
 
         <body className="h-full bg-transparent flex items-center justify-center">
             <div className="m-10"></div>
-            <div className="absolute insert-0 top-10 m-40 h-fit w-96 bg-white p-8 shadow-lg rounded-lg">
+            <div className="absolute insert-0 top-10 m-40 h-fit w-96 bg-trader p-8 shadow-lg rounded-lg">
                 <div className="text-black">
                     <div className="pb-5 text-center font-bold">TRADER</div>
 
