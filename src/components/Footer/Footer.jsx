@@ -4,7 +4,7 @@ import React from "react"
 function Footer() {
 
     return (
-        <footer className="absolute inset-x-0 bottom-0  p-4 bg-transparent rounded-lg shadow dark:bg-gray-800">
+        <footer className="h-fit w-full absolute fixed-bottom p-4 bg-dark-blue rounded-lg shadow dark:bg-gray-800">
             <div className="sm:flex sm:items-center sm:justify-between">
                 <a href="#" className="flex items-center mb-4 sm:mb-0">
                     <img src="https://kolibri.finance/img/kolibri-brand.b0cd3374.png" className="mr-3 h-8" alt="Kolibri Logo" />
@@ -19,7 +19,7 @@ function Footer() {
                     <li>
                         <a href="#" className="mr-4 hover:underline md:mr-6 ">Licensing</a>
                     </li>
-                    <li>
+                    <li>    
                         <a href="#" className="hover:underline">Contact</a>
                     </li>
                 </ul>

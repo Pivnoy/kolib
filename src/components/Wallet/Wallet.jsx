@@ -28,10 +28,10 @@ import LiquidityPool from "../LiquidityPool/LiquidityPool";
 function Wallet() {
 
   const navigation = [
-    { name: 'Home', href: '#', current: true },
+    { name: 'Home', href: '/', current: true },
     { name: "All Ovens", href: '#', current: false },
     { name: "Docs", href: '#', current: false },
-    { name: "Liquidity Pool", href: '#', current: false },
+    { name: "Liquidity Pool", href: '/liq', current: false },
     { name: "Saving Rate", href: '#', current: false },
     { name: "Farming", href: '#', current: false },
     { name: "Governance", href: '#', current: false }]
@@ -262,7 +262,7 @@ function Wallet() {
           />
 
           <Route
-            path='/liquidity-pool'
+            path='/liq'
             element={<LiquidityPool />}
           />
         </Routes>
@@ -271,6 +271,7 @@ function Wallet() {
 
       {/* footer place here */}
       <Footer />
+      
 
     </div>
 
