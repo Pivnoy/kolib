@@ -25,12 +25,14 @@ function Ovens() {
         console.log('borrowed');
     }
 
-    const getAllOvenData = async(e) => {
+    const getAllOvenData = async (e) => {
         const ovenClient = createOvenClient(e.target.value);
-        console.log((await ovenClient.getBorrowedTokens()).toNumber());
-        console.log((await ovenClient.getStabilityFees()).toNumber());
-        console.log((await ovenClient.getTotalOutstandingTokens()).toNumber());
-        console.log((await ovenClient.getCollateralizationRatio()).precision(10).toNumber());
+        console.log((await stableCoinClient.getRequiredCollateralizationRatio()).toNumber());
+        console.log('balance ', (await ovenClient.getBalance()).dividedBy(1_000_000).toNumber()); //xtz
+        console.log('borrowed ', (await (await ovenClient.getBorrowedTokens()).dividedBy(1_000_000_000_000_000_000)).toNumber()); //kUSD
+        console.log('stab fee ', (await ovenClient.getStabilityFees()).dividedBy(1_000_000_000_000_000_000).toNumber()); // kUSD
+        console.log('outs token ', (await ovenClient.getTotalOutstandingTokens()).dividedBy(1_000_000_000_000_000_000).toNumber()); // ?
+        console.log('ratio', (await ovenClient.getCollateralizationRatio()).precision(10).toNumber()); //?
     }
 
 
@@ -39,7 +41,7 @@ function Ovens() {
             <>
                 <br />
                 <button
-                    className="bg-red-600"
+                    className="bg-blue-900"
                     key={i}
                     value={ov}
                     onClick={showOvenClient}>
@@ -47,33 +49,38 @@ function Ovens() {
                 </button>
                 <Popup
                     trigger={
-                        <button>
+                        <button
+                            className="bg-red-900">
                             Interact with oven
                         </button>
                     }
                     position="center center"
+                    className="bg-white text-black"
                     modal
                     nested
                 >
-                    Pop up content
-                    <br/>
-                    <button
-                        value={ov}
-                        onClick={showOvenBalance}>
-                        GetBaker
-                    </button>
-                    <br/>
-                    <button
-                        value={ov}
-                        onClick={borrowFromOven}>
-                        Borrow
-                    </button>
-                    <br/>
-                    <button
-                        value={ov}
-                        onClick={getAllOvenData}>
-                        Get all data!
-                    </button>
+                    <div
+                        className="bg-white">
+                        Pop up content
+                        <br />
+                        <button
+                            value={ov}
+                            onClick={showOvenBalance}>
+                            GetBaker
+                        </button>
+                        <br />
+                        <button
+                            value={ov}
+                            onClick={borrowFromOven}>
+                            Borrow
+                        </button>
+                        <br />
+                        <button
+                            value={ov}
+                            onClick={getAllOvenData}>
+                            Get all data!
+                        </button>
+                    </div>
                 </Popup>
                 <br />
             </>

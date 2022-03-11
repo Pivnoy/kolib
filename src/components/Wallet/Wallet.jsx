@@ -23,6 +23,7 @@ import Transaction from '../Transaction/Transaction';
 import { changeTESTNET, TESTNET as t1 } from "../../utils/values";
 import { Disclosure, } from '@headlessui/react';
 import { CreditCardIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import LiquidityPool from "../LiquidityPool/LiquidityPool";
 
 function Wallet() {
 
@@ -217,7 +218,7 @@ function Wallet() {
               </div>
             </Disclosure.Panel>
 
-            
+
           </>
         )}
       </Disclosure>
@@ -242,6 +243,7 @@ function Wallet() {
       {/* content here */}
       <BrowserRouter>
         <Routes>
+
           <Route
             path='/'
             element={
@@ -253,9 +255,15 @@ function Wallet() {
               />
             }
           />
+
           <Route
             path='/ovens'
             element={<Ovens />}
+          />
+
+          <Route
+            path='/liquidity-pool'
+            element={<LiquidityPool />}
           />
         </Routes>
       </BrowserRouter>
