@@ -6,6 +6,7 @@ module.exports = {
     extend: {
       colors: {
         //for navbar
+        "trader" : "#26262b",
         'gray_1': '#0f0f0f',
         'dark-emerald':'#012620',
         // for bg
