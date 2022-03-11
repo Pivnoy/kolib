@@ -6,10 +6,10 @@ import {
   createTezosKit
 } from "../../utils/wallet";
 
-import { React, useEffect, useState, Fragment } from "react";
+import { React, useEffect, useState } from "react";
 import {
-  Button, FormControl, IconButton, InputAdornment, InputLabel, MenuItem, OutlinedInput,
-  Popover, Select, SelectChangeEvent
+  InputAdornment, MenuItem,
+  Select
 } from "@mui/material";
 import Ovens from '../Ovens/Ovens';
 import {
@@ -17,11 +17,12 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import Footer from "../Footer/Footer";
 import { createOvens, getBalanceKolibri } from '../../utils/kolibri';
 import Transaction from '../Transaction/Transaction';
 import { changeTESTNET, TESTNET as t1 } from "../../utils/values";
-import { Disclosure, Menu, Transition } from '@headlessui/react';
-import { CreditCardIcon, DatabaseIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import { Disclosure, } from '@headlessui/react';
+import { CreditCardIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 
 function Wallet() {
 
@@ -214,8 +215,9 @@ function Wallet() {
                   </Disclosure.Button>
                 ))}
               </div>
-
             </Disclosure.Panel>
+
+            
           </>
         )}
       </Disclosure>
@@ -260,7 +262,8 @@ function Wallet() {
 
 
       {/* footer place here */}
-      
+      <Footer />
+
     </div>
 
   )

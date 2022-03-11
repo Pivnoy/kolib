@@ -1,12 +1,4 @@
 import {
-    connectWallet,
-    getActiveAccount,
-    disconnectWallet,
-    getBalanceXtz,
-    wallet,
-    tz
-} from "../../utils/wallet";
-import {
     FormControl, IconButton, InputAdornment, InputLabel, MenuItem, OutlinedInput,
     Select,
 } from "@mui/material";
@@ -15,7 +7,6 @@ import { React, useEffect, useState } from "react";
 import { createOvens, estimateOutput } from '../../utils/kolibri';
 import { KOLIBRI_TOKEN_ADDRESS } from "../../utils/values";
 import { swapToken } from "../../utils/swap";
-import Footer from "../Footer/Footer";
 import { createTezosKit } from "../../utils/wallet";
 
 function Transaction(props) {
@@ -215,7 +206,7 @@ function Transaction(props) {
 
 
             {/* footer, why not in wallet?*/}
-            <Footer />
+            {/* <Footer /> */}
 
         </body>
 
