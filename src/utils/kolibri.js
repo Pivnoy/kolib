@@ -1,6 +1,7 @@
 import { tz, wallet } from "./wallet"
 
 import {
+    ConversionUtils,
     HarbingerClient,
     OvenClient,
     StableCoinClient,
@@ -9,7 +10,7 @@ import {
 
 import { estimateSwap } from "@quipuswap/sdk";
 
-import { FACTORIES, HARBRINGER, KOLIBRI_TOKEN_ADDRESS, MINTER_ADDRESS, NETWORK, OVEN_FACTORY_ADDRESS, OVEN_REGISTRY_ADDRESS, RPC_URL } from "./values";
+import { FACTORIES, HARBRINGER, KOLIBRI_TOKEN_ADDRESS, kUSD_DIGITS, MINTER_ADDRESS, NETWORK, OVEN_FACTORY_ADDRESS, OVEN_REGISTRY_ADDRESS, RPC_URL } from "./values";
 
 
 let tokenClient = null;
@@ -55,7 +56,8 @@ const getBalanceKolibri = async () => {
     try {
         let kUSD_balance = 12;
         kUSD_balance = (await tokenClient
-            .getBalance(await wallet.getPKH())).dividedBy(1_000_000_000_000_000_000).precision(6).toNumber();
+            .getBalance(await wallet.getPKH()));
+        kUSD_balance = ConversionUtils.shardToHumanReadableNumber(kUSD_balance, 2);
         return kUSD_balance;
     }
     catch (e) {
@@ -66,7 +68,7 @@ const getBalanceKolibri = async () => {
 const estimateOutput = async (from, to, amount) => {
 
     if (from !== 'tez') {
-        amount = amount * 1_000_000_000_000_000_000;
+        amount = amount * kUSD_DIGITS;
         from = { contract: from };
     }
 
@@ -84,11 +86,11 @@ const estimateOutput = async (from, to, amount) => {
         );
 
         if (from === 'tez') {
-            return value.dividedBy(1_000_000_000_000).precision(3).toNumber();
+            return value.dividedBy(1_000_000_000_000).toFixed(3);
         }
 
         if (to === 'tez') {
-            return value.dividedBy(1_000_000).precision(3).toNumber();
+            return value.dividedBy(1_000_000).toFixed(3);
         }
 
     }

@@ -8,7 +8,7 @@
     "@emotion/styled": "^11.6.0",
     "@headlessui/react": "^1.5.0",
     "@heroicons/react": "^1.0.6",
-    "@hover-labs/kolibri-js": "^3.2.1",
+    "@hover-labs/kolibri-js": "^3.2.3",
     "@mui/icons-material": "^5.4.1",
     "@mui/material": "^5.4.1",
     "@quipuswap/sdk": "^3.0.0",

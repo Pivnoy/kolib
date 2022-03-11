@@ -28,10 +28,10 @@ import LiquidityPool from "../LiquidityPool/LiquidityPool";
 function Wallet() {
 
   const navigation = [
-    { name: 'Home', href: '#', current: true },
-    { name: "All Ovens", href: '#', current: false },
+    { name: 'Home', href: '/', current: true },
+    { name: "All Ovens", href: '/ovens', current: false },
     { name: "Docs", href: '#', current: false },
-    { name: "Liquidity Pool", href: '#', current: false },
+    { name: "Liquidity Pool", href: '/liquidity-pool', current: false },
     { name: "Saving Rate", href: '#', current: false },
     { name: "Farming", href: '#', current: false },
     { name: "Governance", href: '#', current: false }]

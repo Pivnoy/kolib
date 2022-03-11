@@ -59,6 +59,7 @@ let NETWORK = TESTNET ? "hangzhounet" : "mainnet";
 
 let OVEN_ADDRESS = TESTNET ? CONTRACTS.TEST.OVEN_ADDRESS : CONTRACTS.MAIN.OVEN_ADDRESS;
 
+const kUSD_DIGITS = 1_000_000_000_000_000_000;
 
 export {
     FACTORIES,
@@ -72,5 +73,6 @@ export {
     MINTER_ADDRESS,
     HARBRINGER,
     changeTESTNET,
+    kUSD_DIGITS,
 }
 
