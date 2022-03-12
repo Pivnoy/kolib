@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowDownIcon, AnnotationIcon, GlobeAltIcon, LightningBoltIcon, ScaleIcon } from '@heroicons/react/outline'
+import { ArrowDownIcon, ArrowsExpandIcon, CheckIcon, LightningBoltIcon, ScaleIcon } from '@heroicons/react/outline'
 import { Menu, Transition } from '@headlessui/react'
 
 function classNames(...classes) {
@@ -9,47 +9,25 @@ function classNames(...classes) {
 
 const features = [
     {
-      name: '#1',
-      description:
+      name: 'Pool size',
+      amount:
         'feature #1',
-      icon: GlobeAltIcon,
+      icon: ArrowsExpandIcon,
     },
     {
-      name: '#2',
-      description:
+      name: 'Liquidation reward',
+      amount:
         'feature #2',
-      icon: ScaleIcon,
+      icon: CheckIcon,
     },
     {
-      name: '#3',
-      description:
+      name: 'lp tokens total',
+      amount:
         'feature #3',
       icon: LightningBoltIcon,
     },
-    {
-      name: '#4',
-      description:
-        'feature #4',
-      icon: AnnotationIcon,
-    },
   ]
 
-const elements =[
-    {
-        name: 'Pool size',
-        amount:'10',
-    },
-    {
-        name: 'Liquidation reward',
-        amount:'1000',
-    },
-    {
-        name: 'lp tokens total',
-        amount:'341',
-    },
-
-
-]
 
 
 
@@ -64,7 +42,7 @@ function LiquidityPool() {
                     Ready to dive in?
                 </p>
                 <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
-                    Liquidity pools are cool
+                    Liquidity pool is cool
                 </p>
                     <div>
                     <button
@@ -80,7 +58,7 @@ function LiquidityPool() {
             </div>
 
             <div className="mt-10">
-            <dl className="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
+            <dl className="space-y-10 md:space-y-0 md:grid md:grid-cols-3 md:gap-x-8 md:gap-y-10">
                 {features.map((feature) => (
                 <div key={feature.name} className="relative">
                     <dt>
@@ -89,18 +67,18 @@ function LiquidityPool() {
                     </div>
                     <p className="ml-16 text-lg leading-6 font-medium text-gray-900">{feature.name}</p>
                     </dt>
-                    <dd className="mt-2 ml-16 text-base text-gray-500">{feature.description}</dd>
+                    <dd className="mt-2 ml-16 text-base text-gray-500">{feature.amount}</dd>
                 </div>
                 ))}
             </dl>
 
             </div>
         {/* content-center text-indigo-600 font-semibold tracking-wide uppercase text-base relative  items-center justify-center */}
-                <div className="place-content-strech gap-10 m-10 text-indigo-600 font-semibold tracking-wide uppercase text-base flex items-center justify-center">
+                {/* <div className="place-content-strech gap-10 m-10 text-indigo-600 font-semibold tracking-wide uppercase text-base flex items-center justify-center">
                     <div className="ml-15">Pool size</div>
                     <div className="ml-15">Liquidation reward</div>
                     <div className="ml-15">lp tokens total</div>
-                </div>
+                </div> */}
             </div>
             
         
