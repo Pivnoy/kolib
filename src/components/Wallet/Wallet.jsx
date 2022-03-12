@@ -4,7 +4,7 @@ import {
   disconnectWallet,
   getBalanceXtz,
   createTezosKit
-} from "../../utils/wallet";
+} from "../../utils/wallet_api/wallet";
 
 import { React, useEffect, useState } from "react";
 import {
@@ -18,7 +18,7 @@ import {
   Route,
 } from "react-router-dom";
 import Footer from "../Footer/Footer";
-import { createOvens, getBalanceKolibri } from '../../utils/kolibri';
+import { createOvens, getBalanceKolibri } from '../../utils/kolibri_api/kolibri';
 import Transaction from '../Transaction/Transaction';
 import { changeTESTNET, TESTNET as t1 } from "../../utils/values";
 import { Disclosure, } from '@headlessui/react';

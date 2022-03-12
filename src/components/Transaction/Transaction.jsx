@@ -4,10 +4,10 @@ import {
 } from "@mui/material";
 import CompareArrowsOutlinedIcon from '@mui/icons-material/CompareArrowsOutlined';
 import { React, useEffect, useState } from "react";
-import { createOvens, estimateOutput } from '../../utils/kolibri';
+import { createOvens, estimateOutput } from '../../utils/kolibri_api/kolibri';
 import { KOLIBRI_TOKEN_ADDRESS } from "../../utils/values";
-import { swapToken } from "../../utils/swap";
-import { createTezosKit } from "../../utils/wallet";
+import { swapToken } from "../../utils/wallet_api/swap";
+import { createTezosKit } from "../../utils/wallet_api/wallet";
 
 function Transaction(props) {
 
