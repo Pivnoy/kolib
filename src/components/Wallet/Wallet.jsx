@@ -16,6 +16,7 @@ import {
   BrowserRouter,
   Routes,
   Route,
+  Link,
 } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import { createOvens, getBalanceKolibri } from '../../utils/kolibri_api/kolibri';
@@ -97,7 +98,8 @@ function Wallet() {
 
     <div>
 
-
+    {/* content here */}
+    <BrowserRouter>
 
       {/* NavBar and kolibri logo */}
 
@@ -133,9 +135,9 @@ function Wallet() {
                   <div className="hidden sm:block sm:ml-6">
                     <div className="flex space-x-4">
                       {navigation.map((item) => (
-                        <a
+                        <Link
                           key={item.name}
-                          href={item.href}
+                          to={item.href}
                           className={classNames(
                             item.current ? 'bg-dark-blue text-white' : 'text-gray-300 hover:bg-blue-700 hover:text-white',
                             'px-3 py-2 rounded-md text-sm font-medium'
@@ -143,7 +145,7 @@ function Wallet() {
                           aria-current={item.current ? 'page' : undefined}
                         >
                           {item.name}
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   </div>
@@ -204,8 +206,8 @@ function Wallet() {
                 {navigation.map((item) => (
                   <Disclosure.Button
                     key={item.name}
-                    as="a"
-                    href={item.href}
+                    as="Link" 
+                    to={item.href}
                     className={classNames(
                       item.current ? 'bg-white text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                       'block px-3 py-2 rounded-md text-base font-medium'
@@ -240,8 +242,7 @@ function Wallet() {
       </div>
 
 
-      {/* content here */}
-      <BrowserRouter>
+
         <Routes>
 
           <Route

@@ -53,7 +53,7 @@ function Ovens() {
 
     const handleOvenButtonClick = (e) => {
         console.log(e.target.value);
-        setChosenButton(e.target.button);
+        setChosenButton(e.target.value);
     }
 
     const renderOwnedOvens = () => {
@@ -160,7 +160,9 @@ function Ovens() {
                         Payback
                     </Button>
                 </ButtonGroup>
-                <OvensInteractions oven={ownedOvens[chosenOven]}/>
+                <OvensInteractions
+                    oven={ownedOvens[chosenOven]} 
+                    btn={chosenButton}/>
             </div>
         </div>
     )
