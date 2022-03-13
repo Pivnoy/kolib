@@ -17,7 +17,7 @@ let tokenClient = null;
 
 export let stableCoinClient = null;
 
-let harbringerClient = null;
+export let harbringerClient = null;
 
 const createOvens = () => {
 

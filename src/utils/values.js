@@ -1,6 +1,6 @@
 import { CONTRACTS } from "@hover-labs/kolibri-js";
 
-
+import BigNumber from 'bignumber.js'
 
 let TESTNET = true;
 
@@ -61,6 +61,13 @@ let OVEN_ADDRESS = TESTNET ? CONTRACTS.TEST.OVEN_ADDRESS : CONTRACTS.MAIN.OVEN_A
 
 const kUSD_DIGITS = 1_000_000_000_000_000_000;
 
+const MUTEZ_DIGITS = 6
+const SHARD_DIGITS = 18
+
+const MUTEZ_TO_SHARD = new BigNumber(Math.pow(10, SHARD_DIGITS - MUTEZ_DIGITS))
+const SHARD_PRECISION = new BigNumber(Math.pow(10, SHARD_DIGITS))
+
+
 export {
     FACTORIES,
     RPC_URL,
@@ -74,5 +81,7 @@ export {
     HARBRINGER,
     changeTESTNET,
     kUSD_DIGITS,
+    MUTEZ_TO_SHARD,
+    SHARD_PRECISION,
 }
 

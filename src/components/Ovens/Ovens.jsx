@@ -1,11 +1,12 @@
 
 import { createTezosKit, wallet } from "../../utils/wallet_api/wallet";
-import { createOvenClient, createOvens, stableCoinClient } from '../../utils/kolibri_api/kolibri';
+import { createOvenClient, createOvens, harbringerClient, stableCoinClient } from '../../utils/kolibri_api/kolibri';
 import { React, useEffect, useState } from "react";
 import { getOvenDescription } from "../../utils/kolibri_api/ovens";
 import { ovenButtons } from "../../utils/kolibri_api/oven_buttons";
 import { Button, ButtonGroup } from "@mui/material";
 import OvensInteractions from "./OvensInteractions";
+import { MUTEZ_TO_SHARD } from "../../utils/values";
 
 
 function Ovens() {
@@ -17,6 +18,8 @@ function Ovens() {
     const [chosenOven, setChosenOven] = useState(0);
 
     const [chosenButton, setChosenButton] = useState(ovenButtons.borrow);
+
+    const [xtzPrise, setXtzPrise] = useState(null);
 
 
     const borrowFromOven = async (e) => {
@@ -110,6 +113,12 @@ function Ovens() {
                 createOvens();
             }
 
+            let { price }  = await harbringerClient.getPriceData();
+
+            // price = price  * MUTEZ_TO_SHARD;
+
+            setXtzPrise(price);
+
             let ovensAddresses = await stableCoinClient.ovensOwnedByAddress(await wallet.getPKH());
 
             setOvensAdr(ovensAddresses);
@@ -162,7 +171,8 @@ function Ovens() {
                 </ButtonGroup>
                 <OvensInteractions
                     oven={ownedOvens[chosenOven]} 
-                    btn={chosenButton}/>
+                    btn={chosenButton}
+                    price={xtzPrise}/>
             </div>
         </div>
     )

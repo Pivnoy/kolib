@@ -22,17 +22,21 @@ function Transaction(props) {
 
 
     const handleChangeFromNumber = async (e) => {
-        setCurrencyFromNumber(Number(e.target.value));
-        handleChangeToNumber({
-            target: {
-                value:
-                    await estimateOutput(currencyFrom, currencyTo, Number(e.target.value))
-            }
-        });
+        if (Number(e.target.value) >= 0) {
+            setCurrencyFromNumber(Number(e.target.value));
+            handleChangeToNumber({
+                target: {
+                    value:
+                        await estimateOutput(currencyFrom, currencyTo, Number(e.target.value))
+                }
+            });
+        }
     }
 
     const handleChangeToNumber = (e) => {
-        setCurrencyToNumber(Number(e.target.value));
+        if (Number(e.target.value) >= 0) {
+            setCurrencyToNumber(Number(e.target.value));
+        }
     }
 
     const onFromSelectChange = (e) => {

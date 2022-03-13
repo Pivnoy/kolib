@@ -9,6 +9,8 @@ export const getOvenDescription = async (ovenAddress) => {
 
     let ratio = await ovenClient.getCollateralUtilization();
 
+    let token = await ovenClient.getTotalOutstandingTokens();
+
     let ovenRatio = null;
 
     if (ratio.isNaN()) {
@@ -29,7 +31,8 @@ export const getOvenDescription = async (ovenAddress) => {
         address: ovenAddress,
         ratio: ovenRatio,
         borrowed: borrowed,
-        fee: stabilityFee
+        fee: stabilityFee,
+        token: token
     }
 
 }
