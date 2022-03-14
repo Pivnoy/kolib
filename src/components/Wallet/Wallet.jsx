@@ -224,6 +224,8 @@ function Wallet() {
                 </div>
               </Disclosure.Panel>
 
+              </div>
+
 
             </>
           )}
