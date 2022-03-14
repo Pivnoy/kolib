@@ -6,6 +6,8 @@ import {
     FormControl, IconButton, InputAdornment, InputLabel, MenuItem, OutlinedInput,
     Select,
 } from "@mui/material";
+import BigNumber from 'bignumber.js'
+
 
 function OvensInteractions(props) {
 
@@ -15,24 +17,24 @@ function OvensInteractions(props) {
 
     const [ovenRatio, setOvenRatio] = useState(null);
 
+    const [ovenInput, setOvenInput] = useState('');
+
     // pass dispersion
     const updateCollateral = (balance, token) => {
 
         const shard_price = price * MUTEZ_TO_SHARD;
 
-        const token_shard = oven.token.times(18);
+        const changed_token = oven.token.plus(token * SHARD_PRECISION);
 
-        const balance_shard = (oven.balance * 1_000_000)  * MUTEZ_TO_SHARD;
+        const token_shard = changed_token.times(18);
+
+        const balance_shard = (oven.balance * 1_000_000) * MUTEZ_TO_SHARD;
 
         const changed_balace = balance_shard + (balance * SHARD_PRECISION);
 
-        const changed_token = token_shard + token;
-        
         const ovenValue = (changed_balace * shard_price) / SHARD_PRECISION;
 
-        console.log(changed_balace, token_shard, shard_price);
-
-        console.log(token_shard / ovenValue);
+        console.log(changed_balace, token_shard.toNumber(), shard_price);
 
         setOvenRatio(((token_shard / ovenValue) * 10).toFixed(2));
     }
@@ -40,7 +42,13 @@ function OvensInteractions(props) {
 
     const handleOvenInput = (e) => {
         if (Number(e.target.value) >= 0) {
-            updateCollateral(1, 0);
+            setOvenInput(Number(e.target.value));
+            if (currency == 'tez') {
+                updateCollateral(Number(e.target.value), 0);
+            }
+            else {
+                updateCollateral(0, Number(e.target.value));
+            }
         }
     }
 
@@ -53,7 +61,17 @@ function OvensInteractions(props) {
             setCurrency('tez');
         }
         if (oven != null) {
-            setOvenRatio(oven.ratio);
+            if (ovenInput == ''){
+                setOvenRatio(oven.ratio);
+            }
+            else {
+                if (btn == ovenButtons.borrow || btn == ovenButtons.payback) {
+                    updateCollateral(0, ovenInput);
+                }
+                else {
+                    updateCollateral(ovenInput, 0);
+                }
+            }
         }
     }, [btn, oven]);
 
@@ -78,18 +96,18 @@ function OvensInteractions(props) {
                 </div>
             }
             <InputLabel htmlFor="outlined-adornment-amount">From</InputLabel>
-                            <OutlinedInput
-                                id="outlined-adornment-amount"
-                                value={12}
-                                onChange={handleOvenInput}
-                                type="number"
-                                placeholder="0.0"
-                                startAdornment={
-                                    <InputAdornment position="start">
-                                        
-                                    </InputAdornment>}
-                                label="Amount"
-                            />
+            <OutlinedInput
+                id="outlined-adornment-amount"
+                value={ovenInput}
+                onChange={handleOvenInput}
+                type="number"
+                placeholder="0.0"
+                // startAdornment={
+                //     <InputAdornment position="start">
+
+                //     </InputAdornment>}
+                label="Amount"
+            />
         </div>
     )
 
