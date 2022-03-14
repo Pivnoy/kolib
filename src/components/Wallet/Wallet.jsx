@@ -4,7 +4,7 @@ import {
   disconnectWallet,
   getBalanceXtz,
   createTezosKit
-} from "../../utils/wallet";
+} from "../../utils/wallet_api/wallet";
 
 import { React, useEffect, useState } from "react";
 import {
@@ -16,9 +16,10 @@ import {
   BrowserRouter,
   Routes,
   Route,
+  Link,
 } from "react-router-dom";
 import Footer from "../Footer/Footer";
-import { createOvens, getBalanceKolibri } from '../../utils/kolibri';
+import { createOvens, getBalanceKolibri } from '../../utils/kolibri_api/kolibri';
 import Transaction from '../Transaction/Transaction';
 import { changeTESTNET, TESTNET as t1 } from "../../utils/values";
 import { Disclosure, } from '@headlessui/react';
@@ -97,6 +98,8 @@ function Wallet() {
 
     <div>
 
+      {/* content here */}
+      <BrowserRouter>
 
 
       {/* NavBar and kolibri logo */}
@@ -133,9 +136,9 @@ function Wallet() {
                   <div className="hidden sm:block sm:ml-6">
                     <div className="flex space-x-3 content-center items-center self-center">
                       {navigation.map((item) => (
-                        <a
+                        <Link
                           key={item.name}
-                          href={item.href}
+                          to={item.href}
                           className={classNames(
                             item.current ? 'underline underline-offset-6' : 'text-light-grey hover:text-white',
                             'mt-3 px-3 py-8 font-light text-white'
@@ -143,11 +146,10 @@ function Wallet() {
                           aria-current={item.current ? 'page' : undefined}
                         >
                           {item.name}
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   </div>
-                </div>
 
 
 
@@ -177,59 +179,58 @@ function Wallet() {
                   </div>
                 </div>
 
-                <InputAdornment
-                  position="start">
-                  <Select
-                    variant="standard"
-                    style={{ color: "white" }}
-                    onChange={handleChangeTESTNET}
-                    value={TESTNET}
-                  >
-                    <MenuItem
-                      value={false}>
-                      MAINNET
-                    </MenuItem>
-                    <MenuItem
-                      value={true}>
-                      TESTNET
-                    </MenuItem>
-                  </Select>
-                </InputAdornment>
+
+                  <InputAdornment
+                    position="start">
+                    <Select
+                      variant="standard"
+                      style={{ color: "white" }}
+                      onChange={handleChangeTESTNET}
+                      value={TESTNET}
+                    >
+                      <MenuItem
+                        value={false}>
+                        MAINNET
+                      </MenuItem>
+                      <MenuItem
+                        value={true}>
+                        TESTNET
+                      </MenuItem>
+                    </Select>
+                  </InputAdornment>
 
 
 
+                </div>
               </div>
-            </div>
-
-            <Disclosure.Panel className="sm:hidden">
-              <div className="px-2 pt-2 pb-3 space-y-1">
-                {navigation.map((item) => (
-                  <Disclosure.Button
-                    key={item.name}
-                    as="a"
-                    href={item.href}
-                    className={classNames(
-                      item.current ? 'bg-white text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                      'block px-3 py-2 rounded-md text-base font-light'
-                    )}
-                    aria-current={item.current ? 'page' : undefined}
-                  >
-                    {item.name}
-                  </Disclosure.Button>
-                ))}
-              </div>
-            </Disclosure.Panel>
 
 
-          </>
-        )}
-      </Disclosure>
+              <Disclosure.Panel className="sm:hidden">
+                <div className="px-2 pt-2 pb-3 space-y-1">
+                  {navigation.map((item) => (
+                    <Disclosure.Button
+                      key={item.name}
+                      as="Link"
+                      to={item.href}
+                      className={classNames(
+                        item.current ? 'bg-white text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                        'block px-3 py-2 rounded-md text-base font-light'
+                      )}
+                      aria-current={item.current ? 'page' : undefined}
+                    >
+                      {item.name}
+                    </Disclosure.Button>
+                  ))}
+                </div>
+              </Disclosure.Panel>
 
 
+            </>
+          )}
+        </Disclosure>
 
 
 
-      {/* balance windows */}
 
       {/* <div className="m-7 text-white relative flex items-center justify-center h-16">
         <div className="p-3 h-auto w-auto border-solid border-2 border-white rounded-lg">
@@ -242,8 +243,8 @@ function Wallet() {
       </div> */}
 
 
-      {/* content here */}
-      <BrowserRouter>
+
+
         <Routes>
 
           <Route
@@ -260,7 +261,13 @@ function Wallet() {
 
           <Route
             path='/ovens'
-            element={<Ovens />}
+            element={
+              <Ovens
+                TESTNET={TESTNET}
+                reget={{ regetbalance: regetbalance, setRegetbalance: setRegetbalance }}
+                connect={handleConnectWallet}
+                wal={walletInfo}
+              />}
           />
 
           <Route

@@ -1,4 +1,4 @@
-import { tz, wallet } from "./wallet"
+import { tz, wallet } from "../wallet_api/wallet"
 
 import {
     ConversionUtils,
@@ -10,14 +10,14 @@ import {
 
 import { estimateSwap } from "@quipuswap/sdk";
 
-import { FACTORIES, HARBRINGER, KOLIBRI_TOKEN_ADDRESS, kUSD_DIGITS, MINTER_ADDRESS, NETWORK, OVEN_FACTORY_ADDRESS, OVEN_REGISTRY_ADDRESS, RPC_URL } from "./values";
+import { FACTORIES, HARBRINGER, KOLIBRI_TOKEN_ADDRESS, kUSD_DIGITS, MINTER_ADDRESS, NETWORK, OVEN_FACTORY_ADDRESS, OVEN_REGISTRY_ADDRESS, RPC_URL } from "../values";
 
 
 let tokenClient = null;
 
 export let stableCoinClient = null;
 
-let harbringerClient = null;
+export let harbringerClient = null;
 
 const createOvens = () => {
 

@@ -1,8 +1,8 @@
 import { TezosToolkit } from "@taquito/taquito";
 import { BeaconWallet } from "@taquito/beacon-wallet";
-import { NETWORK, RPC_URL } from "./values";
+import { NETWORK, RPC_URL } from "../values";
 import { ReadOnlySigner } from "@quipuswap/sdk";
-import { createOvens } from "./kolibri";
+import { createOvens } from "../kolibri_api/kolibri";
 
 
 const options = {

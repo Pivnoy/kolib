@@ -4,10 +4,10 @@ import {
 } from "@mui/material";
 import CompareArrowsOutlinedIcon from '@mui/icons-material/CompareArrowsOutlined';
 import { React, useEffect, useState } from "react";
-import { createOvens, estimateOutput } from '../../utils/kolibri';
+import { createOvens, estimateOutput } from '../../utils/kolibri_api/kolibri';
 import { KOLIBRI_TOKEN_ADDRESS } from "../../utils/values";
-import { swapToken } from "../../utils/swap";
-import { createTezosKit } from "../../utils/wallet";
+import { swapToken } from "../../utils/wallet_api/swap";
+import { createTezosKit } from "../../utils/wallet_api/wallet";
 
 function Transaction(props) {
 
@@ -22,17 +22,21 @@ function Transaction(props) {
 
 
     const handleChangeFromNumber = async (e) => {
-        setCurrencyFromNumber(Number(e.target.value));
-        handleChangeToNumber({
-            target: {
-                value:
-                    await estimateOutput(currencyFrom, currencyTo, Number(e.target.value))
-            }
-        });
+        if (Number(e.target.value) >= 0) {
+            setCurrencyFromNumber(Number(e.target.value));
+            handleChangeToNumber({
+                target: {
+                    value:
+                        await estimateOutput(currencyFrom, currencyTo, Number(e.target.value))
+                }
+            });
+        }
     }
 
     const handleChangeToNumber = (e) => {
-        setCurrencyToNumber(Number(e.target.value));
+        if (Number(e.target.value) >= 0) {
+            setCurrencyToNumber(Number(e.target.value));
+        }
     }
 
     const onFromSelectChange = (e) => {
