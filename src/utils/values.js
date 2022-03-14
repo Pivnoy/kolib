@@ -66,6 +66,7 @@ const SHARD_DIGITS = 18
 
 const MUTEZ_TO_SHARD = new BigNumber(Math.pow(10, SHARD_DIGITS - MUTEZ_DIGITS))
 const SHARD_PRECISION = new BigNumber(Math.pow(10, SHARD_DIGITS))
+const MUTEZ_PRECISION = new BigNumber(Math.pow(10, MUTEZ_DIGITS));
 
 
 export {
@@ -83,5 +84,6 @@ export {
     kUSD_DIGITS,
     MUTEZ_TO_SHARD,
     SHARD_PRECISION,
+    MUTEZ_PRECISION
 }
 

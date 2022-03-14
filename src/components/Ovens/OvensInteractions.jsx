@@ -1,12 +1,14 @@
 
 import React, { useState, useEffect } from "react";
 import { ovenButtons } from "../../utils/kolibri_api/oven_buttons";
-import { KOLIBRI_TOKEN_ADDRESS, MUTEZ_TO_SHARD, SHARD_PRECISION } from "../../utils/values";
+import { KOLIBRI_TOKEN_ADDRESS, MUTEZ_PRECISION, MUTEZ_TO_SHARD, SHARD_PRECISION } from "../../utils/values";
 import {
+    Button,
     FormControl, IconButton, InputAdornment, InputLabel, MenuItem, OutlinedInput,
     Select,
 } from "@mui/material";
 import BigNumber from 'bignumber.js'
+import { createOvenClient } from "../../utils/kolibri_api/kolibri";
 
 
 function OvensInteractions(props) {
@@ -18,6 +20,35 @@ function OvensInteractions(props) {
     const [ovenRatio, setOvenRatio] = useState(null);
 
     const [ovenInput, setOvenInput] = useState('');
+
+    const handleInteractionButton = async () => {
+        const ovenClient = createOvenClient(oven.address);
+        let op;
+        switch (btn) {
+            case (ovenButtons.borrow):
+                op = await ovenClient.borrow(Number(ovenInput) * SHARD_PRECISION);
+                await op.confirmation();
+                console.log(ovenButtons.borrow, 'complited!');
+                break;
+            case (ovenButtons.deposit):
+                op = await ovenClient.deposit(Number(ovenInput) * MUTEZ_PRECISION);
+                await op.confirmation();
+                console.log(ovenButtons.deposit, 'complited!');
+                break;
+            case (ovenButtons.withdraw):
+                op = await ovenClient.withdraw(Number(ovenInput) * MUTEZ_PRECISION);
+                await op.confirmation();
+                console.log(ovenButtons.withdraw, 'complited!');
+                break;
+            case (ovenButtons.payback):
+                op = await ovenClient.repay(Number(ovenInput) * SHARD_PRECISION);
+                await op.confirmation();
+                console.log(ovenButtons.payback, 'complited!');
+                break;
+            default:
+                break;
+        }
+    }
 
     // pass dispersion
     const updateCollateral = (balance, token) => {
@@ -61,7 +92,7 @@ function OvensInteractions(props) {
             setCurrency('tez');
         }
         if (oven != null) {
-            if (ovenInput == ''){
+            if (ovenInput == '') {
                 setOvenRatio(oven.ratio);
             }
             else {
@@ -102,12 +133,19 @@ function OvensInteractions(props) {
                 onChange={handleOvenInput}
                 type="number"
                 placeholder="0.0"
-                // startAdornment={
-                //     <InputAdornment position="start">
-
-                //     </InputAdornment>}
+                size="medium"
+                sx={{ backgroundColor: "red" }}
+                startAdornment={
+                    <InputAdornment position="start">
+                        {currency == 'tez' ? 'ꜩ' : 'kUSD'}
+                    </InputAdornment>}
                 label="Amount"
             />
+            <Button
+                onClick={handleInteractionButton}
+                variant="contained">
+                {btn}
+            </Button>
         </div>
     )
 
