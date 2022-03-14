@@ -1,17 +1,18 @@
 
 import { createTezosKit, wallet } from "../../utils/wallet_api/wallet";
-import { createOvenClient, createOvens, harbringerClient, stableCoinClient } from '../../utils/kolibri_api/kolibri';
+import { createOvens, harbringerClient, stableCoinClient } from '../../utils/kolibri_api/kolibri';
 import { React, useEffect, useState } from "react";
 import { getOvenDescription } from "../../utils/kolibri_api/ovens";
 import { ovenButtons } from "../../utils/kolibri_api/oven_buttons";
 import { Button, ButtonGroup } from "@mui/material";
 import OvensInteractions from "./OvensInteractions";
-import { MUTEZ_TO_SHARD } from "../../utils/values";
 
 
-function Ovens() {
+function Ovens(props) {
 
     const [ownedOvens, setOwnedOvens] = useState([]);
+
+    const { TESTNET, reget, connect, wal } = props;
 
     const [ovensAdr, setOvensAdr] = useState([]);
 
@@ -21,41 +22,11 @@ function Ovens() {
 
     const [xtzPrise, setXtzPrise] = useState(null);
 
-
-    const borrowFromOven = async (e) => {
-        const ovenClient = createOvenClient(e.target.value);
-        await (await ovenClient.borrow(1)).confirmation();
-        console.log('borrowed');
-    }
-
-    const getOvenRatio = async (ovenAddress) => {
-        const ovenClient = createOvenClient(ovenAddress);
-
-        let ratio = await ovenClient.getCollateralUtilization();
-
-        let ovenRatio = null;
-
-        if (ratio.isNaN()) {
-            ovenRatio = 0;
-        }
-        else {
-            ovenRatio = (ratio * 10).toFixed(2);
-        }
-        return (
-            <span>
-                {ovenRatio}
-            </span>
-        )
-    }
-
     const handleOvenClick = (e) => {
-        console.log(e.target.value);
-        console.log('asd');
         setChosenOven(e.target.value);
     }
 
     const handleOvenButtonClick = (e) => {
-        console.log(e.target.value);
         setChosenButton(e.target.value);
     }
 
@@ -113,7 +84,7 @@ function Ovens() {
                 createOvens();
             }
 
-            let { price }  = await harbringerClient.getPriceData();
+            let { price } = await harbringerClient.getPriceData();
 
             // price = price  * MUTEZ_TO_SHARD;
 
@@ -133,7 +104,7 @@ function Ovens() {
             console.log('done');
         }
         fl();
-    }, []);
+    }, [TESTNET, reget.regetBalance, wal]);
 
 
     return (
@@ -170,9 +141,13 @@ function Ovens() {
                     </Button>
                 </ButtonGroup>
                 <OvensInteractions
-                    oven={ownedOvens[chosenOven]} 
+                    oven={ownedOvens[chosenOven]}
                     btn={chosenButton}
-                    price={xtzPrise}/>
+                    price={xtzPrise}
+                    reget={reget}
+                    connect={connect}
+                    wal={wal}
+                />
             </div>
         </div>
     )

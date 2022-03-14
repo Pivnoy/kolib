@@ -4,16 +4,15 @@ import { ovenButtons } from "../../utils/kolibri_api/oven_buttons";
 import { KOLIBRI_TOKEN_ADDRESS, MUTEZ_PRECISION, MUTEZ_TO_SHARD, SHARD_PRECISION } from "../../utils/values";
 import {
     Button,
-    FormControl, IconButton, InputAdornment, InputLabel, MenuItem, OutlinedInput,
-    Select,
+    InputAdornment, InputLabel, OutlinedInput,
 } from "@mui/material";
-import BigNumber from 'bignumber.js'
 import { createOvenClient } from "../../utils/kolibri_api/kolibri";
+import { wallet } from "../../utils/wallet_api/wallet";
 
 
 function OvensInteractions(props) {
 
-    const { oven, btn, price } = props;
+    const { oven, btn, price, reget, connect, wal } = props;
 
     const [currency, setCurrency] = useState(null);
 
@@ -48,6 +47,7 @@ function OvensInteractions(props) {
             default:
                 break;
         }
+        reget.setRegetbalance(!reget.regetBalance);
     }
 
     // pass dispersion
@@ -74,7 +74,7 @@ function OvensInteractions(props) {
     const handleOvenInput = (e) => {
         if (Number(e.target.value) >= 0) {
             setOvenInput(Number(e.target.value));
-            if (currency == 'tez') {
+            if (currency === 'tez') {
                 updateCollateral(Number(e.target.value), 0);
             }
             else {
@@ -85,6 +85,7 @@ function OvensInteractions(props) {
 
     useEffect(() => {
 
+        // eslint-disable-next-line eqeqeq
         if (btn == ovenButtons.borrow || btn == ovenButtons.payback) {
             setCurrency(KOLIBRI_TOKEN_ADDRESS);
         }
@@ -92,10 +93,11 @@ function OvensInteractions(props) {
             setCurrency('tez');
         }
         if (oven != null) {
-            if (ovenInput == '') {
+            if (ovenInput === '') {
                 setOvenRatio(oven.ratio);
             }
             else {
+                // eslint-disable-next-line eqeqeq
                 if (btn == ovenButtons.borrow || btn == ovenButtons.payback) {
                     updateCollateral(0, ovenInput);
                 }
@@ -112,8 +114,6 @@ function OvensInteractions(props) {
             {oven == null ? 'not connected' : oven.ratio}
             <br />
             {btn}
-            <br />
-            {currency}
             <br />
             {oven == null ? 'no oven?' :
                 <div>
@@ -134,17 +134,18 @@ function OvensInteractions(props) {
                 type="number"
                 placeholder="0.0"
                 size="medium"
+                disabled={oven == null}
                 sx={{ backgroundColor: "red" }}
                 startAdornment={
                     <InputAdornment position="start">
-                        {currency == 'tez' ? 'ꜩ' : 'kUSD'}
+                        {currency === 'tez' ? 'ꜩ' : 'kUSD'}
                     </InputAdornment>}
                 label="Amount"
             />
             <Button
-                onClick={handleInteractionButton}
+                onClick={wal == null ? connect : handleInteractionButton}
                 variant="contained">
-                {btn}
+                {wal == null ? 'Connect' : btn}
             </Button>
         </div>
     )
