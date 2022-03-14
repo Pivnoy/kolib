@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { ovenButtons } from "../../utils/kolibri_api/oven_buttons";
 import { KOLIBRI_TOKEN_ADDRESS, MUTEZ_PRECISION, MUTEZ_TO_SHARD, SHARD_PRECISION } from "../../utils/values";
@@ -7,7 +6,6 @@ import {
     InputAdornment, InputLabel, OutlinedInput,
 } from "@mui/material";
 import { createOvenClient } from "../../utils/kolibri_api/kolibri";
-import { wallet } from "../../utils/wallet_api/wallet";
 
 
 function OvensInteractions(props) {
