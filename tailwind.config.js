@@ -1,17 +1,30 @@
 module.exports = {
   purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   darkMode: false, // or 'media' or 'class'
-  theme: {
-    
+  theme: { 
+    fontFamily:{
+      serif:['Montserrat']},
+    fontStyle: 'normal',
+   
+    fontSize: '16px',
+    lineHeight: '20px',
     extend: {
       colors: {
-        //for navbar
-        'gray_1': '#0f0f0f',
-        'dark-emerald':'#012620',
-        // for bg
-        'dark-blue':'#14171e',
-        'not-dark-blue': '#161616',
-
+        'green':'#258991',
+        'black':'#0E1012',
+        'light-grey':'#536784',
+        'grey':'#324054',
+        'dark-grey':'#131823',
+        'white':'#FFFFFF',
+        //green gradient
+        'light-blue': '#419AE8',
+        'turquouse':'#298B93',
+        'emerald':'#00717A',
+        //bg gradient
+        'pink':'#E80EED',
+        'blue-for-pink':'#03E2F3',
+        'blue-1':'#49E8E8',
+        'blue-2':'#15DEEE',
       },
       screens: {
         sm: '640px',
@@ -20,6 +33,7 @@ module.exports = {
         xl: '1280px',
         '2xl': '1536px',
       },
+      
     },
   },
   variants: {

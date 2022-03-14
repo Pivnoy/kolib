@@ -103,15 +103,14 @@ function Transaction(props) {
 
         // trader, left untouched, fixed window
 
-        <body className="h-full bg-transparent flex items-center justify-center">
-            <div className="m-10"></div>
-            <div className="absolute insert-0 top-10 m-40 h-fit w-96 bg-white p-8 shadow-lg rounded-lg">
+        <div className="h-fit bg-transparent flex items-center justify-center">
+            <div className="insert-0 top-10 m-10 h-fit w-96 bg-grey p-8 shadow-lg rounded-lg">
                 <div className="text-black">
-                    <div className="pb-5 text-center font-bold">TRADER</div>
+                    <div className="pb-5 text-left font-bold">Swap</div>
 
 
                     <div className="mb-5">
-                        <FormControl fullWidth sx={{ m: 0 }}>
+                        <FormControl className="bg-black w-full rounded-lg active:bg-gradient-to-r from-light-blue via-turquouse to-emerald hover:">
                             <InputLabel htmlFor="outlined-adornment-amount">From</InputLabel>
                             <OutlinedInput
                                 id="outlined-adornment-amount"
@@ -158,7 +157,7 @@ function Transaction(props) {
 
 
                     <div>
-                        <FormControl fullWidth sx={{ m: 0 }}>
+                        <FormControl className="bg-black w-full rounded-lg">
                             <InputLabel htmlFor="outlined-adornment-amount">To</InputLabel>
                             <OutlinedInput
                                 id="outlined-adornment-amount"
@@ -193,13 +192,18 @@ function Transaction(props) {
                     <div className="pt-4 flex items-center justify-center">
                         <button
                             onClick={wal == null ? connect : handleSwapToken}
-                            className="m-4 w-40 bg-blue-600 hover:bg-blue-700 p-2 text-white rounded-lg shadow-lg">
+                            className="m-4 w-40 bg-gradient-to-r from-light-blue via-turquouse to-emerald p-2 text-white rounded-lg shadow-lg">
                             {wal == null ? "Connect" : "Swap"}
                         </button>
                     </div>
 
 
                 </div>
+            </div>
+            
+            {/* // place for ovens) */}
+            <div className="insert-0 top-10 m-10 h-fit w-96 bg-grey p-8 shadow-lg rounded-lg">
+
             </div>
 
 
@@ -212,7 +216,7 @@ function Transaction(props) {
             {/* footer, why not in wallet?*/}
             {/* <Footer /> */}
 
-        </body>
+        </div>
 
     )
 }
