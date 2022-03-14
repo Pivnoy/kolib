@@ -105,8 +105,16 @@ function Ovens() {
 
 
     return (
-        <div>
-            {renderOwnedOvens()}
+        <div className="h-fit bg-transparent flex items-center justify-center">
+            <div className="insert-0 top-10 m-10 h-fit w-96 bg-grey p-8 shadow-lg rounded-lg">
+                
+            </div>
+            <div className="insert-0 top-10 m-10 h-fit w-96 bg-grey p-8 shadow-lg rounded-lg">
+
+                <div>
+                    {renderOwnedOvens()}
+                </div>
+            </div>
         </div>
     )
 }

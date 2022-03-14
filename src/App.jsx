@@ -3,7 +3,7 @@ import Wallet from './components/Wallet/Wallet';
 
 function App() {
     return (
-        <body className="bg-gradient-to-r from-dark-blue via-not-dark-blue to-dark-blue min-h-screen">
+        <body style={{background: 'linear-gradient(110deg, rgba(232, 14, 237, 10%), rgba(3, 226, 243,5%),transparent,transparent,transparent,transparent,transparent,transparent,transparent, rgba(73, 232, 232,5%), rgba(21, 222, 238,10%))' }} className=" min-h-screen">
             <Wallet />
         </body>
     )
