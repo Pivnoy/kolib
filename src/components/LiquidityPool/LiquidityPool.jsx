@@ -12,18 +12,18 @@ function LiquidityPool() {
                             <div className="">{kUSD}</div>
                         </div>
                     <div className="uppercase text-grey bg-dark-grey rounded-lg h-fit w-fit">
-                        <img src="./LiqRewardBg.png" className="rounded-lg" alt="liquidation reward"></img><div></div>
-                            Liquidation reward</div>
+                        <img src="./LiqRewardBg.png" className="rounded-lg" alt="liquidation reward"></img><div className="absolute">Liquidation reward</div>
+                            </div>
                     <div className="uppercase text-grey bg-dark-grey rounded-lg h-fit w-fit">
                         <img src="./LpTokensBg.png" className="rounded-lg" alt="Lp Tokens total"></img>lp tokens total</div>
                 
-                <div className="insert-0 top-10 m-10 mr-20 h-fit w-96 bg-grey p-8 shadow-lg rounded-lg"></div>
+                <div className="insert-0 top-10 m-10 mr-20 h-fit w-96 bg-dark-grey p-8 shadow-lg rounded-lg"></div>
            </div>
            <div className="flex">
-                <div className="grid-cols-3 insert-0 top-10 pl-4 m-10 ml-20 h-fit w-6/12 bg-grey p-8 shadow-lg rounded-lg flex items-center justify-between"></div>
+                <div className="grid-cols-3 insert-0 top-10 pl-4 m-10 ml-20 h-fit w-6/12 bg-dark-grey p-8 shadow-lg rounded-lg flex items-center justify-between"></div>
                 <div>
-                <div className="grid-cols-3 insert-0 top-10 pl-4 m-10 ml-20 h-fit w-6/12 bg-grey p-8 shadow-lg rounded-lg flex items-center justify-between"></div>
-                <div className="grid-cols-3 insert-0 top-10 pl-4 m-10 ml-20 h-fit w-6/12 bg-grey p-8 shadow-lg rounded-lg flex items-center justify-between"></div>
+                <div className="grid-cols-3 insert-0 top-10 pl-4 m-10 ml-20 h-fit w-6/12 bg-dark-grey p-8 shadow-lg rounded-lg flex items-center justify-between"></div>
+                <div className="grid-cols-3 insert-0 top-10 pl-4 m-10 ml-20 h-fit w-6/12 bg-dark-grey p-8 shadow-lg rounded-lg flex items-center justify-between"></div>
            </div>
            </div>
            

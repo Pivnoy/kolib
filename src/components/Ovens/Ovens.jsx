@@ -108,7 +108,7 @@ function Ovens(props) {
 
 
     return (
-        <div>
+        <div className="h-fit mx-w-5xl flex items-center justify-center">
             <div
                 className="absolute insert-0 right-0">
                 {renderOwnedOvens()}

@@ -9,6 +9,14 @@ import { KOLIBRI_TOKEN_ADDRESS } from "../../utils/values";
 import { swapToken } from "../../utils/wallet_api/swap";
 import { createTezosKit } from "../../utils/wallet_api/wallet";
 
+let xtzBalance = 12345;
+let kolibriBalance =54321;
+
+const CurrencyLogo = [
+    {name:'xtz', href:'./Tezos.png'},
+    {name: 'kUSD', href:'./KolibriCurrency.png'},
+]
+
 function Transaction(props) {
 
     const [currencyFrom, setCurrencyFrom] = useState('tez');
@@ -101,15 +109,16 @@ function Transaction(props) {
 
     return (
 
-        // trader, left untouched, fixed window
+        
 
         <div className="h-fit bg-transparent flex items-center justify-center">
-            <div className="insert-0 top-10 m-10 h-fit w-96 bg-grey p-8 shadow-lg rounded-lg">
-                <div className="text-black">
-                    <div className="pb-5 text-left font-bold">Swap</div>
+            <div className="insert-0 top-10 m-10 h-fit w-fit bg-dark-grey p-8 shadow-lg rounded-lg">
+                <div className="mb-6 text-white text-left font-light">Swap</div>
+                <div className="flex">
 
 
-                    <div className="mb-5">
+                <div className="mr-5">
+                    <div className="mb-5 ">
                         <FormControl className="bg-black w-full rounded-lg active:bg-gradient-to-r from-light-blue via-turquouse to-emerald hover:">
                             <InputLabel htmlFor="outlined-adornment-amount">From</InputLabel>
                             <OutlinedInput
@@ -128,9 +137,7 @@ function Transaction(props) {
                                             <MenuItem value='tez'>
                                                 XTZ
                                             </MenuItem>
-                                            <MenuItem value='USD'>
-                                                USD
-                                            </MenuItem>
+                                            
                                             <MenuItem value={KOLIBRI_TOKEN_ADDRESS}>
                                                 kUSD
                                             </MenuItem>
@@ -143,12 +150,13 @@ function Transaction(props) {
 
 
 
-                    <div className="flex flex-col items-center border-black">
-                        <p>
+                    <div className="flex justify-center">
+                        <div className="text-green bg-black h-7 rounded-md items-center justify-center ml-10 pl-10 w-36">
                             Rate: {rate}
-                        </p>
+                        </div>
                         <IconButton
-                            style={{ height: "45px", width: "45px" }}
+                            className="rotate-90 rounded-full border-gr relative inset-0 right-0"
+                            style={{ height: "40px", width: "40px", border: "solid #324054", background:"#0E1012", transform: "rotate(90deg)", color: "#258991"}}
                             onClick={handleChangeCurrencies}>
                             <CompareArrowsOutlinedIcon />
                         </IconButton>
@@ -157,7 +165,8 @@ function Transaction(props) {
 
 
                     <div>
-                        <FormControl className="bg-black w-full rounded-lg">
+                        
+                        <FormControl className="bg-black w-full rounded-lg hover:border-green">
                             <InputLabel htmlFor="outlined-adornment-amount">To</InputLabel>
                             <OutlinedInput
                                 id="outlined-adornment-amount"
@@ -167,18 +176,19 @@ function Transaction(props) {
                                 placeholder="0.0"
                                 startAdornment={
                                     <InputAdornment position="start">
+                                        
                                         <Select
                                             variant="standard"
                                             onChange={onToSelectChange}
                                             value={currencyTo}
+                                            
                                         >
                                             <MenuItem value='tez'>
+                                                
                                                 XTZ
                                             </MenuItem>
-                                            <MenuItem value='USD'>
-                                                USD
-                                            </MenuItem>
                                             <MenuItem value={KOLIBRI_TOKEN_ADDRESS}>
+                                            
                                                 kUSD
                                             </MenuItem>
                                         </Select>
@@ -189,20 +199,38 @@ function Transaction(props) {
                     </div>
 
 
-                    <div className="pt-4 flex items-center justify-center">
-                        <button
-                            onClick={wal == null ? connect : handleSwapToken}
-                            className="m-4 w-40 bg-gradient-to-r from-light-blue via-turquouse to-emerald p-2 text-white rounded-lg shadow-lg">
-                            {wal == null ? "Connect" : "Swap"}
-                        </button>
-                    </div>
+                        <div className="pt-4 flex items-center justify-center">
+                            <button
+                                onClick={wal == null ? connect : handleSwapToken}
+                                className="m-4 w-40 bg-gradient-to-r from-light-blue via-turquouse to-emerald p-2 text-white rounded-lg shadow-lg">
+                                {wal == null ? "Connect" : "Swap"}
+                            </button>
+                        </div>
+                </div>
 
+
+                
+                        {/* balance */}
+                        <div className="ml-10 text-white font-light space-y-1">
+                            <div style={{background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)'}} className="rounded-lg flex p-3 h-auto w-80 border-solid border-2 border-grey">
+                                    <div>Tezos Holdings:</div> 
+                                    <div className=""> XTZ</div>
+                            </div>
+                            <div className=""></div>
+                                <div style={{background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)'}} className=" flex p-3 h-auto w-auto border-solid border-2 border-grey rounded-lg">
+                                <div>kUSD Holdings:</div> 
+                                <div className="">{kolibriBalance} kUSD</div>
+                            </div>
+                        </div>
+                        </div>
+                    
+                <div>
 
                 </div>
             </div>
             
-            {/* // place for ovens) */}
-            <div className="insert-0 top-10 m-10 h-fit w-96 bg-grey p-8 shadow-lg rounded-lg">
+            {/* place for graph and other info */}
+            <div className="insert-0 top-10 m-10 h-fit w-96 bg-dark-grey p-8 shadow-lg rounded-lg">
 
             </div>
 
