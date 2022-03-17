@@ -157,12 +157,12 @@ function Wallet() {
 
 
                 {/* wallet and connection button */}
-                <div className="font-light absolute inset-y-0 right-0 flex w-fit items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                  <div className=" bg-gradient-to-r from-light-blue via-turquouse to-emerald m-3 text-white p-2 h-auto w-auto rounded-lg">
-                    
+                <div className="font-light flex w-fit items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                  <div className="bg-gradient-to-r from-light-blue via-turquouse to-emerald text-white p-2 h-auto w-auto rounded-lg">
+                  
                   <button
                     type="button"
-                    className="mr-3 p-1 disabled:bg-light-grey"
+                    className="disabled:bg-light-grey"
                     onClick={walletInfo ? handleDisconnectWallet : handleConnectWallet}
                   >
                     <span className="sr-only">Connect wallet</span>
@@ -171,16 +171,17 @@ function Wallet() {
                       ? walletInfo.address.slice(0, 4) +
                       "..." +
                       walletInfo.address.slice(walletInfo.address.length - 4, walletInfo.address.length)
-                      : "Connect Wallet"}
+                      : "Connect Wallet" }
+                      <PlusCircleIcon className="h-6 w-6"/>
 
                   
-                    <PlusCircleIcon className="h-6 w-6"/>
+                    
                   </button>
                   </div>
                 </div>
 
 
-                  <InputAdornment
+                  {/* <InputAdornment
                     position="start">
                     <Select
                       variant="standard"
@@ -197,7 +198,7 @@ function Wallet() {
                         TESTNET
                       </MenuItem>
                     </Select>
-                  </InputAdornment>
+                  </InputAdornment> */}
 
 
 

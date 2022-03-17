@@ -21,6 +21,26 @@ function Footer() {
                         <a href="#" className="mr-4 hover:underline md:mr-6 ">Terms of Service</a>
                     </li>
                 </ul>
+                
+                {/* place changenet here */}
+                {/* <InputAdornment
+                    position="start">
+                    <Select
+                      variant="standard"
+                      style={{ color: "white" }}
+                      onChange={handleChangeTESTNET}
+                      value={TESTNET}
+                    >
+                      <MenuItem
+                        value={false}>
+                        MAINNET
+                      </MenuItem>
+                      <MenuItem
+                        value={true}>
+                        TESTNET
+                      </MenuItem>
+                    </Select>
+                  </InputAdornment> */}
             </div>
            
             
