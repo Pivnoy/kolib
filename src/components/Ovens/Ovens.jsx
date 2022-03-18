@@ -112,6 +112,7 @@ function Ovens(props) {
 
 
     return (
+
         <div className="flex justify-center">
             <div className="h-fit bg-transparent flex items-center justify-center">
                 <div className="insert-0 top-10 m-10 h-fit w-fit bg-dark-grey p-8 shadow-lg rounded-lg">
@@ -151,12 +152,14 @@ function Ovens(props) {
                         {/* balance */}
                         <div>
                             <div className="ml-10 text-white font-light space-y-1">
-                                <div style={{background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)'}} className="justify-between rounded-lg flex p-3 h-auto w-80 border-solid border-2 border-grey">
+                                <div style={{background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)'}} 
+                                className="justify-between rounded-lg flex p-3 h-auto w-80 border-solid border-2 border-grey">
                                         <div>Tezos Holdings</div> 
                                         <div className="">{xtzBalance} XTZ</div>
                                 </div>
                                 <div className=""></div>
-                                    <div style={{background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)'}} className="justify-between flex p-3 h-auto w-auto border-solid border-2 border-grey rounded-lg">
+                                    <div style={{background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)'}} 
+                                    className="justify-between flex p-3 h-auto w-auto border-solid border-2 border-grey rounded-lg">
                                     <   div>kUSD Holdings</div> 
                                     <div className="">{kolibriBalance} kUSD</div>
                                 </div>
