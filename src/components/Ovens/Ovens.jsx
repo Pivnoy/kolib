@@ -7,6 +7,10 @@ import { ovenButtons } from "../../utils/kolibri_api/oven_buttons";
 import { Button, ButtonGroup } from "@mui/material";
 import OvensInteractions from "./OvensInteractions";
 
+//delete later
+
+let xtzBalance = 12345;
+let kolibriBalance =54321;
 
 function Ovens(props) {
 
@@ -42,7 +46,7 @@ function Ovens(props) {
                 // set animation playing here
                 showedOvens.push(
                     <div
-                        className="bg-white text-blue-500">
+                        className="bg-transparent text-white">
                         Still loading . . .
                     </div>
                 );
@@ -108,46 +112,76 @@ function Ovens(props) {
 
 
     return (
-        <div className="h-fit mx-w-5xl flex items-center justify-center">
-            <div
-                className="absolute insert-0 right-0">
-                {renderOwnedOvens()}
-            </div>
-            <div
-                className="text-white">
-                <ButtonGroup
-                    variant="text"
-                    aria-label="text button group"
-                >
-                    <Button
-                        value={ovenButtons.deposit}
-                        onClick={handleOvenButtonClick}>
-                        Deposit
-                    </Button>
-                    <Button
-                        value={ovenButtons.withdraw}
-                        onClick={handleOvenButtonClick}>
-                        Withdraw
-                    </Button>
-                    <Button
-                        value={ovenButtons.borrow}
-                        onClick={handleOvenButtonClick}>
-                        Borrow
-                    </Button>
-                    <Button
-                        value={ovenButtons.payback}
-                        onClick={handleOvenButtonClick}>
-                        Payback
-                    </Button>
-                </ButtonGroup>
-                <OvensInteractions
-                    oven={ownedOvens[chosenOven]}
-                    btn={chosenButton}
-                    price={xtzPrise}
-                    reget={reget}
-                    connect={connect}
-                    wal={wal}
-                />
+        <div className="flex justify-center">
+            <div className="h-fit bg-transparent flex items-center justify-center">
+                <div className="insert-0 top-10 m-10 h-fit w-fit bg-dark-grey p-8 shadow-lg rounded-lg">
+                    {/* nav for ovens  */}
+
+                    <div className="h-fit mx-w-5xl flex items-center justify-center">
+                        <div
+                            className="text-white">
+                            <ButtonGroup
+                                variant="text"
+                                aria-label="text button group"
+                            >
+                                <Button
+                                    value={ovenButtons.borrow}
+                                    onClick={handleOvenButtonClick}>
+                                   
+                                    Borrow
+                                </Button>
+                                <Button
+                                    value={ovenButtons.payback}
+                                    onClick={handleOvenButtonClick}>
+                                    Payback
+                                </Button>
+                                <Button
+                                    value={ovenButtons.withdraw}
+                                    onClick={handleOvenButtonClick}>
+                                    Withdraw
+                                </Button>
+                                <Button
+                                    value={ovenButtons.deposit}
+                                    onClick={handleOvenButtonClick}>
+                                    Deposit
+                                </Button>
+                            </ButtonGroup>
+                            
+                        </div>
+                        {/* balance */}
+                        <div>
+                            <div className="ml-10 text-white font-light space-y-1">
+                                <div style={{background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)'}} className="justify-between rounded-lg flex p-3 h-auto w-80 border-solid border-2 border-grey">
+                                        <div>Tezos Holdings</div> 
+                                        <div className="">{xtzBalance} XTZ</div>
+                                </div>
+                                <div className=""></div>
+                                    <div style={{background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)'}} className="justify-between flex p-3 h-auto w-auto border-solid border-2 border-grey rounded-lg">
+                                    <   div>kUSD Holdings</div> 
+                                    <div className="">{kolibriBalance} kUSD</div>
+                                </div>
+                            </div>
+                            <div className="text-white font-light">
+                                <OvensInteractions
+                                        oven={ownedOvens[chosenOven]}
+                                        btn={chosenButton}
+                                        price={xtzPrise}
+                                        reget={reget}
+                                        connect={connect}
+                                        wal={wal}
+                                    />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div className="h-fit bg-transparent flex items-center justify-center">
+                    <div className="insert-0 top-10 m-10 h-fit w-fit border-green bg-dark-grey p-8 shadow-lg rounded-lg">
+                        <div
+                            className="">
+                            {renderOwnedOvens()}
+                        </div>
+                </div>
             </div>
         </div>
     )

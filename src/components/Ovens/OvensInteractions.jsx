@@ -107,44 +107,48 @@ function OvensInteractions(props) {
     }, [btn, oven]);
 
     return (
-        <div
-            className="text-red-400">
-            {oven == null ? 'not connected' : oven.ratio}
-            <br />
-            {btn}
-            <br />
-            {oven == null ? 'no oven?' :
-                <div>
-                    borrowed tokens: {oven.borrowed}
-                    <br />
-                    oven balance: {oven.balance}
-                    <br />
-                    current collateral utilization: {oven.ratio}
-                    <br />
-                    new collateral utilization: {ovenRatio}
-                </div>
-            }
-            <InputLabel htmlFor="outlined-adornment-amount">From</InputLabel>
-            <OutlinedInput
-                id="outlined-adornment-amount"
-                value={ovenInput}
-                onChange={handleOvenInput}
-                type="number"
-                placeholder="0.0"
-                size="medium"
-                disabled={oven == null}
-                sx={{ backgroundColor: "red" }}
-                startAdornment={
-                    <InputAdornment position="start">
-                        {currency === 'tez' ? 'ꜩ' : 'kUSD'}
-                    </InputAdornment>}
-                label="Amount"
-            />
-            <Button
-                onClick={wal == null ? connect : handleInteractionButton}
-                variant="contained">
-                {wal == null ? 'Connect' : btn}
-            </Button>
+        <div>
+            <div
+                className="mt-1 text-white p-3 bg-transparent rounded-lg h-auto w-80 border-solid border-2 border-grey">
+                {oven == null ? 'not connected' : oven.ratio}
+                <br />
+                {btn}
+                <br />
+                {oven == null ? 'no oven?' :
+                    <div>
+                        Borrowed tokens: {oven.borrowed}
+                        <br />
+                        Oven balance: {oven.balance}
+                        <br />
+                        Current collateral utilization: {oven.ratio}
+                        <br />
+                        New collateral utilization: {ovenRatio}
+                    </div>
+                }
+            </div>
+            <div>
+                <InputLabel htmlFor="outlined-adornment-amount">From</InputLabel>
+                <OutlinedInput
+                    id="outlined-adornment-amount"
+                    value={ovenInput}
+                    onChange={handleOvenInput}
+                    type="number"
+                    placeholder="0.0"
+                    size="medium"
+                    disabled={oven == null}
+                    style={{ backgroundColor: "#0E1012", color: "#FFFFFF"}}
+                    startAdornment={
+                        <InputAdornment position="start">
+                            {currency === 'tez' ? 'ꜩ' : 'kUSD'}
+                        </InputAdornment>}
+                    label="Amount"
+                />
+                <Button
+                    onClick={wal == null ? connect : handleInteractionButton}
+                    variant="contained">
+                    {wal == null ? 'Connect' : btn}
+                </Button>
+            </div>
         </div>
     )
 

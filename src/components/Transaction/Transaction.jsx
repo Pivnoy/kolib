@@ -9,6 +9,8 @@ import { KOLIBRI_TOKEN_ADDRESS } from "../../utils/values";
 import { swapToken } from "../../utils/wallet_api/swap";
 import { createTezosKit } from "../../utils/wallet_api/wallet";
 
+
+//delete later
 let xtzBalance = 12345;
 let kolibriBalance =54321;
 
@@ -109,7 +111,8 @@ function Transaction(props) {
 
     return (
 
-        
+        //need to: add pics of kUSD and XTZ (see const currencyLogo), make from and to inside frame, make color of frame, change text-color (text-white, bg-black,
+        // border-black active:border-gradient-to-r from-light-blue via-turquouse to-emerald, font-light)
 
         <div className="h-fit bg-transparent flex items-center justify-center">
             <div className="insert-0 top-10 m-10 h-fit w-fit bg-dark-grey p-8 shadow-lg rounded-lg">
@@ -119,7 +122,7 @@ function Transaction(props) {
 
                 <div className="mr-5">
                     <div className="mb-5 ">
-                        <FormControl className="bg-black w-full rounded-lg active:bg-gradient-to-r from-light-blue via-turquouse to-emerald hover:">
+                        <FormControl className="h-20 bg-black w-full rounded-lg active:bg-gradient-to-r from-light-blue via-turquouse to-emerald hover:">
                             <InputLabel htmlFor="outlined-adornment-amount">From</InputLabel>
                             <OutlinedInput
                                 id="outlined-adornment-amount"
@@ -150,12 +153,12 @@ function Transaction(props) {
 
 
 
-                    <div className="flex justify-center">
-                        <div className="text-green bg-black h-7 rounded-md items-center justify-center ml-10 pl-10 w-36">
+                    <div className="flex justify-between w-96 items-center mb-5">
+                        <div className="text-green bg-black h-9 w-52 ml-20 pt-2 rounded-md flex justify-center">
                             Rate: {rate}
                         </div>
                         <IconButton
-                            className="rotate-90 rounded-full border-gr relative inset-0 right-0"
+                            className="rotate-90 rounded-full border-gr"
                             style={{ height: "40px", width: "40px", border: "solid #324054", background:"#0E1012", transform: "rotate(90deg)", color: "#258991"}}
                             onClick={handleChangeCurrencies}>
                             <CompareArrowsOutlinedIcon />
@@ -166,7 +169,7 @@ function Transaction(props) {
 
                     <div>
                         
-                        <FormControl className="bg-black w-full rounded-lg hover:border-green">
+                        <FormControl className="h-20 bg-black w-full rounded-lg hover:border-green">
                             <InputLabel htmlFor="outlined-adornment-amount">To</InputLabel>
                             <OutlinedInput
                                 id="outlined-adornment-amount"
@@ -184,7 +187,6 @@ function Transaction(props) {
                                             
                                         >
                                             <MenuItem value='tez'>
-                                                
                                                 XTZ
                                             </MenuItem>
                                             <MenuItem value={KOLIBRI_TOKEN_ADDRESS}>
@@ -210,7 +212,7 @@ function Transaction(props) {
 
 
                 
-                        {/* balance */}
+                        {/* balance, place here status hidden when wallet is not connected, also move balance func instead of variables*/}
                         <div className="ml-10 text-white font-light space-y-1">
                             <div style={{background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)'}} className="justify-between rounded-lg flex p-3 h-auto w-80 border-solid border-2 border-grey">
                                     <div>Tezos Holdings</div> 
@@ -218,7 +220,7 @@ function Transaction(props) {
                             </div>
                             <div className=""></div>
                                 <div style={{background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)'}} className="justify-between flex p-3 h-auto w-auto border-solid border-2 border-grey rounded-lg">
-                                <div>kUSD Holdings</div> 
+                                <   div>kUSD Holdings</div> 
                                 <div className="">{kolibriBalance} kUSD</div>
                             </div>
                         </div>

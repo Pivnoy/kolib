@@ -172,7 +172,8 @@ function Wallet() {
                       "..." +
                       walletInfo.address.slice(walletInfo.address.length - 4, walletInfo.address.length)
                       : "Connect Wallet" }
-                      <PlusCircleIcon className="h-6 w-6"/>
+                      {/* delete or not delete plus icon? */}
+                      {/* <PlusCircleIcon className="h-6 w-6"/> */}
 
                   
                     
