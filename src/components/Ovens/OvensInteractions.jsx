@@ -110,10 +110,6 @@ function OvensInteractions(props) {
         <div>
             <div
                 className="mt-1 text-white p-3 bg-transparent rounded-lg h-auto w-80 border-solid border-2 border-grey">
-                {oven == null ? 'not connected' : oven.ratio}
-                <br />
-                {btn}
-                <br />
                 {oven == null ? 'no oven?' :
                     <div>
                         Borrowed tokens: {oven.borrowed}

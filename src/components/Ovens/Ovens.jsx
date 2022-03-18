@@ -10,7 +10,7 @@ import OvensInteractions from "./OvensInteractions";
 //delete later
 
 let xtzBalance = 12345;
-let kolibriBalance =54321;
+let kolibriBalance = 54321;
 
 function Ovens(props) {
 
@@ -65,7 +65,19 @@ function Ovens(props) {
                         value={i}
                         onClick={handleOvenClick}
                         className={bg_color}>
-                        {ownedOvens[i].address}
+                        {ownedOvens[i].address.slice(0, 4) + '...' +
+                            ownedOvens[i].address.slice(ownedOvens[i].address.length - 4)
+                        }
+                        <br />
+                        {(ownedOvens[i].balance * xtzPrise) / 1_000_000}
+                        <br />
+                        {ownedOvens[i].balance}
+                        <br />
+                        {ownedOvens[i].borrowed}
+                        <br />
+                        {ownedOvens[i].fee}
+                        <br />
+                        {ownedOvens[i].ratio + "%"}
                     </button>
                 )
             }
@@ -102,13 +114,13 @@ function Ovens(props) {
                 let oven = await getOvenDescription(address);
                 console.log(oven);
                 setOwnedOvens(arr => [...arr, oven]);
-                console.log(ownedOvens);
+
             };
 
             console.log('done');
         }
         fl();
-    }, [TESTNET, reget.regetBalance, wal]);
+    }, [TESTNET, reget.regetBalance]);
 
 
     return (
@@ -127,7 +139,7 @@ function Ovens(props) {
                                 <Button
                                     value={ovenButtons.borrow}
                                     onClick={handleOvenButtonClick}>
-                                   
+
                                     Borrow
                                 </Button>
                                 <Button
@@ -146,41 +158,41 @@ function Ovens(props) {
                                     Deposit
                                 </Button>
                             </ButtonGroup>
-                            
+
                         </div>
                         {/* balance */}
                         <div>
                             <div className="ml-10 text-white font-light space-y-1">
-                                <div style={{background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)'}} className="justify-between rounded-lg flex p-3 h-auto w-80 border-solid border-2 border-grey">
-                                        <div>Tezos Holdings</div> 
-                                        <div className="">{xtzBalance} XTZ</div>
+                                <div style={{ background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)' }} className="justify-between rounded-lg flex p-3 h-auto w-80 border-solid border-2 border-grey">
+                                    <div>Tezos Holdings</div>
+                                    <div className="">{xtzBalance} XTZ</div>
                                 </div>
                                 <div className=""></div>
-                                    <div style={{background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)'}} className="justify-between flex p-3 h-auto w-auto border-solid border-2 border-grey rounded-lg">
-                                    <   div>kUSD Holdings</div> 
+                                <div style={{ background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)' }} className="justify-between flex p-3 h-auto w-auto border-solid border-2 border-grey rounded-lg">
+                                    <   div>kUSD Holdings</div>
                                     <div className="">{kolibriBalance} kUSD</div>
                                 </div>
                             </div>
                             <div className="text-white font-light">
                                 <OvensInteractions
-                                        oven={ownedOvens[chosenOven]}
-                                        btn={chosenButton}
-                                        price={xtzPrise}
-                                        reget={reget}
-                                        connect={connect}
-                                        wal={wal}
-                                    />
+                                    oven={ownedOvens[chosenOven]}
+                                    btn={chosenButton}
+                                    price={xtzPrise}
+                                    reget={reget}
+                                    connect={connect}
+                                    wal={wal}
+                                />
                             </div>
                         </div>
                     </div>
                 </div>
-                </div>
-                <div className="h-fit bg-transparent flex items-center justify-center">
-                    <div className="insert-0 top-10 m-10 h-fit w-fit border-green bg-dark-grey p-8 shadow-lg rounded-lg">
-                        <div
-                            className="">
-                            {renderOwnedOvens()}
-                        </div>
+            </div>
+            <div className="h-fit bg-transparent flex items-center justify-center">
+                <div className="insert-0 top-10 m-10 h-fit w-fit border-green bg-dark-grey p-8 shadow-lg rounded-lg">
+                    <div
+                        className="">
+                        {renderOwnedOvens()}
+                    </div>
                 </div>
             </div>
         </div>
