@@ -7,17 +7,9 @@ import {
 } from "../../utils/wallet_api/wallet";
 
 import { React, useEffect, useState } from "react";
-import {
-  InputAdornment, MenuItem,
-  Select
-} from "@mui/material";
+import { InputAdornment, MenuItem, Select} from "@mui/material";
 import Ovens from '../Ovens/Ovens';
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Link,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link} from "react-router-dom";
 import Footer from "../Footer/Footer";
 import { createOvens, getBalanceKolibri } from '../../utils/kolibri_api/kolibri';
 import Transaction from '../Transaction/Transaction';
@@ -140,8 +132,8 @@ function Wallet() {
                           key={item.name}
                           to={item.href}
                           className={classNames(
-                            item.current ? 'underline underline-offset-6' : 'text-light-grey hover:text-white',
-                            'mt-3 px-3 py-8 font-light text-white'
+                            item.current ? 'underline text-white' : 'text-light-grey hover:text-white',
+                            'mt-3 px-3 py-8 font-light'
                           )}
                           aria-current={item.current ? 'page' : undefined}
                         >

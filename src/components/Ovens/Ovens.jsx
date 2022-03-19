@@ -6,13 +6,19 @@ import { getOvenDescription } from "../../utils/kolibri_api/ovens";
 import { ovenButtons } from "../../utils/kolibri_api/oven_buttons";
 import { Button, ButtonGroup } from "@mui/material";
 import OvensInteractions from "./OvensInteractions";
+import {Disclosure} from '@headlessui/react';
+import BigNumber from 'bignumber.js'
+import { width } from "@mui/system";
+
 
 //delete later
 
 let xtzBalance = 12345;
 let kolibriBalance = 54321;
 
+
 function Ovens(props) {
+
 
     const [ownedOvens, setOwnedOvens] = useState([]);
 
@@ -23,7 +29,7 @@ function Ovens(props) {
     const [chosenOven, setChosenOven] = useState(0);
 
     const [chosenButton, setChosenButton] = useState(ovenButtons.borrow);
-
+    
     const [xtzPrise, setXtzPrise] = useState(null);
 
     const handleOvenClick = (e) => {
@@ -46,38 +52,75 @@ function Ovens(props) {
                 // set animation playing here
                 showedOvens.push(
                     <div
-                        className="bg-transparent text-white">
+                        className="px-40 mt-4 font-light flex items-center justify-center h-32 w-12/12 shadow-lg border-solid border-2 border-light-grey rounded-lg bg-transparent text-white">
                         Still loading . . .
                     </div>
                 );
             }
             else {
                 // already loaded, with full oven info in it
-                let bg_color = '';
+                let styleForOvens = '';
+                let styleForOvenCode = {};
+                let ClassNameForOvenCode= '';
                 // eslint-disable-next-line eqeqeq
                 if (i == chosenOven) {
-                    bg_color = 'bg-red-500'
+                    styleForOvens= 'border-solid border-2 border-green bg-transparent';
+                    ClassNameForOvenCode='pl-2 m-2 w-28 text-green rounded-lg p-2 font-medium'
+                    styleForOvenCode={background: "rgba(37, 137, 145, 25%)"};
                 } else {
-                    bg_color = 'bg-white'
+                    styleForOvens ='border-solid border-2 border-transparent bg-transparent';
+                    styleForOvenCode = {background: "rgba(83, 103, 132, 25%)"};
+                    ClassNameForOvenCode= 'w-28 text-light-grey rounded-lg p-2 m-2 font-medium'
                 }
+
+                styleForOvens+=' text-white px-5 mt-4 font-light items-center justify-between h-32 w-12/12 shadow-lg rounded-lg'
+                let styleForCurrency ='text-white text-lg'
                 showedOvens.push(
                     <button
                         value={i}
                         onClick={handleOvenClick}
-                        className={bg_color}>
-                        {ownedOvens[i].address.slice(0, 4) + '...' +
-                            ownedOvens[i].address.slice(ownedOvens[i].address.length - 4)
-                        }
-                        <br />
-                        {(ownedOvens[i].balance * xtzPrise) / 1_000_000}
-                        <br />
-                        {ownedOvens[i].balance}
-                        <br />
-                        {ownedOvens[i].borrowed}
-                        <br />
-                        {ownedOvens[i].fee}
-                        <br />
-                        {ownedOvens[i].ratio + "%"}
+                        className={styleForOvens}>
+                        <div className="">
+                            <div className="flex items-center">
+                                <div className={ClassNameForOvenCode} style={styleForOvenCode}>
+                                {ownedOvens[i].address.slice(0, 4) + '...' +
+                                    ownedOvens[i].address.slice(ownedOvens[i].address.length - 4)
+                                }
+                                
+                                </div>
+                                <div className="w-full bg-grey rounded-full h-2.5">
+                                    <div className="bg-gradient-to-r from-light-blue via-turquouse to-emerald h-2.5 rounded-full" style={{width: "30%"}} ></div>
+                                    {/* {ownedOvens[i].ratio} */}
+                                </div>
+                            </div>
+                            <div className="text-xs flex text-light-grey">
+                                <div className="px-2 flex-none">
+                                    Collateral value 
+                                    <div className={styleForCurrency}>
+                                        {(new BigNumber(ownedOvens[i].balance * xtzPrise)).dividedBy(1_000_000).toFixed(2)} USD
+                                    </div>
+                                </div>
+                                <div className="px-2 flex-none">
+                                Balance 
+                                    <div className={styleForCurrency}>
+                                        {ownedOvens[i].balance} XTZ
+                                    </div>
+                                </div>
+                                <div className="px-2 flex-none">
+                                Loan amt
+                                    <div className={styleForCurrency}> 
+                                        {ownedOvens[i].borrowed} kUSD
+                                    </div>
+                                </div>
+                                <div className="px-2 flex-none">
+                                Stability fee 
+                                    <div className={styleForCurrency}> 
+                                        {ownedOvens[i].fee}
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
                     </button>
                 )
             }
@@ -90,6 +133,17 @@ function Ovens(props) {
             </div>
         ))
     };
+
+
+
+    const OvenButton = [
+        {name: "Borrow kUSD", value: ovenButtons.borrow, onClick: handleOvenButtonClick },
+        {name: "PayBack kUSD" },
+        {name: "Withdraw XTZ" },
+        {name: "Deposit XTZ" },
+    ]
+    
+
 
 
     useEffect(() => {
@@ -124,55 +178,49 @@ function Ovens(props) {
 
 
     return (
-        <div className="flex justify-center">
-            <div className="h-fit bg-transparent flex items-center justify-center">
-                <div className="insert-0 top-10 m-10 h-fit w-fit bg-dark-grey p-8 shadow-lg rounded-lg">
+        <div className="mx-w-full flex justify-center space-x-20">
+            <div className=" inset-0 top-0 h-fit bg-transparent flex items-start">
+                <div className=" h-fit w-fit bg-dark-grey p-8 shadow-lg rounded-lg">
                     {/* nav for ovens  */}
 
-                    <div className="h-fit mx-w-5xl flex items-center justify-center">
+
+                    <div className="items-center justify-between"> 
                         <div
-                            className="text-white">
-                            <ButtonGroup
-                                variant="text"
-                                aria-label="text button group"
-                            >
-                                <Button
+                            className="relative inset-0 top-0">
+                            
+                                <button 
+                                className="p-2 text-grey hover:text-white active:text-white"
                                     value={ovenButtons.borrow}
                                     onClick={handleOvenButtonClick}>
-
-                                    Borrow
-                                </Button>
-                                <Button
+                                    Borrow kUSD
+                                </button>
+                                
+                                <button
+                                className="p-2 text-grey hover:text-white active:text-white"
                                     value={ovenButtons.payback}
                                     onClick={handleOvenButtonClick}>
-                                    Payback
-                                </Button>
-                                <Button
+                                    Payback kUSD
+                                </button>
+                                <button
+                                className="p-2 text-grey hover:text-white active:text-white"
                                     value={ovenButtons.withdraw}
                                     onClick={handleOvenButtonClick}>
-                                    Withdraw
-                                </Button>
-                                <Button
+                                    Withdraw XTZ
+                                </button>
+                                <button
+                                className="p-2 text-grey hover:text-white active:text-white"
                                     value={ovenButtons.deposit}
                                     onClick={handleOvenButtonClick}>
-                                    Deposit
-                                </Button>
-                            </ButtonGroup>
-
+                                    Deposit XTZ
+                                </button>
                         </div>
+                       
+
+
+
+
                         {/* balance */}
-                        <div>
-                            <div className="ml-10 text-white font-light space-y-1">
-                                <div style={{ background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)' }} className="justify-between rounded-lg flex p-3 h-auto w-80 border-solid border-2 border-grey">
-                                    <div>Tezos Holdings</div>
-                                    <div className="">{xtzBalance} XTZ</div>
-                                </div>
-                                <div className=""></div>
-                                <div style={{ background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)' }} className="justify-between flex p-3 h-auto w-auto border-solid border-2 border-grey rounded-lg">
-                                    <   div>kUSD Holdings</div>
-                                    <div className="">{kolibriBalance} kUSD</div>
-                                </div>
-                            </div>
+                        <div className="flex mt-4">
                             <div className="text-white font-light">
                                 <OvensInteractions
                                     oven={ownedOvens[chosenOven]}
@@ -183,12 +231,51 @@ function Ovens(props) {
                                     wal={wal}
                                 />
                             </div>
+                            <div className="mb-12">
+                                <div className="mt-6 ml-10 text-white font-light space-y-1">
+                                    <div style={{ background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)' }} className="justify-between rounded-lg flex p-3 h-auto w-80 border-solid border-2 border-grey">
+                                        <div>Tezos Holdings</div>
+                                        <div className="">{xtzBalance} XTZ</div>
+                                    </div>
+                                    <div className=""></div>
+                                    <div style={{ background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)' }} className="justify-between flex p-3 h-auto w-auto border-solid border-2 border-grey rounded-lg">
+                                        <   div>kUSD Holdings</div>
+                                        <div className="">{kolibriBalance} kUSD</div>
+                                    </div>
+                                </div>
+                                <div className="border-solid border-2 border-grey mt-3 ml-10 text-white font-light space-y-1 p-4 rounded-lg">
+                                    <div className="w-full bg-black rounded-full h-2.5">
+                                    <div className="bg-gradient-to-r from-light-blue via-turquouse to-emerald h-2.5 rounded-full" style={{width: "30%"}} ></div>
+                                    {/* {ownedOvens[i].ratio} */}
+                                    </div>
+                                </div>
+                                <div
+                                    className="font-light ml-10 mt-3 text-white p-3 bg-transparent rounded-lg h-auto w-80 border-solid border-2 border-grey order-last">
+                                    {/* {oven == null ? 'no oven?' : */}{
+                                        <div className="">
+                                            <div className="flex justify-between">
+                                            Borrowed tokens <div>1234 XTZ</div> {/*{oven.borrowed}*/}
+                                            </div>
+                                            <div className="flex justify-between">
+                                            Oven balance <div>4311 XTZ</div> {/*{oven.balance}*/}
+                                            </div>
+                                            <div className="flex justify-between">
+                                            Current collateral utilization <div>18 %</div>{/*{oven.ratio}*/}
+                                            </div>
+                                            <div className="flex justify-between">
+                                            New collateral utilization <div>12 %</div>{/*{ovenRatio}*/}
+                                            </div>
+                                        </div>
+                                            }
+                                        </div>
+                            </div> 
+                            
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="h-fit bg-transparent flex items-center justify-center">
-                <div className="insert-0 top-10 m-10 h-fit w-fit border-green bg-dark-grey p-8 shadow-lg rounded-lg">
+            <div className="">
+                <div className="">
                     <div
                         className="">
                         {renderOwnedOvens()}
