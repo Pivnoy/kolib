@@ -51,12 +51,11 @@ function Transaction(props) {
     }
 
     const onFromSelectChange = async (e) => {
-        // setCurrencyFrom(e.target.value);
         await handleChangeCurrencies();
     }
 
-    const onToSelectChange = (e) => {
-        setCurrencyTo(e.target.value);
+    const onToSelectChange = async (e) => {
+        await handleChangeCurrencies();
     }
 
     // set rate between swaps btn
@@ -130,14 +129,15 @@ function Transaction(props) {
                                     id="component-simple"
                                     value={currencyFromNumber}
                                     onChange={handleChangeFromNumber}
+                                    sx={{ color: "white" }}
                                     type="number"
                                     placeholder="0.0"
                                     startAdornment={
                                         <InputAdornment position="start">
                                             <Select
                                                 variant="standard"
-                                                sx={{ color: "white" }}
                                                 onChange={onFromSelectChange}
+                                                sx={{ color: "white" }}
                                                 value={currencyFrom}
                                             >
                                                 <MenuItem
@@ -177,11 +177,16 @@ function Transaction(props) {
                         <div>
 
                             <FormControl className="h-20 w-full rounded-lg hover:border-green">
-                                <InputLabel htmlFor="component-simple">To</InputLabel>
+                                <InputLabel
+                                    sx={{ color: "#536784" }}
+                                    htmlFor="component-simple">
+                                    To
+                                </InputLabel>
                                 <Input
                                     id="component-simple"
                                     value={currencyToNumber}
                                     onChange={handleChangeToNumber}
+                                    sx={{ color: "white" }}
                                     type="number"
                                     placeholder="0.0"
                                     startAdornment={
@@ -195,7 +200,7 @@ function Transaction(props) {
 
                                             >
                                                 <MenuItem value='tez'>
-                                                    <img src="./Tezos.png" alt="Tezos icon" />
+                                                        <img src="./Tezos.png" alt="Tezos icon" />
                                                     XTZ
                                                 </MenuItem>
                                                 <MenuItem value={KOLIBRI_TOKEN_ADDRESS}>
