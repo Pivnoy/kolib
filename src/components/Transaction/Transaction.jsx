@@ -116,47 +116,60 @@ function Transaction(props) {
         // border-black active:border-gradient-to-r from-light-blue via-turquouse to-emerald, font-light)
 
         <div className="h-fit bg-transparent flex items-center justify-center">
-            <div className="insert-0 top-10 m-10 h-fit w-fit bg-dark-grey p-8 shadow-lg rounded-lg">
+            <div className="w-fit bg-dark-grey p-8 shadow-lg rounded-lg">
                 <div className="mb-6 text-white text-left font-light">Swap</div>
                 <div className="flex">
+                
 
                     <div className="mr-5">
-                        <div className="mb-5 ">
-
-                            <FormControl className="h-20 w-full rounded-lg active:bg-gradient-to-r from-light-blue via-turquouse to-emerald hover:">
-                                <InputLabel htmlFor="component-simple">From</InputLabel>
-                                <Input
-                                    id="component-simple"
-                                    value={currencyFromNumber}
-                                    onChange={handleChangeFromNumber}
-                                    sx={{ color: "white" }}
-                                    type="number"
-                                    placeholder="0.0"
-                                    startAdornment={
-                                        <InputAdornment position="start">
-                                            <Select
-                                                variant="standard"
-                                                onChange={onFromSelectChange}
-                                                sx={{ color: "white" }}
-                                                value={currencyFrom}
-                                            >
-                                                <MenuItem
-                                                    value='tez'>
-                                                    <img src="./Tezos.png" alt="Tezos icon" />
-                                                    XTZ
-                                                </MenuItem>
-
-                                                <MenuItem
-                                                    value={KOLIBRI_TOKEN_ADDRESS}>
-                                                    <img src="./KolibriCurrency.png" alt="Kolibri icon" />
-                                                    kUSD
-                                                </MenuItem>
-                                            </Select>
-                                        </InputAdornment>}
-                                    label="Amount"
+                        <div>
+                            <div className="relative mb-5 bg-black border-transparent h-28 w-96 rounded-lg hover:border-green border-2">
+                                <div className="text-light-grey absolute inset-3 font-light"> From</div>
+                                <img src="./Tezos.png" alt="Tezos" className="absolute bottom-7 left-2 p-1 rounded-md" style={{background: "rgba(37, 137, 145, 10%)"}}></img>
+                                <div className="text-white font-light absolute bottom-8 left-14 ">XTZ</div>
+                                <input type="text"
+                                placeholder="0.0"
+                                className="absolute bottom-8 right-3 h-7 w-56 bg-transparent border-2 border-grey"
+                                style={{border: "none", borderBottom: "2px solid #324054", outline: "0", color: "#FFFFFF"   }}
                                 />
-                            </FormControl>
                         </div>
+
+                        {/* input that was before */}
+                        {/* <div className="mb-5 ">
+
+                        <FormControl className="h-20 w-full rounded-lg active: hover:">
+                            <InputLabel htmlFor="component-simple">From</InputLabel>
+                            <Input
+                                id="component-simple"
+                                value={currencyFromNumber}
+                                onChange={handleChangeFromNumber}
+                                type="number"
+                                placeholder="0.0"
+                                startAdornment={
+                                    <InputAdornment position="start">
+                                        <Select
+                                            variant="standard"
+                                            sx={{ color: "white" }}
+                                            onChange={onFromSelectChange}
+                                            value={currencyFrom}
+                                        >
+                                            <MenuItem
+                                                value='tez'>
+                                                <img src="./Tezos.png" alt="Tezos icon" />
+                                                XTZ
+                                            </MenuItem>
+
+                                            <MenuItem
+                                                value={KOLIBRI_TOKEN_ADDRESS}>
+                                                <img src="./KolibriCurrency.png" alt="Kolibri icon" />
+                                                kUSD
+                                            </MenuItem>
+                                        </Select>
+                                    </InputAdornment>}
+                                label="Amount"
+                            />
+                        </FormControl>
+                        </div> */}
 
 
 
@@ -172,16 +185,24 @@ function Transaction(props) {
                             </IconButton>
                         </div>
 
+                        <div className="relative mb-3 bg-black border-transparent h-28 w-96 rounded-lg hover:border-green border-2">
+                                <div className="text-light-grey absolute inset-3 font-light"> To</div>
+                                <img src="./Tezos.png" alt="Tezos" className="absolute bottom-7 left-2 p-1 rounded-md" style={{background: "rgba(37, 137, 145, 10%)"}}></img>
+                                <div className="text-white font-light absolute bottom-8 left-14 ">XTZ</div>
+                                <input type="text"
+                                placeholder="0.0"
+                                className="absolute bottom-8 right-3 h-7 w-56 bg-transparent border-2 border-grey"
+                                style={{border: "none", borderBottom: "2px solid #324054", outline: "0", color: "#FFFFFF"   }}
+                                />
+                        </div>
 
 
-                        <div>
 
-                            <FormControl className="h-20 w-full rounded-lg hover:border-green">
-                                <InputLabel
-                                    sx={{ color: "#536784" }}
-                                    htmlFor="component-simple">
-                                    To
-                                </InputLabel>
+                        
+                        
+
+                            {/* <FormControl className="h-20 w-full rounded-lg hover:border-green">
+                                <InputLabel htmlFor="component-simple">To</InputLabel>
                                 <Input
                                     id="component-simple"
                                     value={currencyToNumber}
@@ -211,7 +232,7 @@ function Transaction(props) {
                                         </InputAdornment>}
                                     label="Amount"
                                 />
-                            </FormControl>
+                            </FormControl> */}
                         </div>
 
 
@@ -246,8 +267,7 @@ function Transaction(props) {
             </div>
 
             {/* place for graph and other info */}
-            <div className="insert-0 top-10 m-10 h-fit w-96 bg-dark-grey p-8 shadow-lg rounded-lg">
-
+            <div className="inset-0 top-10 m-10 h-fit w-96 bg-dark-grey p-8 shadow-lg rounded-lg">
             </div>
 
 

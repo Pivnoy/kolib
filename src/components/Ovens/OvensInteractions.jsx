@@ -6,6 +6,7 @@ import {
     InputAdornment, InputLabel, OutlinedInput,
 } from "@mui/material";
 import { createOvenClient } from "../../utils/kolibri_api/kolibri";
+import { fontWeight } from "@mui/system";
 
 
 function OvensInteractions(props) {
@@ -108,21 +109,20 @@ function OvensInteractions(props) {
 
     return (
         <div>
-            <div
-                className="mt-1 text-white p-3 bg-transparent rounded-lg h-auto w-80 border-solid border-2 border-grey">
-                {oven == null ? 'no oven?' :
-                    <div>
-                        Borrowed tokens: {oven.borrowed}
-                        <br />
-                        Oven balance: {oven.balance}
-                        <br />
-                        Current collateral utilization: {oven.ratio}
-                        <br />
-                        New collateral utilization: {ovenRatio}
-                    </div>
-                }
-            </div>
             <div>
+                <div className="relative bg-black border-transparent h-28 w-96 rounded-lg hover:border-green border-2">
+                    <div className="text-light-grey absolute inset-3 font-light"> From</div>
+                    <img src="./Tezos.png" alt="Tezos" className="absolute bottom-7 left-2 p-1 rounded-md" style={{background: "rgba(37, 137, 145, 10%)"}}></img>
+                    <div className="text-white font-light absolute bottom-8 left-14 ">XTZ</div>
+                    <input type="text"
+                    placeholder="0.0"
+                    className="absolute bottom-8 right-3 h-7 w-56 bg-transparent border-2 border-grey"
+                    style={{border: "none", borderBottom: "2px solid #324054", outline: "0", color: "#FFFFFF"   }}
+                    />
+                </div>
+            </div>
+            {/* input that was before */}
+            {/* <div className="">
                 <InputLabel htmlFor="outlined-adornment-amount">From</InputLabel>
                 <OutlinedInput
                     id="outlined-adornment-amount"
@@ -139,12 +139,30 @@ function OvensInteractions(props) {
                         </InputAdornment>}
                     label="Amount"
                 />
-                <Button
+                
+            </div> */}
+            <div className="flex justify-center">
+            <Button
+                    sx = {{margin:"40px", background: "linear-gradient(to right, #258991, #298B93, #00717A)", fontWeight: "lighter", transform: "capitalize"}}
                     onClick={wal == null ? connect : handleInteractionButton}
                     variant="contained">
                     {wal == null ? 'Connect' : btn}
-                </Button>
+            </Button>
             </div>
+            {/* <div
+                className=" mt-10 text-white p-3 bg-transparent rounded-lg h-auto w-80 border-solid border-2 border-grey order-last">
+                {oven == null ? 'no oven?' :
+                    <div>
+                        Borrowed tokens: {oven.borrowed}
+                        <br />
+                        Oven balance: {oven.balance}
+                        <br />
+                        Current collateral utilization: {oven.ratio}
+                        <br />
+                        New collateral utilization: {ovenRatio}
+                    </div>
+                }
+            </div> */}
         </div>
     )
 

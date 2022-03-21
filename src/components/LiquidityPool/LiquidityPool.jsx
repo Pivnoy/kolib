@@ -1,30 +1,98 @@
 import React from "react";
 let kUSD = 213091238;
 function LiquidityPool() {
-    
+
+//delete later
+
+let xtzBalance = 12345;
+let kolibriBalance = 54321;
+
+let classNameForPictures = 'mt-3 relative text-center uppercase text-grey bg-transparent rounded-lg h-28 w-64';
     return (
-        <div>
-            <div className=" h-fit bg-transparent mx-w-5xl flex items-center justify-center">
+        <div className="">
+            <div className="space-x-3 h-fit bg-transparent mx-w-5xl flex items-center justify-center">
+                <div className={classNameForPictures}>
+                    <img src="./PoolSizeBg.png" className="rounded-lg" alt="Pool size"></img>
+                    <div className="absolute inset-6">
+                        <div className="font-light tracking-wide">Pool size</div>
+                        <div className="font-light text-white">{kUSD} kUSD</div>
+                    </div>
+                </div>
+                <div className={classNameForPictures}>
+                    <img src="./LiqRewardBg.png" className="rounded-lg" alt="liquidation reward"></img>
+                    <div className="absolute inset-6">
+                        <div className="font-light tracking-wide">Liquidation reward</div>
+                        <div className="font-light text-white">18 %</div>
+                    </div>
+                </div>
+                <div className={classNameForPictures}>
+                    <img src="./LpTokensBg.png" className="rounded-lg" alt="Lp Tokens total"></img>
+                    <div className="absolute inset-6">
+                        <div className="font-light tracking-wide">lp tokens total</div>
+                        <div className="font-light text-white">2 531 341, 41</div>
+                    </div>
+                </div>
                 
-                    <div className="uppercase text-grey bg-dark-grey rounded-lg h-24 w-36">
-                        <img src="./PoolSizeBg.png" className="rounded-lg" alt="Pool size"></img>
-                            <div className="">Pool size</div>
-                            <div className="">{kUSD}</div>
+            
+                <div className=" text-white font-extralight items-center justify-center text-center mr-20 h-28 w-96 bg-dark-grey p-4 shadow-lg rounded-lg">
+                    <div className="text-light-grey uppercase tracking-wide">liq pool is currently disabled!</div>
+                    <div>Liquidatable Ovens</div>
+                    <div>Liquidations via the pool are currently disabled</div>
+                </div>
+           </div>
+
+           <div className=" mt-5 relative h-fit bg-transparent mx-w-5xl flex items-top justify-center">
+                <div className="absolute left-32 bg-dark-grey h-fit w-fit p-6 rounded-lg items-center">
+                    <div className="space-y-3 text-light-grey font-light border-solid border-2 border-grey h-fit w-fit rounded-lg p-2 py-4 text-center">
+                        <div>1 QLkUSD is currently redeemable for 0.15 kUSD</div>
+                        <div>Your 0.00 QLkUSD is ~0.00% of the total supply, entitling you to 0,00 kUSD if you redeem it right now.</div>
+                    </div>
+                    <div className="flex mt-8 space-x-6 pb-3">
+                        <div className="relative bg-black border-transparent h-28 w-6/12 rounded-lg hover:border-green border-2">
+                            <div className="text-light-grey absolute inset-3 font-light"> Deposit </div>
+                            <div className="text-white font-light absolute bottom-8 left-3 ">kUSD</div>
+                            <input type="text"
+                            placeholder="0.0"
+                            className="absolute bottom-8 right-3 h-7 bg-transparent border-2 border-grey"
+                            style={{border: "none", borderBottom: "2px solid #324054", outline: "0", color: "#FFFFFF"   }}
+                            />
                         </div>
-                    <div className="uppercase text-grey bg-dark-grey rounded-lg h-fit w-fit">
-                        <img src="./LiqRewardBg.png" className="rounded-lg" alt="liquidation reward"></img><div className="absolute">Liquidation reward</div>
-                            </div>
-                    <div className="uppercase text-grey bg-dark-grey rounded-lg h-fit w-fit">
-                        <img src="./LpTokensBg.png" className="rounded-lg" alt="Lp Tokens total"></img>lp tokens total</div>
-                
-                <div className="insert-0 top-10 m-10 mr-20 h-fit w-96 bg-dark-grey p-8 shadow-lg rounded-lg"></div>
-           </div>
-           <div className="flex">
-                <div className="grid-cols-3 insert-0 top-10 pl-4 m-10 ml-20 h-fit w-6/12 bg-dark-grey p-8 shadow-lg rounded-lg flex items-center justify-between"></div>
+                        <div className="relative  border-transparent bg-black h-28 w-6/12 rounded-lg hover:border-green border-2">
+                            <div className="text-light-grey absolute inset-3 font-light"> Redeem </div>
+                            <div className="text-white font-light absolute bottom-8 left-3 ">QLkUSD</div>
+                            <input type="text"
+                            placeholder="0.0"
+                            className="absolute bottom-8 right-3 h-7 bg-transparent border-2 border-grey"
+                            style={{border: "none", borderBottom: "2px solid #324054", outline: "0", color: "#FFFFFF"}}
+                            />
+                        </div>
+                    </div>
+                </div>
                 <div>
-                <div className="grid-cols-3 insert-0 top-10 pl-4 m-10 ml-20 h-fit w-6/12 bg-dark-grey p-8 shadow-lg rounded-lg flex items-center justify-between"></div>
-                <div className="grid-cols-3 insert-0 top-10 pl-4 m-10 ml-20 h-fit w-6/12 bg-dark-grey p-8 shadow-lg rounded-lg flex items-center justify-between"></div>
-           </div>
+                    <div className="bg-transparent absolute right-32 mr-2 ">
+                        <div className="relative ">
+                            <img src="./Learn_more.png" alt="Learn more"/>
+                            <button className="absolute top-12 right-9 border-2 rounded-lg border-green p-2 text-green"
+                            >
+                                Learn more
+                            </button>
+                        </div>
+
+                    </div>
+                    <div className="bg-dark-grey absolute right-32 top-40 mr-2 py-4 px-6 rounded-lg w-fit h-fit ">
+                        <div className="text-white font-light space-y-1">
+                            <div style={{ background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)' }} className="justify-between rounded-lg flex p-3 h-auto w-80 border-solid border-2 border-grey">
+                                <div>Tezos Holdings</div>
+                                <div className="">{xtzBalance} XTZ</div>
+                            </div>
+                            <div className=""></div>
+                            <div style={{ background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)' }} className="justify-between flex p-3 h-auto w-auto border-solid border-2 border-grey rounded-lg">
+                                <   div>kUSD Holdings</div>
+                                <div className="">{kolibriBalance} kUSD</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
            </div>
            
            
