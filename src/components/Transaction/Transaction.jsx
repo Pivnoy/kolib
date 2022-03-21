@@ -8,17 +8,7 @@ import { createOvens, estimateOutput } from '../../utils/kolibri_api/kolibri';
 import { KOLIBRI_TOKEN_ADDRESS } from "../../utils/values";
 import { swapToken } from "../../utils/wallet_api/swap";
 import { createTezosKit } from "../../utils/wallet_api/wallet";
-import { black } from "tailwindcss/colors";
 
-
-//delete later
-let xtzBalance = 12345;
-let kolibriBalance = 54321;
-
-const CurrencyLogo = [
-    { name: 'xtz', href: './Tezos.png' },
-    { name: 'kUSD', href: './KolibriCurrency.png' },
-]
 
 function Transaction(props) {
 
@@ -29,7 +19,7 @@ function Transaction(props) {
 
     const [rate, setRate] = useState(null);
 
-    const { TESTNET, reget, connect, wal } = props;
+    const { TESTNET, reget, connect, wal, balance } = props;
 
 
     const handleChangeFromNumber = async (e) => {
@@ -119,23 +109,29 @@ function Transaction(props) {
             <div className="w-fit bg-dark-grey p-8 shadow-lg rounded-lg">
                 <div className="mb-6 text-white text-left font-light">Swap</div>
                 <div className="flex">
-                
+
 
                     <div className="mr-5">
                         <div>
                             <div className="relative mb-5 bg-black border-transparent h-28 w-96 rounded-lg hover:border-green border-2">
                                 <div className="text-light-grey absolute inset-3 font-light"> From</div>
-                                <img src="./Tezos.png" alt="Tezos" className="absolute bottom-7 left-2 p-1 rounded-md" style={{background: "rgba(37, 137, 145, 10%)"}}></img>
-                                <div className="text-white font-light absolute bottom-8 left-14 ">XTZ</div>
-                                <input type="text"
-                                placeholder="0.0"
-                                className="absolute bottom-8 right-3 h-7 w-56 bg-transparent border-2 border-grey"
-                                style={{border: "none", borderBottom: "2px solid #324054", outline: "0", color: "#FFFFFF"   }}
+                                <img src={currencyFrom == 'tez' ? "./Tezos.png" : "./KolibriCurrency.png"}
+                                    alt="Currency Icon" className="absolute bottom-7 left-2 p-1 rounded-md" style={{ background: "rgba(37, 137, 145, 10%)" }}></img>
+                                <div className="text-white font-light absolute bottom-8 left-14 ">
+                                    {currencyFrom == 'tez' ? "XTZ" : "kUSD"}
+                                </div>
+                                <input
+                                    type="number"
+                                    onChange={handleChangeFromNumber}
+                                    value={currencyFromNumber}
+                                    placeholder="0.0"
+                                    className="absolute bottom-8 right-3 h-7 w-56 bg-transparent border-2 border-grey"
+                                    style={{ border: "none", borderBottom: "2px solid #324054", outline: "0", color: "#FFFFFF" }}
                                 />
-                        </div>
+                            </div>
 
-                        {/* input that was before */}
-                        {/* <div className="mb-5 ">
+                            {/* input that was before */}
+                            {/* <div className="mb-5 ">
 
                         <FormControl className="h-20 w-full rounded-lg active: hover:">
                             <InputLabel htmlFor="component-simple">From</InputLabel>
@@ -173,33 +169,39 @@ function Transaction(props) {
 
 
 
-                        <div className="flex justify-between w-96 items-center mb-5">
-                            <div className="text-green bg-black h-9 w-52 ml-20 pt-2 rounded-md flex justify-center">
-                                Rate: {rate}
+                            <div className="flex justify-between w-96 items-center mb-5">
+                                <div className="text-green bg-black h-9 w-52 ml-20 pt-2 rounded-md flex justify-center">
+                                    Rate: {rate}
+                                </div>
+                                <IconButton
+                                    className="rotate-90 rounded-full border-gr"
+                                    style={{ height: "40px", width: "40px", border: "solid #324054", background: "#0E1012", transform: "rotate(90deg)", color: "#258991" }}
+                                    onClick={handleChangeCurrencies}>
+                                    <CompareArrowsOutlinedIcon />
+                                </IconButton>
                             </div>
-                            <IconButton
-                                className="rotate-90 rounded-full border-gr"
-                                style={{ height: "40px", width: "40px", border: "solid #324054", background: "#0E1012", transform: "rotate(90deg)", color: "#258991" }}
-                                onClick={handleChangeCurrencies}>
-                                <CompareArrowsOutlinedIcon />
-                            </IconButton>
-                        </div>
 
-                        <div className="relative mb-3 bg-black border-transparent h-28 w-96 rounded-lg hover:border-green border-2">
+                            <div className="relative mb-3 bg-black border-transparent h-28 w-96 rounded-lg hover:border-green border-2">
                                 <div className="text-light-grey absolute inset-3 font-light"> To</div>
-                                <img src="./Tezos.png" alt="Tezos" className="absolute bottom-7 left-2 p-1 rounded-md" style={{background: "rgba(37, 137, 145, 10%)"}}></img>
-                                <div className="text-white font-light absolute bottom-8 left-14 ">XTZ</div>
-                                <input type="text"
-                                placeholder="0.0"
-                                className="absolute bottom-8 right-3 h-7 w-56 bg-transparent border-2 border-grey"
-                                style={{border: "none", borderBottom: "2px solid #324054", outline: "0", color: "#FFFFFF"   }}
+                                <img src={currencyTo == 'tez' ? "./Tezos.png" : "./KolibriCurrency.png"}
+                                    alt="Currency Icon" className="absolute bottom-7 left-2 p-1 rounded-md" style={{ background: "rgba(37, 137, 145, 10%)" }}></img>
+                                <div className="text-white font-light absolute bottom-8 left-14 ">
+                                    {currencyTo == 'tez' ? "XTZ" : "kUSD"}
+                                </div>
+                                <input
+                                    type="number"
+                                    placeholder="0.0"
+                                    onChange={handleChangeToNumber}
+                                    value={currencyToNumber}
+                                    className="absolute bottom-8 right-3 h-7 w-56 bg-transparent border-2 border-grey"
+                                    style={{ border: "none", borderBottom: "2px solid #324054", outline: "0", color: "#FFFFFF" }}
                                 />
-                        </div>
+                            </div>
 
 
 
-                        
-                        
+
+
 
                             {/* <FormControl className="h-20 w-full rounded-lg hover:border-green">
                                 <InputLabel htmlFor="component-simple">To</InputLabel>
@@ -251,12 +253,12 @@ function Transaction(props) {
                     <div className="ml-10 text-white font-light space-y-1">
                         <div style={{ background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)' }} className="justify-between rounded-lg flex p-3 h-auto w-80 border-solid border-2 border-grey">
                             <div>Tezos Holdings</div>
-                            <div className="">{xtzBalance} XTZ</div>
+                            <div className="">{balance.xtzBalance} XTZ</div>
                         </div>
                         <div className=""></div>
                         <div style={{ background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)' }} className="justify-between flex p-3 h-auto w-auto border-solid border-2 border-grey rounded-lg">
                             <   div>kUSD Holdings</div>
-                            <div className="">{kolibriBalance} kUSD</div>
+                            <div className="">{balance.kolibriBalance} kUSD</div>
                         </div>
                     </div>
                 </div>

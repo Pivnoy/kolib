@@ -1,11 +1,8 @@
 import React from "react";
 let kUSD = 213091238;
-function LiquidityPool() {
+function LiquidityPool(props) {
 
-//delete later
-
-let xtzBalance = 12345;
-let kolibriBalance = 54321;
+    const { balance } = props;
 
 let classNameForPictures = 'mt-3 relative text-center uppercase text-grey bg-transparent rounded-lg h-28 w-64';
     return (
@@ -83,12 +80,12 @@ let classNameForPictures = 'mt-3 relative text-center uppercase text-grey bg-tra
                         <div className="text-white font-light space-y-1">
                             <div style={{ background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)' }} className="justify-between rounded-lg flex p-3 h-auto w-80 border-solid border-2 border-grey">
                                 <div>Tezos Holdings</div>
-                                <div className="">{xtzBalance} XTZ</div>
+                                <div className="">{balance.xtzBalance} XTZ</div>
                             </div>
                             <div className=""></div>
                             <div style={{ background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)' }} className="justify-between flex p-3 h-auto w-auto border-solid border-2 border-grey rounded-lg">
                                 <   div>kUSD Holdings</div>
-                                <div className="">{kolibriBalance} kUSD</div>
+                                <div className="">{balance.kolibriBalance} kUSD</div>
                             </div>
                         </div>
                     </div>

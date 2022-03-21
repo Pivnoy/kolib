@@ -7,9 +7,9 @@ import {
 } from "../../utils/wallet_api/wallet";
 
 import { React, useEffect, useState } from "react";
-import { InputAdornment, MenuItem, Select} from "@mui/material";
+import { InputAdornment, MenuItem, Select } from "@mui/material";
 import Ovens from '../Ovens/Ovens';
-import { BrowserRouter, Routes, Route, Link} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import { createOvens, getBalanceKolibri } from '../../utils/kolibri_api/kolibri';
 import Transaction from '../Transaction/Transaction';
@@ -94,14 +94,14 @@ function Wallet() {
       <BrowserRouter>
 
 
-      {/* NavBar and kolibri logo */}
+        {/* NavBar and kolibri logo */}
 
-      <Disclosure as="nav" className="bg-transparent  relative font-light">
-        {({ open }) => (
-          <>
-            <div className="h-40  px-2 sm:px-6 lg:px-8">
-              <div className="relative flex items-center justify-center">
-                {/* <div className="absolute inset-y-0 left-0 flex items-center sm:hidden"> */}
+        <Disclosure as="nav" className="bg-transparent  relative font-light">
+          {({ open }) => (
+            <>
+              <div className="h-40  px-2 sm:px-6 lg:px-8">
+                <div className="relative flex items-center justify-center">
+                  {/* <div className="absolute inset-y-0 left-0 flex items-center sm:hidden"> */}
                   {/* Mobile menu button*/}
                   {/* <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                     <span className="sr-only">Open main menu</span>
@@ -112,69 +112,69 @@ function Wallet() {
                     )}
                   </Disclosure.Button>
                 </div> */}
-                <div className="flex items-center justify-center sm:items-stretch sm:justify-start">
-                  <div>
-                    {/* <img
+                  <div className="flex items-center justify-center sm:items-stretch sm:justify-start">
+                    <div>
+                      {/* <img
                       className="block lg:hidden h-8 w-auto"
                       src="./Logo.png"
                       alt="Kolibri logo"
                     /> */}
-                    <img
-                      className="h-24 w-fit mt-4" 
-                      src="./Logo.png"
-                      alt="Kolibri logo"
-                    />
-                  </div>
-                  <div className="hidden sm:block sm:ml-6">
-                    <div className="flex space-x-3 content-center items-center self-center">
-                      {navigation.map((item) => (
-                        <Link
-                          key={item.name}
-                          to={item.href}
-                          className={classNames(
-                            item.current ? 'underline text-white' : 'text-light-grey hover:text-white',
-                            'mt-3 px-3 py-8 font-light'
-                          )}
-                          aria-current={item.current ? 'page' : undefined}
-                        >
-                          {item.name}
-                        </Link>
-                      ))}
+                      <img
+                        className="h-24 w-fit mt-4"
+                        src="./Logo.png"
+                        alt="Kolibri logo"
+                      />
                     </div>
-                  </div>
+                    <div className="hidden sm:block sm:ml-6">
+                      <div className="flex space-x-3 content-center items-center self-center">
+                        {navigation.map((item) => (
+                          <Link
+                            key={item.name}
+                            to={item.href}
+                            className={classNames(
+                              item.current ? 'underline text-white' : 'text-light-grey hover:text-white',
+                              'mt-3 px-3 py-8 font-light'
+                            )}
+                            aria-current={item.current ? 'page' : undefined}
+                          >
+                            {item.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
 
 
 
 
 
 
-                {/* wallet and connection button */}
-                <div className="font-light flex w-fit items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                  <div className="bg-gradient-to-r from-light-blue via-turquouse to-emerald text-white p-2 h-auto w-auto rounded-lg">
-                  
-                  <button
-                    type="button"
-                    className="disabled:bg-light-grey"
-                    onClick={walletInfo ? handleDisconnectWallet : handleConnectWallet}
-                  >
-                    <span className="sr-only">Connect wallet</span>
+                    {/* wallet and connection button */}
+                    <div className="font-light flex w-fit items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                      <div className="bg-gradient-to-r from-light-blue via-turquouse to-emerald text-white p-2 h-auto w-auto rounded-lg">
 
-                    {walletInfo
-                      ? walletInfo.address.slice(0, 4) +
-                      "..." +
-                      walletInfo.address.slice(walletInfo.address.length - 4, walletInfo.address.length)
-                      : "Connect Wallet" }
-                      {/* delete or not delete plus icon? */}
-                      {/* <PlusCircleIcon className="h-6 w-6"/> */}
+                        <button
+                          type="button"
+                          className="disabled:bg-light-grey"
+                          onClick={walletInfo ? handleDisconnectWallet : handleConnectWallet}
+                        >
+                          <span className="sr-only">Connect wallet</span>
 
-                  
-                    
-                  </button>
-                  </div>
-                </div>
+                          {walletInfo
+                            ? walletInfo.address.slice(0, 4) +
+                            "..." +
+                            walletInfo.address.slice(walletInfo.address.length - 4, walletInfo.address.length)
+                            : "Connect Wallet"}
+                          {/* delete or not delete plus icon? */}
+                          {/* <PlusCircleIcon className="h-6 w-6"/> */}
 
 
-                  {/* <InputAdornment
+
+                        </button>
+                      </div>
+                    </div>
+
+
+                    {/* <InputAdornment
                     position="start">
                     <Select
                       variant="standard"
@@ -195,28 +195,28 @@ function Wallet() {
 
 
 
+                  </div>
                 </div>
-              </div>
 
 
-              <Disclosure.Panel className="sm:hidden">
-                <div className="px-2 pt-2 pb-3 space-y-1">
-                  {navigation.map((item) => (
-                    <Disclosure.Button
-                      key={item.name}
-                      as="Link"
-                      to={item.href}
-                      className={classNames(
-                        item.current ? 'bg-white text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                        'block px-3 py-2 rounded-md text-base font-light'
-                      )}
-                      aria-current={item.current ? 'page' : undefined}
-                    >
-                      {item.name}
-                    </Disclosure.Button>
-                  ))}
-                </div>
-              </Disclosure.Panel>
+                <Disclosure.Panel className="sm:hidden">
+                  <div className="px-2 pt-2 pb-3 space-y-1">
+                    {navigation.map((item) => (
+                      <Disclosure.Button
+                        key={item.name}
+                        as="Link"
+                        to={item.href}
+                        className={classNames(
+                          item.current ? 'bg-white text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                          'block px-3 py-2 rounded-md text-base font-light'
+                        )}
+                        aria-current={item.current ? 'page' : undefined}
+                      >
+                        {item.name}
+                      </Disclosure.Button>
+                    ))}
+                  </div>
+                </Disclosure.Panel>
 
               </div>
 
@@ -228,7 +228,7 @@ function Wallet() {
 
 
 
-      {/* <div className="m-7 text-white relative flex items-center justify-center h-16">
+        {/* <div className="m-7 text-white relative flex items-center justify-center h-16">
         <div className="p-3 h-auto w-auto border-solid border-2 border-white rounded-lg">
           {xtzBalance ? "User xtz balance: " + xtzBalance : "No account connected (xtz)"}
         </div>
@@ -248,6 +248,7 @@ function Wallet() {
             element={
               <Transaction
                 TESTNET={TESTNET}
+                balance={{ xtzBalance: xtzBalance, kolibriBalance: kolibriBalance }}
                 reget={{ regetbalance: regetbalance, setRegetbalance: setRegetbalance }}
                 connect={handleConnectWallet}
                 wal={walletInfo}
@@ -260,6 +261,7 @@ function Wallet() {
             element={
               <Ovens
                 TESTNET={TESTNET}
+                balance={{ xtzBalance: xtzBalance, kolibriBalance: kolibriBalance }}
                 reget={{ regetbalance: regetbalance, setRegetbalance: setRegetbalance }}
                 connect={handleConnectWallet}
                 wal={walletInfo}
@@ -268,7 +270,10 @@ function Wallet() {
 
           <Route
             path='/liquidity-pool'
-            element={<LiquidityPool />}
+            element={
+              <LiquidityPool
+                balance={{ xtzBalance: xtzBalance, kolibriBalance: kolibriBalance }}
+              />}
           />
         </Routes>
       </BrowserRouter>

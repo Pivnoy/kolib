@@ -4,17 +4,8 @@ import { createOvens, harbringerClient, stableCoinClient } from '../../utils/kol
 import { React, useEffect, useState } from "react";
 import { getOvenDescription } from "../../utils/kolibri_api/ovens";
 import { ovenButtons } from "../../utils/kolibri_api/oven_buttons";
-import { Button, ButtonGroup } from "@mui/material";
 import OvensInteractions from "./OvensInteractions";
-import {Disclosure} from '@headlessui/react';
 import BigNumber from 'bignumber.js'
-import { width } from "@mui/system";
-
-
-//delete later
-
-let xtzBalance = 12345;
-let kolibriBalance = 54321;
 
 
 function Ovens(props) {
@@ -22,7 +13,7 @@ function Ovens(props) {
 
     const [ownedOvens, setOwnedOvens] = useState([]);
 
-    const { TESTNET, reget, connect, wal } = props;
+    const { TESTNET, reget, connect, wal, balance } = props;
 
     const [ovensAdr, setOvensAdr] = useState([]);
 
@@ -235,12 +226,12 @@ function Ovens(props) {
                                 <div className="mt-6 ml-10 text-white font-light space-y-1">
                                     <div style={{ background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)' }} className="justify-between rounded-lg flex p-3 h-auto w-80 border-solid border-2 border-grey">
                                         <div>Tezos Holdings</div>
-                                        <div className="">{xtzBalance} XTZ</div>
+                                        <div className="">{balance.xtzBalance} XTZ</div>
                                     </div>
                                     <div className=""></div>
                                     <div style={{ background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)' }} className="justify-between flex p-3 h-auto w-auto border-solid border-2 border-grey rounded-lg">
                                         <   div>kUSD Holdings</div>
-                                        <div className="">{kolibriBalance} kUSD</div>
+                                        <div className="">{balance.kolibriBalance} kUSD</div>
                                     </div>
                                 </div>
                                 <div className="border-solid border-2 border-grey mt-3 ml-10 text-white font-light space-y-1 p-4 rounded-lg">

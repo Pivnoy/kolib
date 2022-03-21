@@ -57,7 +57,7 @@ const createTezosKit = async () => {
 
 const getBalanceXtz = async () => {
 
-  return (await tz.tz.getBalance(await wallet.getPKH())).dividedBy(1_000_000).toFixed(2) + 'ꜩ';
+  return (await tz.tz.getBalance(await wallet.getPKH())).dividedBy(1_000_000).toFixed(2);
 
 }
 
