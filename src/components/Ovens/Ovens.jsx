@@ -20,10 +20,12 @@ function Ovens(props) {
     const [chosenOven, setChosenOven] = useState(0);
 
     const [chosenButton, setChosenButton] = useState(ovenButtons.borrow);
-    
+
     const [xtzPrise, setXtzPrise] = useState(null);
 
     const handleOvenClick = (e) => {
+        console.log("yep, clicked");
+        console.log(e.target);
         setChosenOven(e.target.value);
     }
 
@@ -52,67 +54,79 @@ function Ovens(props) {
                 // already loaded, with full oven info in it
                 let styleForOvens = '';
                 let styleForOvenCode = {};
-                let ClassNameForOvenCode= '';
+                let ClassNameForOvenCode = '';
                 // eslint-disable-next-line eqeqeq
                 if (i == chosenOven) {
-                    styleForOvens= 'border-solid border-2 border-green bg-transparent';
-                    ClassNameForOvenCode='pl-2 m-2 w-28 text-green rounded-lg p-2 font-medium'
-                    styleForOvenCode={background: "rgba(37, 137, 145, 25%)"};
+                    styleForOvens = 'border-solid border-2 border-green bg-transparent';
+                    ClassNameForOvenCode = 'pl-2 m-2 w-28 text-green rounded-lg p-2 font-medium'
+                    styleForOvenCode = { background: "rgba(37, 137, 145, 25%)" };
                 } else {
-                    styleForOvens ='border-solid border-2 border-transparent bg-transparent';
-                    styleForOvenCode = {background: "rgba(83, 103, 132, 25%)"};
-                    ClassNameForOvenCode= 'w-28 text-light-grey rounded-lg p-2 m-2 font-medium'
+                    styleForOvens = 'border-solid border-2 border-transparent bg-transparent';
+                    styleForOvenCode = { background: "rgba(83, 103, 132, 25%)" };
+                    ClassNameForOvenCode = 'w-28 text-light-grey rounded-lg p-2 m-2 font-medium'
                 }
 
-                styleForOvens+=' text-white px-5 mt-4 font-light items-center justify-between h-32 w-12/12 shadow-lg rounded-lg'
-                let styleForCurrency ='text-white text-lg'
+                styleForOvens += ' text-white px-5 mt-4 font-light items-center justify-between h-32 w-12/12 shadow-lg rounded-lg'
+
+                let styleForCurrency = 'text-white text-lg'
+
                 showedOvens.push(
-                    <button
-                        value={i}
-                        onClick={handleOvenClick}
-                        className={styleForOvens}>
-                        <div className="">
-                            <div className="flex items-center">
-                                <div className={ClassNameForOvenCode} style={styleForOvenCode}>
-                                {ownedOvens[i].address.slice(0, 4) + '...' +
-                                    ownedOvens[i].address.slice(ownedOvens[i].address.length - 4)
-                                }
-                                
-                                </div>
+                    // <button
+                    //     value={i}
+                    //     onClick={handleOvenClick}
+                    //     className={styleForOvens}>
+                        <div
+                            className={styleForOvens}
+                        >
+                            <div
+                                value={i}
+                                className="flex items-center">
+
+                                <button
+                                    value={i}
+                                    onClick={handleOvenClick}
+                                    className={ClassNameForOvenCode}
+                                    style={styleForOvenCode}
+                                >
+                                    {ownedOvens[i].address.slice(0, 4) + '...' +
+                                        ownedOvens[i].address.slice(ownedOvens[i].address.length - 4)
+                                    }
+
+                                </button>
                                 <div className="w-full bg-grey rounded-full h-2.5">
-                                    <div className="bg-gradient-to-r from-light-blue via-turquouse to-emerald h-2.5 rounded-full" style={{width: "30%"}} ></div>
-                                    {/* {ownedOvens[i].ratio} */}
+                                    <div className="bg-gradient-to-r from-light-blue via-turquouse to-emerald h-2.5 rounded-full"
+                                        style={{ width: ownedOvens[i].ratio.toString() + "%" }} />
                                 </div>
                             </div>
                             <div className="text-xs flex text-light-grey">
                                 <div className="px-2 flex-none">
-                                    Collateral value 
+                                    Collateral value
                                     <div className={styleForCurrency}>
                                         {(new BigNumber(ownedOvens[i].balance * xtzPrise)).dividedBy(1_000_000).toFixed(2)} USD
                                     </div>
                                 </div>
                                 <div className="px-2 flex-none">
-                                Balance 
+                                    Balance
                                     <div className={styleForCurrency}>
                                         {ownedOvens[i].balance} XTZ
                                     </div>
                                 </div>
                                 <div className="px-2 flex-none">
-                                Loan amt
-                                    <div className={styleForCurrency}> 
+                                    Loan amt
+                                    <div className={styleForCurrency}>
                                         {ownedOvens[i].borrowed} kUSD
                                     </div>
                                 </div>
                                 <div className="px-2 flex-none">
-                                Stability fee 
-                                    <div className={styleForCurrency}> 
+                                    Stability fee
+                                    <div className={styleForCurrency}>
                                         {ownedOvens[i].fee}
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
-                    </button>
+                    // </button>
                 )
             }
         }
@@ -126,17 +140,6 @@ function Ovens(props) {
     };
 
 
-
-    const OvenButton = [
-        {name: "Borrow kUSD", value: ovenButtons.borrow, onClick: handleOvenButtonClick },
-        {name: "PayBack kUSD" },
-        {name: "Withdraw XTZ" },
-        {name: "Deposit XTZ" },
-    ]
-    
-
-
-
     useEffect(() => {
         const fl = async () => {
 
@@ -145,23 +148,26 @@ function Ovens(props) {
                 createOvens();
             }
 
-            let { price } = await harbringerClient.getPriceData();
-
-            // price = price  * MUTEZ_TO_SHARD;
+            const { price } = await harbringerClient.getPriceData();
 
             setXtzPrise(price);
 
-            let ovensAddresses = await stableCoinClient.ovensOwnedByAddress(await wallet.getPKH());
+            const ovensAddresses = await stableCoinClient.ovensOwnedByAddress(await wallet.getPKH());
 
             setOvensAdr(ovensAddresses);
 
             for (let address of ovensAddresses) {
-                let oven = await getOvenDescription(address);
+
+                //loading oven info in worker thread
+                const oven = await getOvenDescription(address);
+
                 console.log(oven);
+
                 setOwnedOvens(arr => [...arr, oven]);
 
             };
 
+            // rendered all ovens
             console.log('done');
         }
         fl();
@@ -175,37 +181,37 @@ function Ovens(props) {
                     {/* nav for ovens  */}
 
 
-                    <div className="items-center justify-between"> 
+                    <div className="items-center justify-between">
                         <div
                             className="relative inset-0 top-0">
-                            
-                                <button 
+
+                            <button
                                 className="p-2 text-grey hover:text-white active:text-white"
-                                    value={ovenButtons.borrow}
-                                    onClick={handleOvenButtonClick}>
-                                    Borrow kUSD
-                                </button>
-                                
-                                <button
+                                value={ovenButtons.borrow}
+                                onClick={handleOvenButtonClick}>
+                                Borrow kUSD
+                            </button>
+
+                            <button
                                 className="p-2 text-grey hover:text-white active:text-white"
-                                    value={ovenButtons.payback}
-                                    onClick={handleOvenButtonClick}>
-                                    Payback kUSD
-                                </button>
-                                <button
+                                value={ovenButtons.payback}
+                                onClick={handleOvenButtonClick}>
+                                Payback kUSD
+                            </button>
+                            <button
                                 className="p-2 text-grey hover:text-white active:text-white"
-                                    value={ovenButtons.withdraw}
-                                    onClick={handleOvenButtonClick}>
-                                    Withdraw XTZ
-                                </button>
-                                <button
+                                value={ovenButtons.withdraw}
+                                onClick={handleOvenButtonClick}>
+                                Withdraw XTZ
+                            </button>
+                            <button
                                 className="p-2 text-grey hover:text-white active:text-white"
-                                    value={ovenButtons.deposit}
-                                    onClick={handleOvenButtonClick}>
-                                    Deposit XTZ
-                                </button>
+                                value={ovenButtons.deposit}
+                                onClick={handleOvenButtonClick}>
+                                Deposit XTZ
+                            </button>
                         </div>
-                       
+
 
 
 
@@ -236,8 +242,8 @@ function Ovens(props) {
                                 </div>
                                 <div className="border-solid border-2 border-grey mt-3 ml-10 text-white font-light space-y-1 p-4 rounded-lg">
                                     <div className="w-full bg-black rounded-full h-2.5">
-                                    <div className="bg-gradient-to-r from-light-blue via-turquouse to-emerald h-2.5 rounded-full" style={{width: "30%"}} ></div>
-                                    {/* {ownedOvens[i].ratio} */}
+                                        <div className="bg-gradient-to-r from-light-blue via-turquouse to-emerald h-2.5 rounded-full" style={{ width: "30%" }} ></div>
+                                        {/* {ownedOvens[i].ratio} */}
                                     </div>
                                 </div>
                                 <div
@@ -245,22 +251,22 @@ function Ovens(props) {
                                     {/* {oven == null ? 'no oven?' : */}{
                                         <div className="">
                                             <div className="flex justify-between">
-                                            Borrowed tokens <div>1234 XTZ</div> {/*{oven.borrowed}*/}
+                                                Borrowed tokens <div>1234 XTZ</div> {/*{oven.borrowed}*/}
                                             </div>
                                             <div className="flex justify-between">
-                                            Oven balance <div>4311 XTZ</div> {/*{oven.balance}*/}
+                                                Oven balance <div>4311 XTZ</div> {/*{oven.balance}*/}
                                             </div>
                                             <div className="flex justify-between">
-                                            Current collateral utilization <div>18 %</div>{/*{oven.ratio}*/}
+                                                Current collateral utilization <div>18 %</div>{/*{oven.ratio}*/}
                                             </div>
                                             <div className="flex justify-between">
-                                            New collateral utilization <div>12 %</div>{/*{ovenRatio}*/}
+                                                New collateral utilization <div>12 %</div>{/*{ovenRatio}*/}
                                             </div>
                                         </div>
-                                            }
-                                        </div>
-                            </div> 
-                            
+                                    }
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
