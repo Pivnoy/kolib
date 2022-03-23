@@ -268,7 +268,7 @@ function Transaction(props) {
             </div>
 
             {/* place for graph and other info */}
-            <div className="inset-0 top-10 m-10 h-fit w-96 bg-dark-grey p-8 shadow-lg rounded-lg">
+            <div className=" m-10 h-fit w-96 bg-dark-grey p-8 shadow-lg rounded-lg">
             </div>
 
 
