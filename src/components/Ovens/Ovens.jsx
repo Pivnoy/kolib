@@ -170,15 +170,15 @@ function Ovens(props) {
 
 
     return (
-        <div className="mx-w-full flex justify-center space-x-10">
-            <div className="h-fit bg-transparent flex items-start">
-                <div className=" h-fit w-fit bg-dark-grey p-8 shadow-lg rounded-lg">
+        <div className="flex justify-center space-x-10">
+            <div className=" bg-transparent h-fit flex items-start">
+                <div className="relative h-fit w-fit bg-dark-grey p-8 shadow-lg rounded-lg">
 
                     {/* nav for ovens  */}
 
                     <div className="items-center justify-between">
                         <div
-                            className="relative inset-0 top-0">
+                            className="">
 
                             <button
                                 className="p-2 text-grey hover:text-white active:text-white"
@@ -213,7 +213,7 @@ function Ovens(props) {
 
                         {/* balance */}
 
-                        <div className="flex mt-4">
+                        <div className="flex mt-4 pr-80 pb-20">
                             <div className="text-white font-light">
                                 <OvensInteractions
                                     oven={ownedOvens[chosenOven]}
@@ -224,44 +224,7 @@ function Ovens(props) {
                                     wal={wal}
                                 />
                             </div>
-                            <div className="mb-12">
-                                <div className="mt-6 ml-10 text-white font-light space-y-1">
-                                    <div style={{ background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)' }} className="justify-between rounded-lg flex p-3 h-auto w-80 border-solid border-2 border-grey">
-                                        <div>Tezos Holdings</div>
-                                        <div className="">{balance.xtzBalance} XTZ</div>
-                                    </div>
-                                    <div className=""></div>
-                                    <div style={{ background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)' }} className="justify-between flex p-3 h-auto w-auto border-solid border-2 border-grey rounded-lg">
-                                        <   div>kUSD Holdings</div>
-                                        <div className="">{balance.kolibriBalance} kUSD</div>
-                                    </div>
-                                </div>
-                                <div className="border-solid border-2 border-grey mt-3 ml-10 text-white font-light space-y-1 p-4 rounded-lg">
-                                    <div className="w-full bg-black rounded-full h-2.5">
-                                        <div className="bg-gradient-to-r from-light-blue via-turquouse to-emerald h-2.5 rounded-full" style={{ width: "30%" }} ></div>
-                                        {/* {ownedOvens[i].ratio} */}
-                                    </div>
-                                </div>
-                                <div
-                                    className="font-light ml-10 mt-3 text-white p-3 bg-transparent rounded-lg h-auto w-80 border-solid border-2 border-grey order-last">
-                                    {/* {oven == null ? 'no oven?' : */}{
-                                        <div className="">
-                                            <div className="flex justify-between">
-                                                Borrowed tokens <div>1234 XTZ</div> {/*{oven.borrowed}*/}
-                                            </div>
-                                            <div className="flex justify-between">
-                                                Oven balance <div>4311 XTZ</div> {/*{oven.balance}*/}
-                                            </div>
-                                            <div className="flex justify-between">
-                                                Current collateral utilization <div>18 %</div>{/*{oven.ratio}*/}
-                                            </div>
-                                            <div className="flex justify-between">
-                                                New collateral utilization <div>12 %</div>{/*{ovenRatio}*/}
-                                            </div>
-                                        </div>
-                                    }
-                                </div>
-                            </div>
+                            
 
                         </div>
                     </div>

@@ -130,20 +130,46 @@ function OvensInteractions(props) {
                     {wal == null ? 'Connect' : btn}
             </Button>
             </div>
-            {/* <div
-                className=" mt-10 text-white p-3 bg-transparent rounded-lg h-auto w-80 border-solid border-2 border-grey order-last">
+
+            <div className="absolute right-4 top-16 mb-12">
+                <div className="mt-6 ml-10 text-white font-light space-y-1">
+                    <div style={{ background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)' }} className="justify-between rounded-lg flex p-3 h-auto w-80 border-solid border-2 border-grey">
+                        <div>Tezos Holdings</div>
+                        <div className="">123 XTZ</div>
+                    </div>
+                    <div className=""></div>
+                    <div style={{ background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)' }} className="justify-between flex p-3 h-auto w-auto border-solid border-2 border-grey rounded-lg">
+                        <   div>kUSD Holdings</div>
+                        <div className="">123 kUSD</div>
+                    </div>
+                </div>
+                <div className="border-solid border-2 border-grey mt-3 ml-10 text-white font-light space-y-1 p-4 rounded-lg">
+                    <div className="w-full bg-black rounded-full h-2.5">
+                        <div className="bg-gradient-to-r from-light-blue via-turquouse to-emerald h-2.5 rounded-full" style={{ width: "30%" }} ></div>
+                        {/* {ownedOvens[i].ratio} */}
+                    </div>
+                </div>
+            </div>
+            
+            <div
+                className="absolute right-4 bottom-10 font-light ml-10 mt-3 text-white p-3 bg-transparent rounded-lg h-auto w-80 border-solid border-2 border-grey order-last">
                 {oven == null ? 'no oven?' :
                     <div>
-                        Borrowed tokens: {oven.borrowed}
-                        <br />
-                        Oven balance: {oven.balance}
-                        <br />
-                        Current collateral utilization: {oven.ratio}
-                        <br />
-                        New collateral utilization: {ovenRatio}
+                        <div className="flex justify-between">
+                        Borrowed tokens:<div> {oven.borrowed} XTZ</div>
+                        </div>
+                        <div className="flex justify-between">
+                        Oven balance: <div>{oven.balance} XTZ</div>
+                        </div>
+                        <div className="flex justify-between">
+                        Current collateral utilization: <div>{oven.ratio} %</div>
+                        </div>
+                        <div className="flex justify-between">
+                        New collateral utilization:<div> {ovenRatio} %</div>
+                        </div>
                     </div>
                 }
-            </div> */}
+            </div>
         </div>
     )
 
