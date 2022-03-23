@@ -1,29 +1,21 @@
-import {createTransport} from "nodemailer"
-import { mailLogin, mailPassword } from "./mailSecret.js"
+import express from 'express';
+import cors from 'cors';
+import { addMail } from './endpoint/addMail.js';
 
-const transporter = createTransport({
-    service: "gmail",
-    auth: {
-        user: mailLogin,
-        pass: mailPassword
-    }
+const app = express();
+
+const PORT = 8239;
+
+app.use(cors());
+
+app.use(express.json());
+
+app.use(express.urlencoded({extended: true}));
+
+app.post('/mail', (req, res) => {
+    addMail(req, res);
 });
 
-const mailList = "lagusmax8@gmail.com";
-
-const mailOptions = {
-    from: mailLogin,
-    to: mailList,
-    subject: "testing mail 1231",
-    text: "if i will be able to see it"
-};
-
-transporter.sendMail(mailOptions, (err, info) => {
-    if (err) {
-        console.log('Error - ', err);
-    }
-    if (info) {
-        console.log('Succsess ! = ', info);
-    }
-});
-
+app.listen(PORT, () => {
+    console.log('Server is running on ', PORT);
+})

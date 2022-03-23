@@ -71,10 +71,6 @@ function Ovens(props) {
                 let styleForCurrency = 'text-white text-lg'
 
                 showedOvens.push(
-                    // <button
-                    //     value={i}
-                    //     onClick={handleOvenClick}
-                    //     className={styleForOvens}>
                         <div
                             className={styleForOvens}
                         >
@@ -126,7 +122,6 @@ function Ovens(props) {
 
                             </div>
                         </div>
-                    // </button>
                 )
             }
         }
@@ -198,22 +193,22 @@ function Ovens(props) {
                                 onClick={handleOvenButtonClick}>
                                 Payback kUSD
                             </button>
+
                             <button
                                 className="p-2 text-grey hover:text-white active:text-white"
                                 value={ovenButtons.withdraw}
                                 onClick={handleOvenButtonClick}>
                                 Withdraw XTZ
                             </button>
+
                             <button
                                 className="p-2 text-grey hover:text-white active:text-white"
                                 value={ovenButtons.deposit}
                                 onClick={handleOvenButtonClick}>
                                 Deposit XTZ
                             </button>
+
                         </div>
-
-
-
 
 
                         {/* balance */}

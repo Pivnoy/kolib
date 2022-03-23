@@ -7,7 +7,7 @@
 package-lock.json
 
 # development secret
-/server/mailSecret.js
+/server/smtp/mailSecret.js
 /server/node_modules
 /server/package-lock.json
 
