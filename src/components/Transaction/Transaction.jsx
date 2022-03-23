@@ -1,6 +1,5 @@
 import {
-    FormControl, IconButton, InputAdornment, InputLabel, MenuItem, OutlinedInput,
-    Select, Input
+    IconButton
 } from "@mui/material";
 import CompareArrowsOutlinedIcon from '@mui/icons-material/CompareArrowsOutlined';
 import { React, useEffect, useState } from "react";
@@ -115,10 +114,10 @@ function Transaction(props) {
                         <div>
                             <div className="relative mb-5 bg-black border-transparent h-28 w-96 rounded-lg hover:border-green border-2">
                                 <div className="text-light-grey absolute inset-3 font-light"> From</div>
-                                <img src={currencyFrom == 'tez' ? "./Tezos.png" : "./KolibriCurrency.png"}
+                                <img src={currencyFrom === 'tez' ? "./Tezos.png" : "./KolibriCurrency.png"}
                                     alt="Currency Icon" className="absolute bottom-7 left-2 p-1 rounded-md" style={{ background: "rgba(37, 137, 145, 10%)" }}></img>
                                 <div className="text-white font-light absolute bottom-8 left-14 ">
-                                    {currencyFrom == 'tez' ? "XTZ" : "kUSD"}
+                                    {currencyFrom === 'tez' ? "XTZ" : "kUSD"}
                                 </div>
                                 <input
                                     type="number"
@@ -183,10 +182,10 @@ function Transaction(props) {
 
                             <div className="relative mb-3 bg-black border-transparent h-28 w-96 rounded-lg hover:border-green border-2">
                                 <div className="text-light-grey absolute inset-3 font-light"> To</div>
-                                <img src={currencyTo == 'tez' ? "./Tezos.png" : "./KolibriCurrency.png"}
+                                <img src={currencyTo === 'tez' ? "./Tezos.png" : "./KolibriCurrency.png"}
                                     alt="Currency Icon" className="absolute bottom-7 left-2 p-1 rounded-md" style={{ background: "rgba(37, 137, 145, 10%)" }}></img>
                                 <div className="text-white font-light absolute bottom-8 left-14 ">
-                                    {currencyTo == 'tez' ? "XTZ" : "kUSD"}
+                                    {currencyTo === 'tez' ? "XTZ" : "kUSD"}
                                 </div>
                                 <input
                                     type="number"
