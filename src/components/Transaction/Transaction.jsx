@@ -101,9 +101,6 @@ function Transaction(props) {
 
     return (
 
-        //need to: add pics of kUSD and XTZ (see const currencyLogo), make from and to inside frame, make color of frame, change text-color (text-white, bg-black,
-        // border-black active:border-gradient-to-r from-light-blue via-turquouse to-emerald, font-light)
-
         <div className="h-fit bg-transparent flex items-center justify-center">
             <div className="w-fit bg-dark-grey p-8 shadow-lg rounded-lg">
                 <div className="mb-6 text-white text-left font-light">Swap</div>
@@ -128,43 +125,6 @@ function Transaction(props) {
                                     style={{ border: "none", borderBottom: "2px solid #324054", outline: "0", color: "#FFFFFF" }}
                                 />
                             </div>
-
-                            {/* input that was before */}
-                            {/* <div className="mb-5 ">
-
-                        <FormControl className="h-20 w-full rounded-lg active: hover:">
-                            <InputLabel htmlFor="component-simple">From</InputLabel>
-                            <Input
-                                id="component-simple"
-                                value={currencyFromNumber}
-                                onChange={handleChangeFromNumber}
-                                type="number"
-                                placeholder="0.0"
-                                startAdornment={
-                                    <InputAdornment position="start">
-                                        <Select
-                                            variant="standard"
-                                            sx={{ color: "white" }}
-                                            onChange={onFromSelectChange}
-                                            value={currencyFrom}
-                                        >
-                                            <MenuItem
-                                                value='tez'>
-                                                <img src="./Tezos.png" alt="Tezos icon" />
-                                                XTZ
-                                            </MenuItem>
-
-                                            <MenuItem
-                                                value={KOLIBRI_TOKEN_ADDRESS}>
-                                                <img src="./KolibriCurrency.png" alt="Kolibri icon" />
-                                                kUSD
-                                            </MenuItem>
-                                        </Select>
-                                    </InputAdornment>}
-                                label="Amount"
-                            />
-                        </FormControl>
-                        </div> */}
 
 
 
@@ -197,43 +157,6 @@ function Transaction(props) {
                                 />
                             </div>
 
-
-
-
-
-
-                            {/* <FormControl className="h-20 w-full rounded-lg hover:border-green">
-                                <InputLabel htmlFor="component-simple">To</InputLabel>
-                                <Input
-                                    id="component-simple"
-                                    value={currencyToNumber}
-                                    onChange={handleChangeToNumber}
-                                    sx={{ color: "white" }}
-                                    type="number"
-                                    placeholder="0.0"
-                                    startAdornment={
-                                        <InputAdornment position="start">
-
-                                            <Select
-                                                variant="standard"
-                                                sx={{ color: "white" }}
-                                                onChange={onToSelectChange}
-                                                value={currencyTo}
-
-                                            >
-                                                <MenuItem value='tez'>
-                                                        <img src="./Tezos.png" alt="Tezos icon" />
-                                                    XTZ
-                                                </MenuItem>
-                                                <MenuItem value={KOLIBRI_TOKEN_ADDRESS}>
-                                                    <img src="./KolibriCurrency.png" alt="Kolibri icon" />
-                                                    kUSD
-                                                </MenuItem>
-                                            </Select>
-                                        </InputAdornment>}
-                                    label="Amount"
-                                />
-                            </FormControl> */}
                         </div>
 
 
@@ -270,16 +193,6 @@ function Transaction(props) {
             {/* place for graph and other info */}
             <div className=" m-10 h-fit w-96 bg-dark-grey p-8 shadow-lg rounded-lg">
             </div>
-
-
-
-
-
-
-
-
-            {/* footer, why not in wallet?*/}
-            {/* <Footer /> */}
 
         </div>
 

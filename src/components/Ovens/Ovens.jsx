@@ -61,7 +61,7 @@ function Ovens(props) {
                     ClassNameForOvenCode = 'pl-2 m-2 w-28 text-green rounded-lg p-2 font-medium'
                     styleForOvenCode = { background: "rgba(37, 137, 145, 25%)" };
                 } else {
-                    styleForOvens = 'border-solid border-2 border-transparent bg-transparent';
+                    styleForOvens = 'border-solid border-2 border-grey bg-transparent';
                     styleForOvenCode = { background: "rgba(83, 103, 132, 25%)" };
                     ClassNameForOvenCode = 'w-28 text-light-grey rounded-lg p-2 m-2 font-medium'
                 }
@@ -170,11 +170,11 @@ function Ovens(props) {
 
 
     return (
-        <div className="mx-w-full flex justify-center space-x-20">
-            <div className=" inset-0 top-0 h-fit bg-transparent flex items-start">
+        <div className="mx-w-full flex justify-center space-x-10">
+            <div className="h-fit bg-transparent flex items-start">
                 <div className=" h-fit w-fit bg-dark-grey p-8 shadow-lg rounded-lg">
-                    {/* nav for ovens  */}
 
+                    {/* nav for ovens  */}
 
                     <div className="items-center justify-between">
                         <div
@@ -212,6 +212,7 @@ function Ovens(props) {
 
 
                         {/* balance */}
+
                         <div className="flex mt-4">
                             <div className="text-white font-light">
                                 <OvensInteractions

@@ -121,26 +121,7 @@ function OvensInteractions(props) {
                     />
                 </div>
             </div>
-            {/* input that was before */}
-            {/* <div className="">
-                <InputLabel htmlFor="outlined-adornment-amount">From</InputLabel>
-                <OutlinedInput
-                    id="outlined-adornment-amount"
-                    value={ovenInput}
-                    onChange={handleOvenInput}
-                    type="number"
-                    placeholder="0.0"
-                    size="medium"
-                    disabled={oven == null}
-                    style={{ backgroundColor: "#0E1012", color: "#FFFFFF"}}
-                    startAdornment={
-                        <InputAdornment position="start">
-                            {currency === 'tez' ? 'ꜩ' : 'kUSD'}
-                        </InputAdornment>}
-                    label="Amount"
-                />
-                
-            </div> */}
+            
             <div className="flex justify-center">
             <Button
                     sx = {{margin:"40px", background: "linear-gradient(to right, #258991, #298B93, #00717A)", fontWeight: "lighter", transform: "capitalize"}}

@@ -37,10 +37,9 @@ let classNameForPictures = 'mt-3 relative text-center uppercase text-grey bg-tra
                     <div>Liquidations via the pool are currently disabled</div>
                 </div>
            </div>
-           {/* fix here */}
+           
 
            <div className=" space-x-5 mt-5 h-fit bg-transparent mx-w-full flex items-top justify-center">
-               {/* container for redeem */}
                 <div className="bg-dark-grey h-fit w-fit p-6 rounded-lg items-center">
                     <div className="space-y-3 text-light-grey font-light border-solid border-2 border-grey h-fit w-fit rounded-lg p-2 py-4 text-center">
                         <div>1 QLkUSD is currently redeemable for 0.15 kUSD</div>
@@ -50,7 +49,7 @@ let classNameForPictures = 'mt-3 relative text-center uppercase text-grey bg-tra
                         <div className="relative bg-black border-transparent h-28 w-6/12 rounded-lg hover:border-green border-2">
                             <div className="text-light-grey absolute inset-3 font-light"> Deposit </div>
                             <div className="text-white font-light absolute bottom-8 left-3 ">kUSD</div>
-                            <input type="text"
+                            <input type="number"
                             placeholder="0.0"
                             className="absolute bottom-8 right-3 h-7 bg-transparent border-2 border-grey"
                             style={{border: "none", borderBottom: "2px solid #324054", outline: "0", color: "#FFFFFF"   }}
@@ -59,7 +58,7 @@ let classNameForPictures = 'mt-3 relative text-center uppercase text-grey bg-tra
                         <div className="relative border-transparent bg-black h-28 w-6/12 rounded-lg hover:border-green border-2">
                             <div className="text-light-grey absolute inset-3 font-light"> Redeem </div>
                             <div className="text-white font-light absolute bottom-8 left-3 ">QLkUSD</div>
-                            <input type="text"
+                            <input type="number"
                             placeholder="0.0"
                             className="absolute bottom-8 right-3 h-7 bg-transparent border-2 border-grey"
                             style={{border: "none", borderBottom: "2px solid #324054", outline: "0", color: "#FFFFFF"}}
@@ -67,7 +66,7 @@ let classNameForPictures = 'mt-3 relative text-center uppercase text-grey bg-tra
                         </div>
                     </div>
                 </div>
-                {/* cpntainer for kolib and balance */}
+                
                 <div className="space-y-3">
                     <div className="bg-transparent mr-2">
                         <div className="relative ">
