@@ -71,59 +71,59 @@ function Ovens(props) {
                 let styleForCurrency = 'text-white text-lg'
 
                 showedOvens.push(
+                    <div
+                        className={styleForOvens}
+                    >
                         <div
-                            className={styleForOvens}
-                        >
-                            <div
+                            value={i}
+                            className="flex items-center">
+
+                            <button
                                 value={i}
-                                className="flex items-center">
+                                onClick={handleOvenClick}
+                                className={ClassNameForOvenCode}
+                                style={styleForOvenCode}
+                            >
+                                {ownedOvens[i].address.slice(0, 4) + '...' +
+                                    ownedOvens[i].address.slice(ownedOvens[i].address.length - 4)
+                                }
 
-                                <button
-                                    value={i}
-                                    onClick={handleOvenClick}
-                                    className={ClassNameForOvenCode}
-                                    style={styleForOvenCode}
-                                >
-                                    {ownedOvens[i].address.slice(0, 4) + '...' +
-                                        ownedOvens[i].address.slice(ownedOvens[i].address.length - 4)
-                                    }
-
-                                </button>
-                                <div className="w-full bg-grey rounded-full h-2.5">
-                                    <div className="bg-gradient-to-r from-light-blue via-turquouse to-emerald h-2.5 rounded-full"
-                                        style={{ width: ownedOvens[i].ratio.toString() + "%" }} />
-                                </div>
+                            </button>
+                            <div className="w-full bg-grey rounded-full h-2.5">
+                                <div className="bg-gradient-to-r from-light-blue via-turquouse to-emerald h-2.5 rounded-full"
+                                    style={{ width: ownedOvens[i].ratio.toString() + "%" }} />
                             </div>
-
-                            <div className="text-xs flex text-light-grey">
-                                <div className="px-2 flex-none">
-                                    Collateral value
-                                    <div className={styleForCurrency}>
-                                        {(new BigNumber(ownedOvens[i].balance * xtzPrise)).dividedBy(1_000_000).toFixed(2)} USD
-                                    </div>
-                                </div>
-                                <div className="px-2 flex-none">
-                                    Balance
-                                    <div className={styleForCurrency}>
-                                        {ownedOvens[i].balance} XTZ
-                                    </div>
-                                </div>
-                                <div className="px-2 flex-none">
-                                    Loan amt
-                                    <div className={styleForCurrency}>
-                                        {ownedOvens[i].borrowed} kUSD
-                                    </div>
-                                </div>
-                                <div className="px-2 flex-none">
-                                    Stability fee
-                                    <div className={styleForCurrency}>
-                                        {ownedOvens[i].fee}
-                                    </div>
-                                </div>
-
-                            </div>
-                            
                         </div>
+
+                        <div className="text-xs flex text-light-grey">
+                            <div className="px-2 flex-none">
+                                Collateral value
+                                <div className={styleForCurrency}>
+                                    {(new BigNumber(ownedOvens[i].balance * xtzPrise)).dividedBy(1_000_000).toFixed(2)} USD
+                                </div>
+                            </div>
+                            <div className="px-2 flex-none">
+                                Balance
+                                <div className={styleForCurrency}>
+                                    {ownedOvens[i].balance} XTZ
+                                </div>
+                            </div>
+                            <div className="px-2 flex-none">
+                                Loan amt
+                                <div className={styleForCurrency}>
+                                    {ownedOvens[i].borrowed} kUSD
+                                </div>
+                            </div>
+                            <div className="px-2 flex-none">
+                                Stability fee
+                                <div className={styleForCurrency}>
+                                    {ownedOvens[i].fee}
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
                 )
             }
         }
@@ -170,6 +170,9 @@ function Ovens(props) {
         fl();
     }, [TESTNET, reget.regetBalance]);
 
+    const buttonStyle = "p-2 text-grey hover:text-white active:text-white";
+
+    const chosenButtonStyle = "p-2 text-white hover:text-white active:text-white";
 
     return (
         <div className="flex justify-center space-x-10">
@@ -183,28 +186,32 @@ function Ovens(props) {
                             className="">
 
                             <button
-                                className="p-2 text-grey hover:text-white active:text-white"
+                                className={chosenButton == ovenButtons.borrow ?
+                                    chosenButtonStyle : buttonStyle}
                                 value={ovenButtons.borrow}
                                 onClick={handleOvenButtonClick}>
                                 Borrow kUSD
                             </button>
 
                             <button
-                                className="p-2 text-grey hover:text-white active:text-white"
+                                className={chosenButton == ovenButtons.payback ?
+                                    chosenButtonStyle : buttonStyle}
                                 value={ovenButtons.payback}
                                 onClick={handleOvenButtonClick}>
                                 Payback kUSD
                             </button>
 
                             <button
-                                className="p-2 text-grey hover:text-white active:text-white"
+                                className={chosenButton == ovenButtons.withdraw ?
+                                    chosenButtonStyle : buttonStyle}
                                 value={ovenButtons.withdraw}
                                 onClick={handleOvenButtonClick}>
                                 Withdraw XTZ
                             </button>
 
                             <button
-                                className="p-2 text-grey hover:text-white active:text-white"
+                                className={chosenButton == ovenButtons.deposit ?
+                                    chosenButtonStyle : buttonStyle}
                                 value={ovenButtons.deposit}
                                 onClick={handleOvenButtonClick}>
                                 Deposit XTZ
@@ -224,9 +231,10 @@ function Ovens(props) {
                                     reget={reget}
                                     connect={connect}
                                     wal={wal}
+                                    balance={balance}
                                 />
                             </div>
-                            
+
 
                         </div>
                     </div>
