@@ -34,6 +34,7 @@ function Wallet() {
   const [TESTNET, setTESTNET] = useState(t1);
   const [kolibriBalance, setKolibriBalance] = useState(null);
   const [regetbalance, setRegetbalance] = useState(false);
+  const [chosenNavBar, setChosenNavBar] = useState(0);
 
   const handleChangeTESTNET = async (e) => {
     await handleDisconnectWallet();
@@ -54,6 +55,11 @@ function Wallet() {
     setXtzBalance(null);
     setKolibriBalance(null);
   };
+
+  const handleHavBarClick = (i) => {
+    console.log(i);
+    setChosenNavBar(i);
+  }
 
   useEffect(() => {
     const func = async () => {
@@ -121,15 +127,16 @@ function Wallet() {
                     </div>
                     <div className="hidden sm:block sm:ml-6">
                       <div className="flex space-x-3 content-center items-center self-center">
-                        {navigation.map((item) => (
+                        {navigation.map((item, i) => (
                           <Link
                             key={item.name}
                             to={item.href}
-                            className={classNames(
-                              item.current ? 'underline text-white' : 'text-light-grey hover:text-white',
-                              'mt-3 px-3 py-8 font-light'
-                            )}
-                            aria-current={item.current ? 'page' : undefined}
+                            onClick={() => { handleHavBarClick(i) }}
+                            // eslint-disable-next-line eqeqeq
+                            className={(chosenNavBar == i ?
+                              'text-white' :
+                              'text-light-grey hover:text-white') +
+                              ' mt-3 px-3 py-8 font-light'}
                           >
                             {item.name}
                           </Link>

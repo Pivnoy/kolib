@@ -185,9 +185,6 @@ function Transaction(props) {
                     </div>
                 </div>
 
-                <div>
-
-                </div>
             </div>
 
             {/* place for graph and other info */}

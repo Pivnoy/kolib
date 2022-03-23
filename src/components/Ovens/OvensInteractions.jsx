@@ -156,8 +156,8 @@ function OvensInteractions(props) {
 
             <div className="flex justify-center">
                 <LoadingButton
-                    disabled={checkDisabledButton()}
-                    loading={loading}
+                    // disabled={checkDisabledButton()}
+                    loading={loading || checkDisabledButton()}
                     sx={{ margin: "40px", background: "linear-gradient(to right, #258991, #298B93, #00717A)", fontWeight: "lighter", transform: "capitalize" }}
                     onClick={wal == null ? connect : handleInteractionButton}
                     variant="contained">
