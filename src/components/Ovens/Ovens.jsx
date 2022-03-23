@@ -186,7 +186,7 @@ function Ovens(props) {
                             className="">
 
                             <button
-                                className={chosenButton == ovenButtons.borrow ?
+                                className={chosenButton === ovenButtons.borrow ?
                                     chosenButtonStyle : buttonStyle}
                                 value={ovenButtons.borrow}
                                 onClick={handleOvenButtonClick}>
@@ -194,7 +194,7 @@ function Ovens(props) {
                             </button>
 
                             <button
-                                className={chosenButton == ovenButtons.payback ?
+                                className={chosenButton === ovenButtons.payback ?
                                     chosenButtonStyle : buttonStyle}
                                 value={ovenButtons.payback}
                                 onClick={handleOvenButtonClick}>
@@ -202,7 +202,7 @@ function Ovens(props) {
                             </button>
 
                             <button
-                                className={chosenButton == ovenButtons.withdraw ?
+                                className={chosenButton === ovenButtons.withdraw ?
                                     chosenButtonStyle : buttonStyle}
                                 value={ovenButtons.withdraw}
                                 onClick={handleOvenButtonClick}>
@@ -210,7 +210,7 @@ function Ovens(props) {
                             </button>
 
                             <button
-                                className={chosenButton == ovenButtons.deposit ?
+                                className={chosenButton === ovenButtons.deposit ?
                                     chosenButtonStyle : buttonStyle}
                                 value={ovenButtons.deposit}
                                 onClick={handleOvenButtonClick}>

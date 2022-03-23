@@ -15,7 +15,6 @@ import { createOvens, getBalanceKolibri } from '../../utils/kolibri_api/kolibri'
 import Transaction from '../Transaction/Transaction';
 import { changeTESTNET, TESTNET as t1 } from "../../utils/values";
 import { Disclosure, } from '@headlessui/react';
-import { CreditCardIcon, MenuIcon, XIcon, PlusCircleIcon } from '@heroicons/react/outline'
 import LiquidityPool from "../LiquidityPool/LiquidityPool";
 
 function Wallet() {
@@ -114,11 +113,6 @@ function Wallet() {
                 </div> */}
                   <div className="flex items-center justify-center sm:items-stretch sm:justify-start">
                     <div>
-                      {/* <img
-                      className="block lg:hidden h-8 w-auto"
-                      src="./Logo.png"
-                      alt="Kolibri logo"
-                    /> */}
                       <img
                         className="h-24 w-fit mt-4"
                         src="./Logo.png"
@@ -142,8 +136,6 @@ function Wallet() {
                         ))}
                       </div>
                     </div>
-
-
 
 
 
@@ -224,22 +216,6 @@ function Wallet() {
             </>
           )}
         </Disclosure>
-
-
-
-
-        {/* <div className="m-7 text-white relative flex items-center justify-center h-16">
-        <div className="p-3 h-auto w-auto border-solid border-2 border-white rounded-lg">
-          {xtzBalance ? "User xtz balance: " + xtzBalance : "No account connected (xtz)"}
-        </div>
-        <div className="m-10"></div>
-        <div className="p-3 h-auto w-auto border-solid border-2 border-white rounded-lg">
-          {kolibriBalance != null ? "User kUSD balance: " + kolibriBalance : " No account connected (kUSD)"}
-        </div>
-      </div> */}
-
-
-
 
         <Routes>
 

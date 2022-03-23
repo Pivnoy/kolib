@@ -39,14 +39,6 @@ function Transaction(props) {
         }
     }
 
-    const onFromSelectChange = async (e) => {
-        await handleChangeCurrencies();
-    }
-
-    const onToSelectChange = async (e) => {
-        await handleChangeCurrencies();
-    }
-
     // set rate between swaps btn
     // recreate ovens and  tezos kit to avoid sinc
     const setCurrentRate = async (f, t) => {
