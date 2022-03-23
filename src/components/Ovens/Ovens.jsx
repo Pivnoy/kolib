@@ -94,6 +94,7 @@ function Ovens(props) {
                                         style={{ width: ownedOvens[i].ratio.toString() + "%" }} />
                                 </div>
                             </div>
+
                             <div className="text-xs flex text-light-grey">
                                 <div className="px-2 flex-none">
                                     Collateral value
@@ -121,6 +122,7 @@ function Ovens(props) {
                                 </div>
 
                             </div>
+                            
                         </div>
                 )
             }

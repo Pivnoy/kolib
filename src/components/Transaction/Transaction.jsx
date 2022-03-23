@@ -110,12 +110,19 @@ function Transaction(props) {
                     <div className="mr-5">
                         <div>
                             <div className="relative mb-5 bg-black border-transparent h-28 w-96 rounded-lg hover:border-green border-2">
+
                                 <div className="text-light-grey absolute inset-3 font-light"> From</div>
+
                                 <img src={currencyFrom === 'tez' ? "./Tezos.png" : "./KolibriCurrency.png"}
-                                    alt="Currency Icon" className="absolute bottom-7 left-2 p-1 rounded-md" style={{ background: "rgba(37, 137, 145, 10%)" }}></img>
+                                    alt="Currency Icon" 
+                                    className="absolute bottom-7 left-2 p-1 rounded-md"
+                                    style={{ background: "rgba(37, 137, 145, 10%)" }}
+                                />
+
                                 <div className="text-white font-light absolute bottom-8 left-14 ">
                                     {currencyFrom === 'tez' ? "XTZ" : "kUSD"}
                                 </div>
+
                                 <input
                                     type="number"
                                     onChange={handleChangeFromNumber}
@@ -124,6 +131,7 @@ function Transaction(props) {
                                     className="absolute bottom-8 right-3 h-7 w-56 bg-transparent border-2 border-grey"
                                     style={{ border: "none", borderBottom: "2px solid #324054", outline: "0", color: "#FFFFFF" }}
                                 />
+                                
                             </div>
 
 
