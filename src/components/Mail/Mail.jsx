@@ -1,5 +1,4 @@
 import { Button, TextField } from "@mui/material";
-import { Box, ThemeProvider, createTheme } from '@mui/system';
 import validator from 'validator'
 import React, {useState} from "react";
 
@@ -48,24 +47,23 @@ function Mail() {
                 </div>
                 <div className="py-12 space-y-12 justify-center items-center">
                     <div className="flex items-center justify-center">
-
-                    <TextField
-                        error={!validEmail}
-                        type="text"
-                        value={email}
-                        placeholder="example@gmail.com"
-                        onChange={handleEmailInput}
-                        sx={{background:"#0E1012", borderRadius: "8px", input: { color: '#FFFFFF' } }} 
-                    />
+                        <TextField
+                            error={!validEmail}
+                            type="text"
+                            value={email}
+                            placeholder="example@gmail.com"
+                            onChange={handleEmailInput}
+                            sx={{background:"#0E1012", borderRadius: "8px", input: { color: '#FFFFFF' } }} 
+                        />
                     </div>
                     <div className="flex items-center justify-center"> 
-                    <Button
-                        disabled={changeValidEmailInput()}
-                        onClick={handleSubscription}
-                        sx={{background: "linear-gradient(#258991, #298B93, #00717A)", color: "#FFFFFF"}}
-                    >
-                        Subcribe to Rate notifications!
-                    </Button>
+                        <Button
+                            disabled={changeValidEmailInput()}
+                            onClick={handleSubscription}
+                            sx={{background: "linear-gradient(#258991, #298B93, #00717A)", color: "#FFFFFF"}}
+                        >
+                            Subcribe to Rate notifications!
+                        </Button>
                     </div>
                 </div>
             </div>

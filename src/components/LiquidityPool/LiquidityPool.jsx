@@ -1,12 +1,12 @@
 import React from "react";
-let kUSD = 213091238;
+let kUSD = 213091;
 function LiquidityPool(props) {
 
     const { balance } = props;
 
 let classNameForPictures = 'mt-3 relative text-center uppercase text-grey bg-transparent rounded-lg h-28 w-64';
     return (
-        <div className="">
+        <div>
             <div className="space-x-3 h-fit bg-transparent mx-w-5xl flex items-center justify-center">
                 <div className={classNameForPictures}>
                     <img src="./PoolSizeBg.png" className="rounded-lg" alt="Pool size"></img>
@@ -39,7 +39,7 @@ let classNameForPictures = 'mt-3 relative text-center uppercase text-grey bg-tra
            </div>
            
 
-           <div className=" space-x-5 mt-5 h-fit bg-transparent mx-w-full flex items-top justify-center">
+           <div className="space-x-5 mt-5 h-fit bg-transparent mx-w-full flex items-top justify-center">
                 <div className="bg-dark-grey h-fit w-fit p-6 rounded-lg items-center">
                     <div className="space-y-3 text-light-grey font-light border-solid border-2 border-grey h-fit w-fit rounded-lg p-2 py-4 text-center">
                         <div>1 QLkUSD is currently redeemable for 0.15 kUSD</div>
@@ -80,14 +80,19 @@ let classNameForPictures = 'mt-3 relative text-center uppercase text-grey bg-tra
                     </div>
                     <div className="bg-dark-grey mr-2 py-4 px-6 rounded-lg w-fit h-fit ">
                         <div className="text-white font-light space-y-1">
-                            <div style={{ background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)' }} className="justify-between rounded-lg flex p-3 h-auto w-80 border-solid border-2 border-grey">
+                            <div 
+                                style={{ background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)' }} 
+                                className="justify-between rounded-lg flex p-3 h-auto w-80 border-solid border-2 border-grey"
+                            >
                                 <div>Tezos Holdings</div>
-                                <div className="">{balance.xtzBalance} XTZ</div>
+                                <div>{balance.xtzBalance} XTZ</div>
                             </div>
-                            <div className=""></div>
-                            <div style={{ background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)' }} className="justify-between flex p-3 h-auto w-auto border-solid border-2 border-grey rounded-lg">
-                                <   div>kUSD Holdings</div>
-                                <div className="">{balance.kolibriBalance} kUSD</div>
+                            <div 
+                                style={{ background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)' }}
+                                className="justify-between flex p-3 h-auto w-auto border-solid border-2 border-grey rounded-lg"
+                            >
+                                <div>kUSD Holdings</div>
+                                <div>{balance.kolibriBalance} kUSD</div>
                             </div>
                         </div>
                     </div>
