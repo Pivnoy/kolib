@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# Alternative front-end for Kolibri protocol
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repo contains code for alternative UI implementation for [Kolibri protocol](https://kolibri.finance/), a self balancing algorithmic stablecoin built on Tezos.
 
-## Available Scripts
+## Contacts
 
-In the project directory, you can run:
+telegram: [maksim](https://t.me/tiredofbeeing)
 
-### `yarn start`
+mail: maksim.lagus@yandex.ru
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## How this project started?
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+We started development process as a part of [Tezos DeFi Hackathon](https://hackathon2022.tezos.org.ua/en/). While current Kolibri website is a great tech solution, that solves users’ problems, we thought that it lacks **simplicity and clarity** in user experience. After the hack finished, our team decided to finish the project, so it would match our vision for the future of DeFi world.
 
-### `yarn test`
+## What's new?
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Dark theme
 
-### `yarn build`
+As case name suggests, our first goal was to built **completely new version of user interface and website design**. We studied best existing projects on DeFi market to introduce our **dark theme** (that was already previously proposed by community). 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![oven screen](public/ov_scr.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+### Built-in swap
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Also, we present new core feature - **a built-in native swap**. This will provide users with an easy and quick tool to obtain stablecoin, without going into too much details about ovens, minting and soft peg. They can just click a button and get kUSD transfered on their wallets, it's that simple! For now, to get swap tokens we are using liquidity pools hosted by [QuipuSwap](https://quipuswap.com/swap/tez-KT193D4vozYnhGJQVtw7CoxxqphqUEEwK6Vb_0), we were able to reach to MadFish devs during hackathon period. But in the future, with the hep of Hover Labs, we hope to host our own pools.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![swap](public/swap_scr1.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+### Rate notifications
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+By introducing email rate notifications, we solve two problems:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Users benefit from using our website
+- We are in control of kUSD peg to USD
 
-### Code Splitting
+Now we have only implemented notifications by email, but in the future, we plan to also add telegram bot.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+// mail screens
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+## How this works?
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Main stack
 
-### Advanced Configuration
+- React.js for front-end
+- Node.js for SMTP mailing server
+- Tailwind for quick styles
+- MUI and Headless UI for already-made components
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Libraries and API's
 
-### Deployment
+We are using a lot of community made open-source libraries and API's for blockchain interactions, such as:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- [Kolibri.JS](https://github.com/Hover-Labs/kolibri-js)
+- [QuipuSwap SDK](https://github.com/madfish-solutions/quipuswap-sdk)
+- [Taquito](https://tezostaquito.io/)
+- [Beacon wallet](https://docs.walletbeacon.io/)
 
-### `yarn build` fails to minify
+... and many others
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
