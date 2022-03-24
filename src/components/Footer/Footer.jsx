@@ -35,7 +35,8 @@ function Footer() {
                 {/* place changenet here */}
                 <div className="mr-32 relative inline-block">
                   <div className="p-2 text-green border-2 border-solid border-green rounded-lg w-32 justify-center items-center">TESTNET</div>
-                  <div className="flex hidden hover:block p-1 rounded-lg bg-gradient-to-r from-light-blue via-turquouse to-emerald border-1 absolute top-0 bg-white w-32">
+                  <div className="hover:bg-white p-1 rounded-lg bg-gradient-to-r from-light-blue via-turquouse to-emerald border-1 absolute top-0 bg-white w-32"
+                  style={{bottom: "100$"}}>
                     <div>MAINNET</div>
                     <div>TESTNET</div>
 
