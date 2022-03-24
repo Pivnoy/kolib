@@ -104,7 +104,7 @@ function Wallet() {
         <Disclosure as="nav" className="bg-transparent  relative font-light">
           {({ open }) => (
             <>
-              <div className="h-36  px-2 sm:px-6 lg:px-8">
+              <div className="h-36 px-2 sm:px-6 lg:px-8">
                 <div className="relative flex items-center justify-center">
                   {/* <div className="absolute inset-y-0 left-0 flex items-center sm:hidden"> */}
                   {/* Mobile menu button*/}
@@ -120,7 +120,7 @@ function Wallet() {
                   <div className="flex items-center justify-center sm:items-stretch sm:justify-start">
                     <div>
                       <img
-                        className="h-24 w-fit mt-4"
+                        className="h-24 w-fit mt-4 mr-5"
                         src="./Logo.png"
                         alt="Kolibri logo"
                       />
@@ -136,7 +136,7 @@ function Wallet() {
                             className={(chosenNavBar == i ?
                               'text-white' :
                               'text-light-grey hover:text-white') +
-                              ' mt-10 px-3 py-2 font-light'}
+                              ' mt-12 px-3 py-2 font-light'}
                              style ={chosenNavBar == i ? {border: "none", borderBottom: "2px solid #258991", outline: "0" } : {}}
                           >
                             {item.name}
@@ -149,8 +149,8 @@ function Wallet() {
 
 
                     {/* wallet and connection button */}
-                    <div className="font-light flex w-fit items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                      <div className="bg-gradient-to-r from-light-blue via-turquouse to-emerald text-white p-2 h-auto w-auto rounded-lg">
+                    <div className="ml-10 font-light flex w-fit items-center pr-2">
+                      <div className="bg-gradient-to-r from-light-blue via-turquouse to-emerald text-white p-2 mt-6 h-auto w-auto rounded-lg">
 
                         <button
                           type="button"

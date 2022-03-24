@@ -15,12 +15,12 @@ function Footer(props) {
       setAge(event.target.value);
     };
     return (
-        <div className="absolute bottom-0 p-4 h-24 w-full bg-transparent border-2 rounded-lg shadow dark:bg-white"
+        <div className="absolute bottom-0 p-4 h-18 w-full bg-transparent border-2 rounded-lg shadow dark:bg-white"
         style={{border: "none", borderTop: "1px solid #324054" }}>
 
-            <div className="flex justify-between">
+            <div className="flex justify-between ml-20">
               <div>
-                <a href="#" className="font-light flex ml-20 mt-2 items-center mb-4 sm:mb-0">
+                <a href="#" className="font-light flex mt-2 items-center mb-4 sm:mb-0">
                     
                 </a>
                 <ul className="flex flex-wrap items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
