@@ -182,8 +182,7 @@ function Ovens(props) {
                     {/* nav for ovens  */}
 
                     <div className="items-center justify-between">
-                        <div
-                            className="">
+                        <div>
 
                             <button
                                 className={chosenButton === ovenButtons.borrow ?
@@ -217,8 +216,9 @@ function Ovens(props) {
                                 Deposit XTZ
                             </button>
 
-                            <button className="ml-24 bg-gradient-to-r from-light-blue via-turquouse to-emerald text-white p-2 h-auto w-auto rounded-lg"> Create new oven
-
+                            <button 
+                                className="ml-24 bg-gradient-to-r from-light-blue via-turquouse to-emerald text-white p-2 h-auto w-auto rounded-lg"> 
+                                Create new oven
                             </button>
 
                         </div>
@@ -238,19 +238,12 @@ function Ovens(props) {
                                     balance={balance}
                                 />
                             </div>
-
-
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="">
-                <div className="">
-                    <div
-                        className="">
-                        {renderOwnedOvens()}
-                    </div>
-                </div>
+            <div>
+                {renderOwnedOvens()}
             </div>
         </div>
     )
