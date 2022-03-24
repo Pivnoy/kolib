@@ -17,13 +17,13 @@ import { Disclosure, } from '@headlessui/react';
 import LiquidityPool from "../LiquidityPool/LiquidityPool";
 import Mail from "../Mail/Mail";
 
-function Wallet() {
+function MainPage() {
 
   const navigation = [
-    { name: 'Home', href: '/', current: true },
-    { name: "All Ovens", href: '/ovens', current: false },
-    { name: "Docs", href: '#', current: false },
+    { name: 'Swap', href: '/', current: true },
+    { name: "Ovens", href: '/ovens', current: false },
     { name: "Liquidity Pool", href: '/liquidity-pool', current: false },
+    { name: "Rate notifications", href: '/mail', current: false },
     { name: "Saving Rate", href: '#', current: false },
     { name: "Farming", href: '#', current: false },
     { name: "Governance", href: '#', current: false }]
@@ -262,4 +262,4 @@ function Wallet() {
 
 }
 
-export default Wallet;
+export default MainPage;
