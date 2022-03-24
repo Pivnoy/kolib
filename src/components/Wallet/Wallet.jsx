@@ -136,7 +136,8 @@ function Wallet() {
                             className={(chosenNavBar == i ?
                               'text-white' :
                               'text-light-grey hover:text-white') +
-                              ' mt-3 px-3 py-8 font-light'}
+                              ' mt-10 px-3 py-2 font-light'}
+                             style ={chosenNavBar == i ? {border: "none", borderBottom: "2px solid #258991", outline: "0" } : {}}
                           >
                             {item.name}
                           </Link>
@@ -206,9 +207,10 @@ function Wallet() {
                         as="Link"
                         to={item.href}
                         className={classNames(
-                          item.current ? 'bg-white text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                          item.current ? 'bg-white text-white' : 'text-gray-300 hover:text-white',
                           'block px-3 py-2 rounded-md text-base font-light'
                         )}
+                        style ={item.current ? {border: "none", borderBottom: "2px solid #FFFFFF", outline: "0" } : {}}
                         aria-current={item.current ? 'page' : undefined}
                       >
                         {item.name}
@@ -263,7 +265,10 @@ function Wallet() {
 
 
       {/* footer place here */}
-      <Footer />
+      <Footer 
+        TESTNET={TESTNET}
+        handleChangeTESTNET={handleChangeTESTNET}
+      />
 
     </div>
 

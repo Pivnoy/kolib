@@ -1,18 +1,21 @@
 
 import React from "react"
 import { InputAdornment,FormControl, InputLabel, MenuItem, Select } from "@mui/material";
-let x = 0;
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
-function Footer() {
+
+function Footer(props) {
 
     
     const [age, setAge] = React.useState('');
+
+    const { TESTNET, handleChangeTESTNET } = props;
   
     const handleChange = (event) => {
       setAge(event.target.value);
     };
     return (
-        <div className="absolute bottom-0 p-4 h-20 w-full bg-transparent border-2 rounded-lg shadow dark:bg-white"
+        <div className="absolute bottom-0 p-4 h-24 w-full bg-transparent border-2 rounded-lg shadow dark:bg-white"
         style={{border: "none", borderTop: "1px solid #324054" }}>
 
             <div className="flex justify-between">
@@ -33,29 +36,42 @@ function Footer() {
                 </ul>
               </div>
                 {/* place changenet here */}
-                <div className="mr-32 relative inline-block">
-                  <div className="p-2 text-green border-2 border-solid border-green rounded-lg w-32 justify-center items-center">TESTNET</div>
-                  <div className="hover:bg-white p-1 rounded-lg bg-gradient-to-r from-light-blue via-turquouse to-emerald border-1 absolute top-0 bg-white w-32"
-                  style={{bottom: "100$"}}>
-                    <div>MAINNET</div>
-                    <div>TESTNET</div>
+                <div className="mr-32 relative inline-block hover:block hover:stroke-white">
+
+
+                  {/* button */}
+                  <div className="flex p-2 text-green border-2 border-solid border-green rounded-lg w-36 justify-between items-center">
+                      <div>TESTNET</div>
+                      <ArrowForwardIosIcon
+                    className="text-green"
+                    style={{marginRight: "2px", height: "20px", width: "20px", background: "transparent", transform: "rotate(270deg)", color: "#258991" }}
+                    >
+                    </ArrowForwardIosIcon>
+                  </div>
+                  {/* menu */}
+                  <div 
+                  className="absolute p-1 py-1 text-white space-y-1 rounded-lg bg-gradient-to-r from-light-blue via-turquouse to-emerald border-1 w-36 hover:block"
+                  style={{bottom: "50px", zIndex: "1"}}
+                  onChange={handleChangeTESTNET}
+                  value={TESTNET}
+                  >
+                    <div value={false}>MAINNET</div>
+                    <div style={{ border: "none", borderBottom: "2px solid #FFFFFF", outline: "0" }}></div>
+                    <div value = {true}>TESTNET</div>
 
                   </div>
 
-
-                
-                
-                
-                
-                {/* <InputAdornment
+              
+                </div>
+            </div>
+           
+           {/* <InputAdornment
                     position="start">
                     <Select
                       variant="standard"
-                      style={{ color: "white" }}
-                      onChange={x}
-                      value = {x}
-                      // onChange={handleChangeTESTNET}
-                      // value={TESTNET}
+                      style={{width:"120px", background: "#321421", color: "#FFFFFF", padding: "10px", }}
+                      onChange={handleChangeTESTNET}
+                      value={TESTNET}
                     >
                       <MenuItem
                         value={false}>
@@ -66,11 +82,7 @@ function Footer() {
                         TESTNET
                       </MenuItem>
                     </Select>
-                  </InputAdornment> */}
-              </div>
-            </div>
-           
-            
+                  </InputAdornment> */} 
         </div> 
     )
 }
