@@ -217,12 +217,16 @@ function Ovens(props) {
                                 Deposit XTZ
                             </button>
 
+                            <button className="ml-24 bg-gradient-to-r from-light-blue via-turquouse to-emerald text-white p-2 h-auto w-auto rounded-lg"> Create new oven
+
+                            </button>
+
                         </div>
 
 
                         {/* balance */}
 
-                        <div className="flex mt-4 pr-80 pb-20">
+                        <div className="flex mt-6 pr-80 pb-20">
                             <div className="text-white font-light">
                                 <OvensInteractions
                                     oven={ownedOvens[chosenOven]}
