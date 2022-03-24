@@ -1,6 +1,4 @@
-import {
-    IconButton
-} from "@mui/material";
+import { IconButton } from "@mui/material";
 import CompareArrowsOutlinedIcon from '@mui/icons-material/CompareArrowsOutlined';
 import { React, useEffect, useState } from "react";
 import { createOvens, estimateOutput } from '../../utils/kolibri_api/kolibri';
@@ -169,18 +167,20 @@ function Transaction(props) {
                         </div>
                     </div>
 
-
-
-                    {/* balance, place here status hidden when wallet is not connected, also move balance func instead of variables*/}
                     <div className="ml-4 text-white font-light space-y-1">
-                        <div style={{ background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)' }} className="justify-between rounded-lg flex p-3 h-auto w-80 border-solid border-2 border-grey">
+                        <div 
+                            style={{ background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)' }} 
+                            className="justify-between rounded-lg flex p-3 h-auto w-80 border-solid border-2 border-grey"
+                        >
                             <div>Tezos Holdings</div>
-                            <div className="">{balance.xtzBalance} XTZ</div>
+                            <div>{balance.xtzBalance} XTZ</div>
                         </div>
-                        <div className=""></div>
-                        <div style={{ background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)' }} className="justify-between flex p-3 h-auto w-auto border-solid border-2 border-grey rounded-lg">
-                            <   div>kUSD Holdings</div>
-                            <div className="">{balance.kolibriBalance} kUSD</div>
+                        <div 
+                            style={{ background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)' }}
+                            className="justify-between flex p-3 h-auto w-auto border-solid border-2 border-grey rounded-lg"
+                        >
+                            <div>kUSD Holdings</div>
+                            <div>{balance.kolibriBalance} kUSD</div>
                         </div>
                     </div>
                 </div>

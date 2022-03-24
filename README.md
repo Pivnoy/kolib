@@ -10,7 +10,7 @@ mail: maksim.lagus@yandex.ru
 
 ## How this project started?
 
-We started development process as a part of [Tezos DeFi Hackathon](https://hackathon2022.tezos.org.ua/en/). While current Kolibri website is a great tech solution, that solves users’ problems, we thought that it lacks **simplicity and clarity** in user experience. After the hack finished, our team decided to finish the project, so it would match our vision for the future of DeFi world.
+We started development process as a part of [Tezos DeFi Hackathon](https://hackathon2022.tezos.org.ua/en/). While current Kolibri website is a great tech solution, that solves users’ problems, we thought that it lacks **simplicity and clarity** in user experience. After the hackathon finished, our team decided to finish the project, so it would match our vision for the future of DeFi world.
 
 ## What's new?
 
@@ -24,7 +24,7 @@ As case name suggests, our first goal was to built **completely new version of u
 
 ### Built-in swap
 
-Also, we present new core feature - **a built-in native swap**. This will provide users with an easy and quick tool to obtain stablecoin, without going into too much details about ovens, minting and soft peg. They can just click a button and get kUSD transfered on their wallets, it's that simple! For now, to get swap tokens we are using liquidity pools hosted by [QuipuSwap](https://quipuswap.com/swap/tez-KT193D4vozYnhGJQVtw7CoxxqphqUEEwK6Vb_0), we were able to reach to MadFish devs during hackathon period. But in the future, with the hep of Hover Labs, we hope to host our own pools.
+Also, we present new core feature - **a built-in native swap**. This will provide users with an easy and quick tool to obtain stablecoin, without going into too much details about ovens, minting and soft peg. They can just click a button and get kUSD transfered on their wallets, it's that simple! For now, to get swap tokens we are using liquidity pools hosted by [QuipuSwap](https://quipuswap.com/swap/tez-KT193D4vozYnhGJQVtw7CoxxqphqUEEwK6Vb_0), we were able to reach to MadFish devs during hackathon period. But in the future, with the help of Hover Labs, we hope to host our own pools.
 
 ![swap](public/swap_scr1.png)
 
@@ -34,12 +34,12 @@ Also, we present new core feature - **a built-in native swap**. This will provid
 
 By introducing email rate notifications, we solve two problems:
 
-- Users benefit from using our website
+- Users get up to date as fast as possible
 - We are in control of kUSD peg to USD
 
 Now we have only implemented notifications by email, but in the future, we plan to also add telegram bot.
 
-// mail screens
+![mail_image](public/mail_scr.png)
 
 
 

@@ -1,4 +1,5 @@
 import {createTransport} from "nodemailer"
+import { mailContent } from "./hmtlForMail.js";
 import { mailLogin, mailPassword } from "./mailSecret.js"
 
 const transporter = createTransport({
@@ -19,8 +20,8 @@ export const updateMailList = (new_mail) => {
 const mailOptionsHigher = {
     from: 'Kolibri project ' + mailLogin,
     to: mailList,
-    subject: "kUSD is availiable sell!!",
-    text: "if i will be able to see it"
+    subject: "Rate notifications",
+    html: mailContent
 };
 
 const mailOptionsLower = {
