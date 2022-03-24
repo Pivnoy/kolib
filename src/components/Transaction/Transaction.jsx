@@ -163,7 +163,7 @@ function Transaction(props) {
                         <div className="pt-4 flex items-center justify-center">
                             <button
                                 onClick={wal == null ? connect : handleSwapToken}
-                                className="m-4 w-40 bg-gradient-to-r from-light-blue via-turquouse to-emerald p-2 text-white rounded-lg shadow-lg">
+                                className="m-4 w-40 bg-gradient-to-r from-light-blue via-turquouse to-emerald p-2 text-white rounded-lg shadow-lg font-light">
                                 {wal == null ? "Connect" : "Swap"}
                             </button>
                         </div>

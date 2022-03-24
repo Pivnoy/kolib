@@ -40,17 +40,17 @@ function Footer(props) {
 
 
                   {/* button */}
-                  <div className="flex p-2 text-green border-2 border-solid border-green rounded-lg w-36 justify-between items-center">
+                  <button className="flex p-2 text-green border-2 border-solid border-green rounded-lg w-36 justify-between items-center">
                       <div>TESTNET</div>
                       <ArrowForwardIosIcon
                     className="text-green"
                     style={{marginRight: "2px", height: "20px", width: "20px", background: "transparent", transform: "rotate(270deg)", color: "#258991" }}
                     >
                     </ArrowForwardIosIcon>
-                  </div>
+                  </button>
                   {/* menu */}
                   <div 
-                  className="absolute p-1 py-1 text-white space-y-1 rounded-lg bg-gradient-to-r from-light-blue via-turquouse to-emerald border-1 w-36 hover:block"
+                  className="hidden absolute p-1 py-1 text-white space-y-1 rounded-lg bg-gradient-to-r from-light-blue via-turquouse to-emerald border-1 w-36 hover:block"
                   style={{bottom: "50px", zIndex: "1"}}
                   onChange={handleChangeTESTNET}
                   value={TESTNET}

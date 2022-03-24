@@ -37,14 +37,7 @@ function Mail() {
         }
         return false;
     }
-    const theme = createTheme({
-        palette: {
-            text: {
-                primary: '#258991',
-                secondary: '#46505A',
-              },
-            },
-        });
+    
 
     return (
         <div className="h-fit bg-transparent flex items-center justify-center">
@@ -53,7 +46,8 @@ function Mail() {
                     Do you want to benefit from floating kUSD rate 
                     and help to peg kUSD to real dollar?
                 </div>
-                <div className="py-12 justify-center items-center">
+                <div className="py-12 space-y-12 justify-center items-center">
+                    <div className="flex items-center justify-center">
 
                     <TextField
                         error={!validEmail}
@@ -61,15 +55,18 @@ function Mail() {
                         value={email}
                         placeholder="example@gmail.com"
                         onChange={handleEmailInput}
-                        sx={{background:"#258991", borderRadius: "8px", marginLeft:"60px" }}
+                        sx={{background:"#0E1012", borderRadius: "8px", input: { color: '#FFFFFF' } }} 
                     />
+                    </div>
+                    <div className="flex items-center justify-center"> 
                     <Button
                         disabled={changeValidEmailInput()}
                         onClick={handleSubscription}
-                        sx={{background: "linear-gradient(#258991, #298B93, #00717A)", color: "text.primary", margin: "18px", marginTop:"50px"}}
+                        sx={{background: "linear-gradient(#258991, #298B93, #00717A)", color: "#FFFFFF"}}
                     >
                         Subcribe to Rate notifications!
                     </Button>
+                    </div>
                 </div>
             </div>
         </div>
