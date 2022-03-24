@@ -104,7 +104,7 @@ function Wallet() {
         <Disclosure as="nav" className="bg-transparent  relative font-light">
           {({ open }) => (
             <>
-              <div className="h-40  px-2 sm:px-6 lg:px-8">
+              <div className="h-36  px-2 sm:px-6 lg:px-8">
                 <div className="relative flex items-center justify-center">
                   {/* <div className="absolute inset-y-0 left-0 flex items-center sm:hidden"> */}
                   {/* Mobile menu button*/}

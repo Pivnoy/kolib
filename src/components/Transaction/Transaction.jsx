@@ -93,13 +93,13 @@ function Transaction(props) {
 
     return (
 
-        <div className="h-fit bg-transparent flex items-center justify-center">
+        <div className="pl-10 h-fit bg-transparent flex items-center justify-center">
             <div className="w-fit bg-dark-grey p-8 shadow-lg rounded-lg">
-                <div className="mb-6 text-white text-left font-light">Swap</div>
+                <div className="mb-6 pl-2 text-white text-left font-light">Swap</div>
                 <div className="flex">
 
 
-                    <div className="mr-5">
+                    <div>
                         <div>
                             <div className="relative mb-5 bg-black border-transparent h-28 w-96 rounded-lg hover:border-green border-2">
 
@@ -172,7 +172,7 @@ function Transaction(props) {
 
 
                     {/* balance, place here status hidden when wallet is not connected, also move balance func instead of variables*/}
-                    <div className="ml-10 text-white font-light space-y-1">
+                    <div className="ml-4 text-white font-light space-y-1">
                         <div style={{ background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)' }} className="justify-between rounded-lg flex p-3 h-auto w-80 border-solid border-2 border-grey">
                             <div>Tezos Holdings</div>
                             <div className="">{balance.xtzBalance} XTZ</div>
