@@ -95,7 +95,7 @@ function Ovens(props) {
                             </div>
                         </div>
 
-                        <div className="text-xs flex text-light-grey">
+                        <div className="space-x-2 text-xs flex text-light-grey">
                             <div className="px-2 flex-none">
                                 Collateral value
                                 <div className={styleForCurrency}>
