@@ -4,6 +4,7 @@ import { KOLIBRI_TOKEN_ADDRESS, MUTEZ_PRECISION, MUTEZ_TO_SHARD, SHARD_PRECISION
 import LoadingButton from '@mui/lab/LoadingButton';
 import { createOvenClient } from "../../utils/kolibri_api/kolibri";
 
+let styleForOvensData = "absolute right-4 bottom-10 font-light ml-10 mt-3 text-white p-3 bg-transparent rounded-lg h-auto w-80 border-solid border-2 border-grey order-last";
 
 function OvensInteractions(props) {
 
@@ -194,10 +195,12 @@ function OvensInteractions(props) {
                 </div>
             </div>
 
-            <div
-                className="absolute right-4 bottom-10 font-light ml-10 mt-3 text-white p-3 bg-transparent rounded-lg h-auto w-80 border-solid border-2 border-grey order-last">
-                {oven == null ? 'no oven?' :
-                    <div>
+            
+
+            <div>
+                
+                {oven == null ?  ' ':
+                    <div className="absolute right-4 bottom-10 font-light ml-10 mt-3 text-white p-3 bg-transparent rounded-lg h-auto w-80 border-solid border-2 border-grey">
                         <div className="flex justify-between">
                             Borrowed tokens:<div> {oven.borrowed} XTZ</div>
                         </div>
