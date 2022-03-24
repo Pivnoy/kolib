@@ -35,8 +35,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "crac": "craco start --openssl-legacy-provider start",
-    "build": "react-scripts build",
+    "crac": "PORT=3239 craco start --openssl-legacy-provider start",
+    "build": "craco build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
