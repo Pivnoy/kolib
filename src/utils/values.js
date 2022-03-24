@@ -64,8 +64,8 @@ const kUSD_DIGITS = 1_000_000_000_000_000_000;
 const MUTEZ_DIGITS = 6
 const SHARD_DIGITS = 18
 
-const MUTEZ_TO_SHARD = new BigNumber(Math.pow(10, SHARD_DIGITS - MUTEZ_DIGITS))
-const SHARD_PRECISION = new BigNumber(Math.pow(10, SHARD_DIGITS))
+const MUTEZ_TO_SHARD = new BigNumber(Math.pow(10, SHARD_DIGITS - MUTEZ_DIGITS));
+const SHARD_PRECISION = new BigNumber(Math.pow(10, SHARD_DIGITS));
 const MUTEZ_PRECISION = new BigNumber(Math.pow(10, MUTEZ_DIGITS));
 
 

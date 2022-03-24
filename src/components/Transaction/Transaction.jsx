@@ -1,6 +1,5 @@
 import {
-    FormControl, IconButton, InputAdornment, InputLabel, MenuItem, OutlinedInput,
-    Select,
+    IconButton
 } from "@mui/material";
 import CompareArrowsOutlinedIcon from '@mui/icons-material/CompareArrowsOutlined';
 import { React, useEffect, useState } from "react";
@@ -8,6 +7,7 @@ import { createOvens, estimateOutput } from '../../utils/kolibri_api/kolibri';
 import { KOLIBRI_TOKEN_ADDRESS } from "../../utils/values";
 import { swapToken } from "../../utils/wallet_api/swap";
 import { createTezosKit } from "../../utils/wallet_api/wallet";
+
 
 function Transaction(props) {
 
@@ -18,7 +18,7 @@ function Transaction(props) {
 
     const [rate, setRate] = useState(null);
 
-    const { TESTNET, reget, connect, wal } = props;
+    const { TESTNET, reget, connect, wal, balance } = props;
 
 
     const handleChangeFromNumber = async (e) => {
@@ -37,14 +37,6 @@ function Transaction(props) {
         if (Number(e.target.value) >= 0) {
             setCurrencyToNumber(Number(e.target.value));
         }
-    }
-
-    const onFromSelectChange = (e) => {
-        setCurrencyFrom(e.target.value);
-    }
-
-    const onToSelectChange = (e) => {
-        setCurrencyTo(e.target.value);
     }
 
     // set rate between swaps btn
@@ -101,118 +93,105 @@ function Transaction(props) {
 
     return (
 
-        // trader, left untouched, fixed window
-
-        <body className="h-full bg-transparent flex items-center justify-center">
-            <div className="m-10"></div>
-            <div className="absolute insert-0 top-10 m-40 h-fit w-96 bg-white p-8 shadow-lg rounded-lg">
-                <div className="text-black">
-                    <div className="pb-5 text-center font-bold">TRADER</div>
-
-
-                    <div className="mb-5">
-                        <FormControl fullWidth sx={{ m: 0 }}>
-                            <InputLabel htmlFor="outlined-adornment-amount">From</InputLabel>
-                            <OutlinedInput
-                                id="outlined-adornment-amount"
-                                value={currencyFromNumber}
-                                onChange={handleChangeFromNumber}
-                                type="number"
-                                placeholder="0.0"
-                                startAdornment={
-                                    <InputAdornment position="start">
-                                        <Select
-                                            variant="standard"
-                                            onChange={onFromSelectChange}
-                                            value={currencyFrom}
-                                        >
-                                            <MenuItem value='tez'>
-                                                XTZ
-                                            </MenuItem>
-                                            <MenuItem value='USD'>
-                                                USD
-                                            </MenuItem>
-                                            <MenuItem value={KOLIBRI_TOKEN_ADDRESS}>
-                                                kUSD
-                                            </MenuItem>
-                                        </Select>
-                                    </InputAdornment>}
-                                label="Amount"
-                            />
-                        </FormControl>
-                    </div>
-
-
-
-                    <div className="flex flex-col items-center border-black">
-                        <p>
-                            Rate: {rate}
-                        </p>
-                        <IconButton
-                            style={{ height: "45px", width: "45px" }}
-                            onClick={handleChangeCurrencies}>
-                            <CompareArrowsOutlinedIcon />
-                        </IconButton>
-                    </div>
-
+        <div className="pl-10 h-fit bg-transparent flex items-center justify-center">
+            <div className="w-fit bg-dark-grey p-8 shadow-lg rounded-lg">
+                <div className="mb-6 pl-2 text-white text-left font-light">Swap</div>
+                <div className="flex">
 
 
                     <div>
-                        <FormControl fullWidth sx={{ m: 0 }}>
-                            <InputLabel htmlFor="outlined-adornment-amount">To</InputLabel>
-                            <OutlinedInput
-                                id="outlined-adornment-amount"
-                                value={currencyToNumber}
-                                onChange={handleChangeToNumber}
-                                type="number"
-                                placeholder="0.0"
-                                startAdornment={
-                                    <InputAdornment position="start">
-                                        <Select
-                                            variant="standard"
-                                            onChange={onToSelectChange}
-                                            value={currencyTo}
-                                        >
-                                            <MenuItem value='tez'>
-                                                XTZ
-                                            </MenuItem>
-                                            <MenuItem value='USD'>
-                                                USD
-                                            </MenuItem>
-                                            <MenuItem value={KOLIBRI_TOKEN_ADDRESS}>
-                                                kUSD
-                                            </MenuItem>
-                                        </Select>
-                                    </InputAdornment>}
-                                label="Amount"
-                            />
-                        </FormControl>
+                        <div>
+                            <div className="relative mb-5 bg-black border-transparent h-28 w-96 rounded-lg hover:border-green border-2">
+
+                                <div className="text-light-grey absolute inset-3 font-light"> From</div>
+
+                                <img src={currencyFrom === 'tez' ? "./Tezos.png" : "./KolibriCurrency.png"}
+                                    alt="Currency Icon" 
+                                    className="absolute bottom-7 left-2 p-1 rounded-md"
+                                    style={{ background: "rgba(37, 137, 145, 10%)" }}
+                                />
+
+                                <div className="text-white font-light absolute bottom-8 left-14 ">
+                                    {currencyFrom === 'tez' ? "XTZ" : "kUSD"}
+                                </div>
+
+                                <input
+                                    type="number"
+                                    onChange={handleChangeFromNumber}
+                                    value={currencyFromNumber}
+                                    placeholder="0.0"
+                                    className="absolute bottom-8 right-3 h-7 w-56 bg-transparent border-2 border-grey"
+                                    style={{ border: "none", borderBottom: "2px solid #324054", outline: "0", color: "#FFFFFF" }}
+                                />
+                                
+                            </div>
+
+
+
+                            <div className="flex justify-between w-96 items-center mb-5">
+                                <div className="text-green bg-black h-9 w-52 ml-20 pt-2 rounded-md flex justify-center">
+                                    Rate: {rate}
+                                </div>
+                                <IconButton
+                                    className="rotate-90 rounded-full border-gr"
+                                    style={{ height: "40px", width: "40px", border: "solid #324054", background: "#0E1012", transform: "rotate(90deg)", color: "#258991" }}
+                                    onClick={handleChangeCurrencies}>
+                                    <CompareArrowsOutlinedIcon />
+                                </IconButton>
+                            </div>
+
+                            <div className="relative mb-3 bg-black border-transparent h-28 w-96 rounded-lg hover:border-green border-2">
+                                <div className="text-light-grey absolute inset-3 font-light"> To</div>
+                                <img src={currencyTo === 'tez' ? "./Tezos.png" : "./KolibriCurrency.png"}
+                                    alt="Currency Icon" className="absolute bottom-7 left-2 p-1 rounded-md" style={{ background: "rgba(37, 137, 145, 10%)" }}></img>
+                                <div className="text-white font-light absolute bottom-8 left-14 ">
+                                    {currencyTo === 'tez' ? "XTZ" : "kUSD"}
+                                </div>
+                                <input
+                                    type="number"
+                                    placeholder="0.0"
+                                    onChange={handleChangeToNumber}
+                                    value={currencyToNumber}
+                                    className="absolute bottom-8 right-3 h-7 w-56 bg-transparent border-2 border-grey"
+                                    style={{ border: "none", borderBottom: "2px solid #324054", outline: "0", color: "#FFFFFF" }}
+                                />
+                            </div>
+
+                        </div>
+
+
+                        <div className="pt-4 flex items-center justify-center">
+                            <button
+                                onClick={wal == null ? connect : handleSwapToken}
+                                className="m-4 w-40 bg-gradient-to-r from-light-blue via-turquouse to-emerald p-2 text-white rounded-lg shadow-lg">
+                                {wal == null ? "Connect" : "Swap"}
+                            </button>
+                        </div>
                     </div>
 
 
-                    <div className="pt-4 flex items-center justify-center">
-                        <button
-                            onClick={wal == null ? connect : handleSwapToken}
-                            className="m-4 w-40 bg-blue-600 hover:bg-blue-700 p-2 text-white rounded-lg shadow-lg">
-                            {wal == null ? "Connect" : "Swap"}
-                        </button>
+
+                    {/* balance, place here status hidden when wallet is not connected, also move balance func instead of variables*/}
+                    <div className="ml-4 text-white font-light space-y-1">
+                        <div style={{ background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)' }} className="justify-between rounded-lg flex p-3 h-auto w-80 border-solid border-2 border-grey">
+                            <div>Tezos Holdings</div>
+                            <div className="">{balance.xtzBalance} XTZ</div>
+                        </div>
+                        <div className=""></div>
+                        <div style={{ background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)' }} className="justify-between flex p-3 h-auto w-auto border-solid border-2 border-grey rounded-lg">
+                            <   div>kUSD Holdings</div>
+                            <div className="">{balance.kolibriBalance} kUSD</div>
+                        </div>
                     </div>
-
-
                 </div>
+
             </div>
 
+            {/* place for graph and other info */}
+            <div className=" m-10 h-fit w-96 bg-dark-grey p-8 shadow-lg rounded-lg">
+            </div>
 
-
-
-
-
-
-
-            {/* footer, why not in wallet?*/}
-            {/* <Footer /> */}
-
-        </body>
+        </div>
 
     )
 }

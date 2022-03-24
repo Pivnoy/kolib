@@ -4,6 +4,12 @@
 /node_modules
 /.pnp
 .pnp.js
+package-lock.json
+
+# development secret
+/server/smtp/mailSecret.js
+/server/node_modules
+/server/package-lock.json
 
 # testing
 /coverage
