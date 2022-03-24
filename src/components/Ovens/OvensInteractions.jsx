@@ -69,8 +69,6 @@ function OvensInteractions(props) {
 
         const ovenValue = (changed_balace * shard_price) / SHARD_PRECISION;
 
-        console.log(changed_balace, token_shard.toNumber(), shard_price);
-
         const finalRatio = ((token_shard / ovenValue) * 10).toFixed(2)
 
         setOvenRatio(finalRatio >= 100 ? 100 : finalRatio);
@@ -146,6 +144,7 @@ function OvensInteractions(props) {
                     <input
                         type="number"
                         placeholder="0.0"
+                        value={ovenInput}
                         disabled={!oven}
                         onChange={handleOvenInput}
                         className="absolute bottom-8 right-3 h-7 w-56 bg-transparent border-2 border-grey"

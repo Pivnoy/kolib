@@ -7,7 +7,6 @@ import {
 } from "../../utils/wallet_api/wallet";
 
 import { React, useEffect, useState } from "react";
-import { InputAdornment, MenuItem, Select } from "@mui/material";
 import Ovens from '../Ovens/Ovens';
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Footer from "../Footer/Footer";
@@ -16,6 +15,7 @@ import Transaction from '../Transaction/Transaction';
 import { changeTESTNET, TESTNET as t1 } from "../../utils/values";
 import { Disclosure, } from '@headlessui/react';
 import LiquidityPool from "../LiquidityPool/LiquidityPool";
+import Mail from "../Mail/Mail";
 
 function Wallet() {
 
@@ -172,28 +172,6 @@ function Wallet() {
                       </div>
                     </div>
 
-
-                    {/* <InputAdornment
-                    position="start">
-                    <Select
-                      variant="standard"
-                      style={{ color: "white" }}
-                      onChange={handleChangeTESTNET}
-                      value={TESTNET}
-                    >
-                      <MenuItem
-                        value={false}>
-                        MAINNET
-                      </MenuItem>
-                      <MenuItem
-                        value={true}>
-                        TESTNET
-                      </MenuItem>
-                    </Select>
-                  </InputAdornment> */}
-
-
-
                   </div>
                 </div>
 
@@ -257,6 +235,13 @@ function Wallet() {
               <LiquidityPool
                 balance={{ xtzBalance: xtzBalance, kolibriBalance: kolibriBalance }}
               />}
+          />
+
+          <Route
+            path="/mail"
+            element={
+              <Mail/>
+            }
           />
         </Routes>
       </BrowserRouter>
