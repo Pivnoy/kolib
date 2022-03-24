@@ -1,4 +1,5 @@
 import { Button, TextField } from "@mui/material";
+import { Box, ThemeProvider, createTheme } from '@mui/system';
 import validator from 'validator'
 import React, {useState} from "react";
 
@@ -36,28 +37,38 @@ function Mail() {
         }
         return false;
     }
+    
 
     return (
-        <div>
-            <div
-                className="bg-green"    
-            >
-                Do you want to benefit from floating kUSD rate 
-                and help to peg kUSD to real dollar?
+        <div className="h-fit bg-transparent flex items-center justify-center">
+            <div className="ml-10 h-96 w-96 bg-dark-grey p-8 shadow-lg rounded-lg justify-center">
+                <div className="text-xl h-28 text-white border-solid border-2 border-green p-2 py-4 rounded-lg text-center">
+                    Do you want to benefit from floating kUSD rate 
+                    and help to peg kUSD to real dollar?
+                </div>
+                <div className="py-12 space-y-12 justify-center items-center">
+                    <div className="flex items-center justify-center">
+
+                    <TextField
+                        error={!validEmail}
+                        type="text"
+                        value={email}
+                        placeholder="example@gmail.com"
+                        onChange={handleEmailInput}
+                        sx={{background:"#0E1012", borderRadius: "8px", input: { color: '#FFFFFF' } }} 
+                    />
+                    </div>
+                    <div className="flex items-center justify-center"> 
+                    <Button
+                        disabled={changeValidEmailInput()}
+                        onClick={handleSubscription}
+                        sx={{background: "linear-gradient(#258991, #298B93, #00717A)", color: "#FFFFFF"}}
+                    >
+                        Subcribe to Rate notifications!
+                    </Button>
+                    </div>
+                </div>
             </div>
-            <TextField
-                error={!validEmail}
-                type="text"
-                value={email}
-                placeholder="example@gmail.com"
-                onChange={handleEmailInput}
-            />
-            <Button
-                disabled={changeValidEmailInput()}
-                onClick={handleSubscription}
-            >
-                Subcribe to Rate notifications!
-            </Button>
         </div>
     )
 }

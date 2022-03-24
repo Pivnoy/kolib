@@ -163,7 +163,7 @@ function Transaction(props) {
                         <div className="pt-4 flex items-center justify-center">
                             <button
                                 onClick={wal == null ? connect : handleSwapToken}
-                                className="m-4 w-40 bg-gradient-to-r from-light-blue via-turquouse to-emerald p-2 text-white rounded-lg shadow-lg">
+                                className="m-4 w-40 bg-gradient-to-r from-light-blue via-turquouse to-emerald p-2 text-white rounded-lg shadow-lg font-light">
                                 {wal == null ? "Connect" : "Swap"}
                             </button>
                         </div>
@@ -188,8 +188,19 @@ function Transaction(props) {
             </div>
 
             {/* place for graph and other info */}
-            <div className=" m-10 h-fit w-96 bg-dark-grey p-8 shadow-lg rounded-lg">
-            </div>
+            {/* <div className="ml-10 h-fit w-fit bg-dark-grey p-8 shadow-lg rounded-lg">
+                <div className="w-96">
+                    <img src="./num2.png" alt="graph"/>
+                    <img src="./num3.png" alt="graph"/>
+                </div>
+                <div>
+                    <img src="./PIC1.png" alt="graph" className="h-10"/>
+                    <img src="./PIC2.png" alt="graph" className="h-10"/>
+                    <img src="./PIC3.png" alt="graph" className="h-10"/>
+                    
+                </div>
+                
+            </div> */}
 
         </div>
 
