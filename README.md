@@ -2,6 +2,8 @@
 
 This repo contains code for alternative UI implementation for [Kolibri protocol](https://kolibri.finance/), a self balancing algorithmic stablecoin built on Tezos.
 
+**[Demo of new website](https://alex.dyndns.ws:8086/)**
+
 ## Contacts
 
 telegram: [maksim](https://t.me/tiredofbeeing)
