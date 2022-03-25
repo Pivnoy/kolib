@@ -158,7 +158,9 @@ function OvensInteractions(props) {
                 <LoadingButton
                     // disabled={checkDisabledButton()}
                     loading={loading || checkDisabledButton()}
-                    sx={{ margin: "40px", background: "linear-gradient(to right, #258991, #298B93, #00717A)", fontWeight: "lighter", transform: "capitalize" }}
+                    className="m-40 bg-gradient-to-r from-light-blue via-turquouse to-emerald p-2 text-white rounded-lg shadow-lg font-light"
+                    sx={{color: "white", margin: "40px"}}
+                    // sx={{ margin: "40px", background: "linear-gradient(to right, #258991, #298B93, #00717A)", fontWeight: "lighter", transform: "capitalize" }}
                     onClick={wal == null ? connect : handleInteractionButton}
                     variant="contained">
                     {wal == null ? 'Connect' : btn}

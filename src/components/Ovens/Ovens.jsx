@@ -35,8 +35,6 @@ function Ovens(props) {
 
     const renderOwnedOvens = () => {
 
-        console.log('started render');
-
         const showedOvens = [];
 
         for (let i = 0; i < ovensAdr.length; i++) {
@@ -157,8 +155,6 @@ function Ovens(props) {
 
                 //loading oven info in worker thread
                 const oven = await getOvenDescription(address);
-
-                console.log(oven);
 
                 setOwnedOvens(arr => [...arr, oven]);
 
