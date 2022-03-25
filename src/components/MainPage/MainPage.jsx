@@ -86,10 +86,15 @@ function MainPage() {
 
   }, [regetbalance, TESTNET]);
 
-  function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
-  }
-
+  useEffect(() => {
+    const loc = window.location.pathname;
+    navigation.forEach((it,i) => {
+      if (loc === it.href) {
+        setChosenNavBar(i);
+      }
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
 
@@ -108,11 +113,16 @@ function MainPage() {
                 <div className="relative flex items-center justify-center">
                   <div className="flex items-center justify-center sm:items-stretch sm:justify-start">
                     <div>
+                      <Link
+                        to="/"
+                        onClick={() => {handleHavBarClick(0)}}
+                      >
                       <img
                         className="h-24 w-fit mt-4 mr-5"
                         src="./Logo.png"
                         alt="Kolibri logo"
                       />
+                      </Link>
                     </div>
                     <div className="hidden sm:block sm:ml-6">
                       <div className="flex space-x-3 content-center items-center self-center">

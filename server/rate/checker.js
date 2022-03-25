@@ -14,7 +14,7 @@ export const startCheck = () => {
         console.log('Current price is ', price);
 
         // price is high, send sell mail
-        if (price - 1 >= 0.03) {
+        if (price - 1 >= 0.003) {
             if (checksSinceLastMail >= 6) {
                 console.log('Sending sell mail...');
                 checksSinceLastMail = 0;
