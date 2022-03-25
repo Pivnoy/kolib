@@ -5,14 +5,8 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 function Footer(props) {
 
-
-  const [age, setAge] = React.useState('');
-
   const { TESTNET, handleChangeTESTNET } = props;
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
   return (
     <div
       className="absolute bottom-0 p-4 h-18 w-full bg-transparent border-2 rounded-lg shadow dark:bg-white"

@@ -33,6 +33,7 @@ function Mail() {
         if (!validEmail) {
             return true;
         }
+        // eslint-disable-next-line eqeqeq
         if (email == "") {
             return true;
         }
