@@ -4,11 +4,11 @@ import React, { useState } from "react";
 
 function Mail() {
 
-    const serverAddress = "http://localhost:8239/mail";
+    const serverAddress = "http://alex.dyndns.ws:8239/mail";
 
     const [validEmail, setValidEmail] = useState(true);
 
-    const [email, setEmail] = useState(null);
+    const [email, setEmail] = useState('');
 
     const handleEmailInput = (e) => {
         const email_add = e.target.value;
@@ -17,13 +17,17 @@ function Mail() {
     }
 
     const handleSubscription = async () => {
-        fetch(serverAddress, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ mail: email })
-        }).error(e => {
-            console.log(e);
-        });
+        try {
+            await fetch(serverAddress, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ mail: email })
+            })
+            alert('You successfully submited your emal');
+        }
+        catch (e) {
+            alert('Something went wrong');
+        }
     }
 
     const changeValidEmailInput = () => {

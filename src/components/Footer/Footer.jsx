@@ -5,6 +5,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 function Footer(props) {
 
+  // eslint-disable-next-line
   const { TESTNET, handleChangeTESTNET } = props;
 
   return (
@@ -45,7 +46,7 @@ function Footer(props) {
             >
             </ArrowForwardIosIcon>
           </button>
-          
+
           {/* menu */}
 
           {/* <div

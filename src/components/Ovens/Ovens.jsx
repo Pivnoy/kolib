@@ -24,8 +24,6 @@ function Ovens(props) {
     const [xtzPrise, setXtzPrise] = useState(null);
 
     const handleOvenClick = (e) => {
-        console.log("yep, clicked");
-        console.log(e.target);
         setChosenOven(e.target.value);
     }
 
@@ -161,7 +159,6 @@ function Ovens(props) {
             };
 
             // rendered all ovens
-            console.log('done');
         }
         fl();
     }, [TESTNET, reget.regetBalance]);
