@@ -4,6 +4,7 @@ import { React, useEffect, useState } from "react";
 import { createOvens, estimateOutput } from '../../utils/kolibri_api/kolibri';
 import { KOLIBRI_TOKEN_ADDRESS } from "../../utils/values";
 import { swapToken } from "../../utils/wallet_api/swap";
+import LoadingButton from '@mui/lab/LoadingButton';
 import { createTezosKit } from "../../utils/wallet_api/wallet";
 
 
@@ -13,6 +14,8 @@ function Transaction(props) {
     const [currencyFromNumber, setCurrencyFromNumber] = useState("");
     const [currencyTo, setCurrencyTo] = useState(KOLIBRI_TOKEN_ADDRESS);
     const [currencyToNumber, setCurrencyToNumber] = useState("");
+
+    const [loading, setLoading] = useState(false);
 
     const [rate, setRate] = useState(null);
 
@@ -65,8 +68,14 @@ function Transaction(props) {
     }
 
     const handleSwapToken = async () => {
-        await swapToken(currencyFrom, currencyTo, currencyFromNumber);
-
+        setLoading(true);
+        try {
+            await swapToken(currencyFrom, currencyTo, currencyFromNumber);
+        }
+        catch (e) {
+            setLoading(false);
+        }
+        setLoading(false);
         // bad practice, but it works so...
         // force this useState trigger to reload main page to rerender user balance
         reget.setRegetbalance(!reget.regetBalance);
@@ -104,7 +113,7 @@ function Transaction(props) {
                                 <div className="text-light-grey absolute inset-3 font-light"> From</div>
 
                                 <img src={currencyFrom === 'tez' ? "./Tezos.png" : "./KolibriCurrency.png"}
-                                    alt="Currency Icon" 
+                                    alt="Currency Icon"
                                     className="absolute bottom-7 left-2 p-1 rounded-md"
                                     style={{ background: "rgba(37, 137, 145, 10%)" }}
                                 />
@@ -121,7 +130,7 @@ function Transaction(props) {
                                     className="absolute bottom-8 right-3 h-7 w-56 bg-transparent border-2 border-grey"
                                     style={{ border: "none", borderBottom: "2px solid #324054", outline: "0", color: "#FFFFFF" }}
                                 />
-                                
+
                             </div>
 
 
@@ -159,23 +168,25 @@ function Transaction(props) {
 
 
                         <div className="pt-4 flex items-center justify-center">
-                            <button
+                            <LoadingButton
+                                loading={loading}
                                 onClick={wal == null ? connect : handleSwapToken}
+                                sx={{ color: "white" }}
                                 className="m-4 w-40 bg-gradient-to-r from-light-blue via-turquouse to-emerald p-2 text-white rounded-lg shadow-lg font-light">
                                 {wal == null ? "Connect" : "Swap"}
-                            </button>
+                            </LoadingButton>
                         </div>
                     </div>
 
                     <div className="ml-4 text-white font-light space-y-1">
-                        <div 
-                            style={{ background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)' }} 
+                        <div
+                            style={{ background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)' }}
                             className="justify-between rounded-lg flex p-3 h-auto w-80 border-solid border-2 border-grey"
                         >
                             <div>Tezos Holdings</div>
                             <div>{balance.xtzBalance} XTZ</div>
                         </div>
-                        <div 
+                        <div
                             style={{ background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)' }}
                             className="justify-between flex p-3 h-auto w-auto border-solid border-2 border-grey rounded-lg"
                         >
@@ -186,21 +197,6 @@ function Transaction(props) {
                 </div>
 
             </div>
-
-            {/* place for graph and other info */}
-            {/* <div className="ml-10 h-fit w-fit bg-dark-grey p-8 shadow-lg rounded-lg">
-                <div className="w-96">
-                    <img src="./num2.png" alt="graph"/>
-                    <img src="./num3.png" alt="graph"/>
-                </div>
-                <div>
-                    <img src="./PIC1.png" alt="graph" className="h-10"/>
-                    <img src="./PIC2.png" alt="graph" className="h-10"/>
-                    <img src="./PIC3.png" alt="graph" className="h-10"/>
-                    
-                </div>
-                
-            </div> */}
 
         </div>
 

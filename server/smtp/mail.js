@@ -27,8 +27,8 @@ const mailOptionsHigher = {
 const mailOptionsLower = {
     from: 'Kolibri project ' + mailLogin,
     to: mailList,
-    subject: "kUSD is availiable buy!!!",
-    text: "if i will be able to see it"
+    subject: "Rate notifications",
+    html: mailContent
 };
 
 export const sendBuyMail = () => {
