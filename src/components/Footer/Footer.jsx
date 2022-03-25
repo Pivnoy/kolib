@@ -5,14 +5,9 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 function Footer(props) {
 
-
-  const [age, setAge] = React.useState('');
-
+  // eslint-disable-next-line
   const { TESTNET, handleChangeTESTNET } = props;
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
   return (
     <div
       className="absolute bottom-0 p-4 h-18 w-full bg-transparent border-2 rounded-lg shadow dark:bg-white"
@@ -40,6 +35,7 @@ function Footer(props) {
             </li>
           </ul>
         </div>
+
         {/* place changenet here */}
         <div className="mr-32 relative inline-block hover:block hover:stroke-white">
           <button className="flex p-2 text-green border-2 border-solid border-green rounded-lg w-36 justify-between items-center">
@@ -50,41 +46,44 @@ function Footer(props) {
             >
             </ArrowForwardIosIcon>
           </button>
-          {/* menu */}
-          {/* <div 
-                  className="absolute p-1 py-1 text-white space-y-1 rounded-lg bg-gradient-to-r from-light-blue via-turquouse to-emerald border-1 w-36 hover:block"
-                  style={{bottom: "50px", zIndex: "1"}}
-                  onChange={handleChangeTESTNET}
-                  value={TESTNET}
-                  >
-                    <div value={false}>MAINNET</div>
-                    <div style={{ border: "none", borderBottom: "2px solid #FFFFFF", outline: "0" }}></div>
-                    <div value = {true}>TESTNET</div>
 
-                  </div> */}
+          {/* menu */}
+
+          {/* <div
+            className="absolute p-1 py-1 text-white space-y-1 rounded-lg bg-gradient-to-r from-light-blue via-turquouse to-emerald border-1 w-36 hover:block"
+            style={{ bottom: "50px", zIndex: "1" }}
+            onChange={handleChangeTESTNET}
+            value={TESTNET}
+          >
+            <div value={false}>MAINNET</div>
+            <div style={{ border: "none", borderBottom: "2px solid #FFFFFF", outline: "0" }}></div>
+            <div value={true}>TESTNET</div>
+
+          </div> */}
 
 
         </div>
       </div>
 
       {/* <InputAdornment
-                    position="start">
-                    <Select
-                      variant="standard"
-                      style={{width:"120px", background: "#321421", color: "#FFFFFF", padding: "10px", }}
-                      onChange={handleChangeTESTNET}
-                      value={TESTNET}
-                    >
-                      <MenuItem
-                        value={false}>
-                        MAINNET
-                      </MenuItem>
-                      <MenuItem
-                        value={true}>
-                        TESTNET
-                      </MenuItem>
-                    </Select>
-                  </InputAdornment> */}
+        position="start">
+        <Select
+          variant="standard"
+          style={{ width: "120px", background: "#321421", color: "#FFFFFF", padding: "10px", }}
+          onChange={handleChangeTESTNET}
+          value={TESTNET}
+        >
+          <MenuItem
+            value={false}>
+            MAINNET
+          </MenuItem>
+          <MenuItem
+            value={true}>
+            TESTNET
+          </MenuItem>
+        </Select>
+      </InputAdornment> */}
+
     </div>
   )
 }

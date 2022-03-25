@@ -172,7 +172,8 @@ function Transaction(props) {
                                 loading={loading}
                                 onClick={wal == null ? connect : handleSwapToken}
                                 sx={{ color: "white" }}
-                                className="m-4 w-40 bg-gradient-to-r from-light-blue via-turquouse to-emerald p-2 text-white rounded-lg shadow-lg font-light">
+                                className="m-4 w-40 bg-gradient-to-r from-light-blue via-turquouse to-emerald p-2 text-white rounded-lg shadow-lg font-light"
+                            >
                                 {wal == null ? "Connect" : "Swap"}
                             </LoadingButton>
                         </div>

@@ -57,7 +57,6 @@ function MainPage() {
   };
 
   const handleHavBarClick = (i) => {
-    console.log(i);
     setChosenNavBar(i);
   }
 
@@ -136,7 +135,7 @@ function MainPage() {
                               'text-white' :
                               'text-light-grey hover:text-white') +
                               ' mt-12 px-3 py-2 font-light'}
-                             style ={chosenNavBar == i ? {border: "none", borderBottom: "2px solid #258991", outline: "0" } : {}}
+                             style ={chosenNavBar === i ? {border: "none", borderBottom: "2px solid #258991", outline: "0" } : {}}
                           >
                             {item.name}
                           </Link>

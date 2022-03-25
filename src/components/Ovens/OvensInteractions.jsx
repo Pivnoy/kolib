@@ -4,7 +4,7 @@ import { KOLIBRI_TOKEN_ADDRESS, MUTEZ_PRECISION, MUTEZ_TO_SHARD, SHARD_PRECISION
 import LoadingButton from '@mui/lab/LoadingButton';
 import { createOvenClient } from "../../utils/kolibri_api/kolibri";
 
-let styleForOvensData = "absolute right-4 bottom-10 font-light ml-10 mt-3 text-white p-3 bg-transparent rounded-lg h-auto w-80 border-solid border-2 border-grey order-last";
+// let styleForOvensData = "absolute right-4 bottom-10 font-light ml-10 mt-3 text-white p-3 bg-transparent rounded-lg h-auto w-80 border-solid border-2 border-grey order-last";
 
 function OvensInteractions(props) {
 
@@ -124,6 +124,7 @@ function OvensInteractions(props) {
                 }
             }
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [btn, oven]);
 
     return (
@@ -158,7 +159,9 @@ function OvensInteractions(props) {
                 <LoadingButton
                     // disabled={checkDisabledButton()}
                     loading={loading || checkDisabledButton()}
-                    sx={{ margin: "40px", background: "linear-gradient(to right, #258991, #298B93, #00717A)", fontWeight: "lighter", transform: "capitalize" }}
+                    className="m-40 bg-gradient-to-r from-light-blue via-turquouse to-emerald p-2 text-white rounded-lg shadow-lg font-light"
+                    sx={{color: "white", margin: "40px"}}
+                    // sx={{ margin: "40px", background: "linear-gradient(to right, #258991, #298B93, #00717A)", fontWeight: "lighter", transform: "capitalize" }}
                     onClick={wal == null ? connect : handleInteractionButton}
                     variant="contained">
                     {wal == null ? 'Connect' : btn}

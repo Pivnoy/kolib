@@ -4,8 +4,6 @@ import { createOvenClient } from './kolibri';
 
 export const getOvenDescription = async (ovenAddress) => {
 
-    console.log('cum oven', ovenAddress);
-
     const ovenClient = createOvenClient(ovenAddress);
 
     const balance = (await ovenClient.getBalance()).dividedBy(1_000_000).toFixed(2);
