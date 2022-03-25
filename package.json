@@ -1,7 +1,10 @@
 {
-  "name": "kolibri",
+  "name": "kolibri_protocol_ui",
+  "homepage": "https://github.com/Pivnoy/kolib#readme",
+  "author": "team levaki",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
   "dependencies": {
     "@craco/craco": "^6.3.0",
     "@emotion/react": "^11.7.1",
