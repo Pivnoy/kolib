@@ -47,8 +47,8 @@ function Mail() {
 
     return (
         <div className="h-fit bg-transparent flex items-center justify-center">
-            <div className="ml-10 h-96 w-96 bg-dark-grey p-8 shadow-lg rounded-lg justify-center">
-                <div className="text-xl h-28 text-white border-solid border-2 border-green p-2 py-4 rounded-lg text-center">
+            <div className="sm:ml-10 h-96 w-96 bg-white dark:bg-dark-grey p-8 shadow-lg rounded-lg justify-center">
+                <div className="text-xl h-28 text-green shadow-lg dark:text-white border-solid border-2 border-green p-2 py-4 rounded-lg text-center">
                     Do you want to benefit from floating kUSD rate
                     and help to peg kUSD to real dollar?
                 </div>

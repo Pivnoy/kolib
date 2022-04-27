@@ -130,7 +130,7 @@ function OvensInteractions(props) {
     return (
         <div>
             <div>
-                <div className="relative bg-black border-transparent h-28 w-96 rounded-lg hover:border-green border-2">
+                <div className="relative bg-dark-white dark:bg-black border-transparent h-28 w-96 rounded-lg hover:border-green border-2">
                     <div className="text-light-grey absolute inset-3 font-light"> From</div>
 
                     <img src={currency === 'tez' ? "./Tezos.png" : "./KolibriCurrency.png"}
@@ -139,7 +139,7 @@ function OvensInteractions(props) {
                         style={{ background: "rgba(37, 137, 145, 10%)" }}
                     />
 
-                    <div className="text-white font-light absolute bottom-8 left-14 ">
+                    <div className="dark:text-white font-light absolute bottom-8 left-14 ">
                         {currency === 'tez' ? "XTZ" : "kUSD"}
                     </div>
 
@@ -159,7 +159,7 @@ function OvensInteractions(props) {
                 <LoadingButton
                     // disabled={checkDisabledButton()}
                     loading={loading || checkDisabledButton()}
-                    className="m-40 bg-gradient-to-r from-light-blue via-turquouse to-emerald p-2 text-white rounded-lg shadow-lg font-light"
+                    className="m-40 bg-gradient-to-r from-light-blue via-turquouse to-emerald p-2 text-light-grey dark:text-white rounded-lg shadow-lg font-light"
                     sx={{color: "white", margin: "40px"}}
                     // sx={{ margin: "40px", background: "linear-gradient(to right, #258991, #298B93, #00717A)", fontWeight: "lighter", transform: "capitalize" }}
                     onClick={wal == null ? connect : handleInteractionButton}
@@ -169,7 +169,7 @@ function OvensInteractions(props) {
             </div>
 
             <div className="absolute right-4 top-16 mb-12 mt-2">
-                <div className="mt-6 ml-10 text-white font-light space-y-1">
+                <div className="mt-6 ml-10 dark:text-white font-light space-y-1">
                     <div 
                         style={{ background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)' }} 
                         className="justify-between rounded-lg flex p-3 h-auto w-80 border-solid border-2 border-grey"
@@ -203,7 +203,7 @@ function OvensInteractions(props) {
             <div>
                 
                 {oven == null ?  ' ':
-                    <div className="absolute right-4 bottom-10 font-light ml-10 mt-3 text-white p-3 bg-transparent rounded-lg h-auto w-80 border-solid border-2 border-grey">
+                    <div className="absolute right-4 bottom-10 font-light ml-10 mt-3 dark:text-white p-3 bg-transparent rounded-lg h-auto w-80 border-solid border-2 border-grey">
                         <div className="flex justify-between">
                             Borrowed tokens:<div> {oven.borrowed} XTZ</div>
                         </div>

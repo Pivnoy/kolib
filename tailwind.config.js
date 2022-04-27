@@ -1,6 +1,6 @@
 module.exports = {
   purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: 'class',
   theme: { 
     fontFamily:{
       serif:['Montserrat']},
@@ -25,6 +25,8 @@ module.exports = {
         'blue-for-pink':'#03E2F3',
         'blue-1':'#49E8E8',
         'blue-2':'#15DEEE',
+        //light theme
+        'dark-white': '#ebedf5',
       },
       screens: {
         sm: '640px',

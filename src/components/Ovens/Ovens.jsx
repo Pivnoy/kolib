@@ -41,7 +41,8 @@ function Ovens(props) {
                 // set animation playing here
                 showedOvens.push(
                     <div
-                        className="px-40 mt-4 font-light flex items-center justify-center h-32 w-12/12 shadow-lg border-solid border-2 border-light-grey rounded-lg bg-transparent text-white">
+                        className="px-40 mt-4 font-light flex items-center justify-center h-32 w-12/12 shadow-lg
+                         border-solid border-2 border-light-grey rounded-lg bg-transparent dark:text-white">
                         Still loading . . .
                     </div>
                 );
@@ -62,9 +63,9 @@ function Ovens(props) {
                     ClassNameForOvenCode = 'w-28 text-light-grey rounded-lg p-2 m-2 font-medium'
                 }
 
-                styleForOvens += ' text-white px-5 mt-4 font-light items-center justify-between h-32 w-12/12 shadow-lg rounded-lg'
+                styleForOvens += ' dark:text-white px-5 mt-4 font-light items-center justify-between h-32 w-12/12 shadow-lg rounded-lg'
 
-                let styleForCurrency = 'text-white text-lg'
+                let styleForCurrency = 'dark:text-white text-lg'
 
                 showedOvens.push(
                     <div
@@ -85,7 +86,7 @@ function Ovens(props) {
                                 }
 
                             </button>
-                            <div className="w-full bg-grey rounded-full h-2.5">
+                            <div className="w-full dark:bg-grey rounded-full h-2.5">
                                 <div className="bg-gradient-to-r from-light-blue via-turquouse to-emerald h-2.5 rounded-full"
                                     style={{ width: ownedOvens[i].ratio.toString() + "%" }} />
                             </div>
@@ -163,14 +164,14 @@ function Ovens(props) {
         fl();
     }, [TESTNET, reget.regetBalance]);
 
-    const buttonStyle = "p-2 text-grey hover:text-white active:text-white";
+    const buttonStyle = "p-2 text-grey hover:text-green dark:hover:text-white dark:active:text-white";
 
-    const chosenButtonStyle = "p-2 text-white hover:text-white active:text-white";
+    const chosenButtonStyle = "border-2 rounded-lg border-green p-2 dark:text-white hover:text-green dark:hover:text-white dark:active:text-white";
 
     return (
         <div className="flex justify-center space-x-10">
             <div className=" bg-transparent h-fit flex items-start">
-                <div className="relative h-fit w-fit bg-dark-grey p-8 shadow-lg rounded-lg">
+                <div className="relative h-fit w-fit bg-white dark:bg-dark-grey p-8 shadow-lg rounded-lg">
 
                     {/* nav for ovens  */}
 
@@ -220,7 +221,7 @@ function Ovens(props) {
                         {/* balance */}
 
                         <div className="flex mt-6 pr-80 pb-20">
-                            <div className="text-white font-light">
+                            <div className="text-ligh-grey dark:text-white font-light">
                                 <OvensInteractions
                                     oven={ownedOvens[chosenOven]}
                                     btn={chosenButton}

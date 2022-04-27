@@ -10,7 +10,7 @@ function Footer(props) {
 
   return (
     <div
-      className="absolute bottom-0 p-4 h-18 w-full bg-transparent border-2 rounded-lg shadow dark:bg-white"
+      className="absolute bottom-0 p-4 h-18 w-full bg-transparent border-2 rounded-lg shadow bg-transparent hidden sm:block "
       style={{ border: "none", borderTop: "1px solid #324054" }}
     >
       <div className="flex justify-between ml-20">

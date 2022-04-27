@@ -6,16 +6,21 @@ import {
   createTezosKit
 } from "../../utils/wallet_api/wallet";
 
-import { React, useEffect, useState } from "react";
+import { React, useEffect, useState, Fragment } from "react";
 import Ovens from '../Ovens/Ovens';
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, MemoryRouter } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import { createOvens, getBalanceKolibri } from '../../utils/kolibri_api/kolibri';
 import Transaction from '../Transaction/Transaction';
 import { changeTESTNET, TESTNET as t1 } from "../../utils/values";
-import { Disclosure, } from '@headlessui/react';
+import { Disclosure, Menu, Transition } from '@headlessui/react';
 import LiquidityPool from "../LiquidityPool/LiquidityPool";
 import Mail from "../Mail/Mail";
+import { RssIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ')
+}
 
 function MainPage() {
 
@@ -108,20 +113,31 @@ function MainPage() {
         <Disclosure as="nav" className="bg-transparent relative font-light">
           {({ open }) => (
             <>
-              <div className="h-36 px-2 sm:px-6 lg:px-8">
+              <div className="max-w-screen h-36 px-2 sm:px-6 lg:px-8 bg-">
                 <div className="relative flex items-center justify-center">
+                <Disclosure.Button  className="sm:hidden absolute right-3 top-3 items-center justify-center p-2 rounded-md
+                 text-light-grey hover:text-white focus:outline-none focus:ring-2 focus:ring-inset ">
+                      {open ? (
+                        <XIcon className="block h-6 w-6" aria-hidden="true" />
+                        ) : (
+                          <MenuIcon className="block h-6 w-6" aria-hidden="true" />
+                        )}
+                    </Disclosure.Button>
                   <div className="flex items-center justify-center sm:items-stretch sm:justify-start">
+
                     <div>
                       <Link
                         to="/"
                         onClick={() => {handleHavBarClick(0)}}
                       >
                       <img
-                        className="h-24 w-fit mt-4 mr-5"
+                        className="hidden sm:flex h-24 w-fit mt-4 mr-5"
                         src="./Logo.png"
                         alt="Kolibri logo"
                       />
                       </Link>
+
+
                     </div>
                     <div className="hidden sm:block sm:ml-6">
                       <div className="flex space-x-3 content-center items-center self-center">
@@ -130,10 +146,9 @@ function MainPage() {
                             key={item.name}
                             to={item.href}
                             onClick={() => { handleHavBarClick(i) }}
-                            // eslint-disable-next-line eqeqeq
                             className={(chosenNavBar == i ?
-                              'text-white' :
-                              'text-light-grey hover:text-white') +
+                              'text-green dark:text-white' :
+                              'text-light-grey hover:text-green dark:hover:text-white') +
                               ' mt-12 px-3 py-2 font-light'}
                              style ={chosenNavBar === i ? {border: "none", borderBottom: "2px solid #258991", outline: "0" } : {}}
                           >
@@ -142,13 +157,91 @@ function MainPage() {
                         ))}
                       </div>
                     </div>
+                    {/* mobile icon */}
+
+                    <div>
+                    <img
+                        className="sm:hidden absolute top-0 left-2 h-16 w-fit mt-3 mr-5"
+                        src="./KolibriIcon.png"
+                        alt="Kolibri logo"
+                      />
+                    </div>
+
+                    {/* mobile changenet */}
+                    <div className="sm:hidden absolute right-0">
+                      <Menu as="div" className="relative">
+                        <div>
+                          <Menu.Button className="h-6 w-6 absolute right-16 top-5 text-light-grey">
+                            <RssIcon/>
+
+                          </Menu.Button>
+                        </div>
+                        <Transition
+                          as={Fragment}
+                          enter="transition ease-out duration-100"
+                          enterFrom="transform opacity-0 scale-95"
+                          enterTo="transform opacity-100 scale-100"
+                          leave="transition ease-in duration-75"
+                          leaveFrom="transform opacity-100 scale-100"
+                          leaveTo="transform opacity-0 scale-95"
+                          >
+                          <Menu.Items className="origin-top-left rounded-lg absolute right-0 mt-2 mr-28 w-30 bg-black rounded-md shadow-lg py-1 ring-1 ring-black ring-opacity-5 focus:outline-none">
+                          <Menu.Item>
+                              {({ active }) => (
+                                <a
+                                  href="#"
+                                  className={classNames(active ? 'text-green' : '', 'block px-4 py-2 text-sm text-light-grey')}
+                                >
+                                  Mainnet
+                                </a>
+                              )}
+                              </Menu.Item>
+                            <Menu.Item>
+                              {({ active }) => (
+                                <a
+                                  href="#"
+                                  className={classNames(active ? 'text-green' : '', 'block px-4 py-2 text-sm text-light-grey')}
+                                >
+                                  Testnet
+                                </a>
+                              )}
+                            </Menu.Item>
+                      </Menu.Items>
+
+
+                          </Transition>
+
+                          
+                      </Menu>
+
+                    </div>
+                    {/* mobile menu */}
+                    <div>
+                      <Disclosure.Panel className="sm:hidden ">
+                      <div className="px-2 pt-2 pb-3 space-y-1">
+                        {navigation.map((item, i) => (
+                          <Disclosure.Button
+                            key={item.name}
+                            to={item.href}
+                            className={classNames(
+                                item.current ? 'text-green' : 'text-light-grey',
+                                'block px-3 py-2 font-light'
+                              )}
+                              aria-current={item.current ? 'page' : undefined}
+                            >
+                              {item.name}
+                          </Disclosure.Button>
+                        ))}
+                        </div>
+                      </Disclosure.Panel>
+                    </div>
 
 
 
 
                     {/* wallet and connection button */}
-                    <div className="ml-10 font-light flex w-fit items-center pr-2">
-                      <div className="bg-gradient-to-r from-light-blue via-turquouse to-emerald text-white p-2 mt-6 h-auto w-auto rounded-lg">
+                    <div className="hidden sm:flex ml-10 font-light flex w-fit items-center pr-2">
+                      <div className="text-green border-green border-2 dark:bg-gradient-to-r from-light-blue via-turquouse to-emerald dark:text-white p-2 mt-6 h-auto w-auto rounded-lg">
 
                         <button
                           type="button"
