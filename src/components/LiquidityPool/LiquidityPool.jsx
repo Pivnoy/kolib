@@ -10,7 +10,7 @@ let classNameForPictures = 'mt-3 relative text-center uppercase text-grey bg-tra
             <div className="space-x-3 h-fit bg-transparent mx-w-5xl flex items-center justify-center">
                 <div className={classNameForPictures}>
                     <img src="./PoolSizeBg.png" className="hidden dark:block rounded-lg" alt="Pool size"></img>
-                    <img src="./1Group.png" className="shadow-lg block dark:hidden rounded-lg" alt="Pool size"></img>
+                    <img src="./1Group.png" className="dark:hidden shadow-lg rounded-lg" alt="Pool size"></img>
                     <div className="absolute inset-6">
                         <div className="font-light tracking-wide">Pool size</div>
                         <div className="font-light dark:text-white">{kUSD} kUSD</div>
@@ -18,7 +18,7 @@ let classNameForPictures = 'mt-3 relative text-center uppercase text-grey bg-tra
                 </div>
                 <div className={classNameForPictures}>
                     <img src="./LiqRewardBg.png" className="hidden dark:block rounded-lg" alt="liquidation reward"></img>
-                    <img src="./2Group.png" className="shadow-lg block dark:hidden rounded-lg" alt="liquidation reward"></img>
+                    <img src="./2Group.png" className="shadow-lg dark:hidden rounded-lg" alt="liquidation reward"></img>
                     <div className="absolute inset-6">
                         <div className="font-light tracking-wide">Liquidation reward</div>
                         <div className="font-light dark:text-white">18 %</div>
@@ -26,7 +26,7 @@ let classNameForPictures = 'mt-3 relative text-center uppercase text-grey bg-tra
                 </div>
                 <div className={classNameForPictures}>
                     <img src="./LpTokensBg.png" className="hidden dark:block rounded-lg" alt="Lp Tokens total"></img>
-                    <img src="./3Group.png" className="shadow-lg block dark:hidden rounded-lg" alt="Lp Tokens total"></img>
+                    <img src="./3Group.png" className="shadow-lg dark:hidden rounded-lg" alt="Lp Tokens total"></img>
                     <div className="absolute inset-6">
                         <div className="font-light tracking-wide">lp tokens total</div>
                         <div className="font-light dark:text-white">2 531 341, 41</div>
@@ -75,7 +75,7 @@ let classNameForPictures = 'mt-3 relative text-center uppercase text-grey bg-tra
                     <div className="shadow-lg bg-transparent mr-2">
                         <div className="relative ">
                             <img src="./Learn_more.png" className="hidden dark:block" alt="Learn more"/>
-                            <img src="./LearnLmore.png" className="block dark:hidden" alt="Learn more"/>
+                            <img src="./LearnLmore.png" className="dark:hidden" alt="Learn more"/>
                             <button className="absolute top-12 right-9 border-2 rounded-lg border-green p-2 text-green"
                             >
                                 Learn more

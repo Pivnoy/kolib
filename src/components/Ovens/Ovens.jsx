@@ -166,7 +166,7 @@ function Ovens(props) {
 
     const buttonStyle = "p-2 text-grey hover:text-green dark:hover:text-white dark:active:text-white";
 
-    const chosenButtonStyle = "border-2 rounded-lg border-green p-2 dark:text-white hover:text-green dark:hover:text-white dark:active:text-white";
+    const chosenButtonStyle = "border-2 rounded-lg border-green dark:border-0 dark:border-transparent p-2 dark:text-white hover:text-green dark:hover:text-white dark:active:text-white";
 
     return (
         <div className="flex justify-center space-x-10">

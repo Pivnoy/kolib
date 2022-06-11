@@ -10,6 +10,22 @@ import { createTezosKit } from "../../utils/wallet_api/wallet";
 
 function Transaction(props) {
 
+let buttonColorLight = "#ebedf5";
+let borderButtonColorLight ='"solid #258991" ';
+let buttonColorDark = 'background: "#0E1012" ';
+let borderButtonColorDark= '"solid #24054"';
+
+
+if (
+    localStorage.getItem('color-theme') === 'dark' ||
+    (!('color-theme' in localStorage) &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches)
+  ) {
+    document.documentElement.classList.add('dark');
+  } else {
+    document.documentElement.classList.remove('dark');
+  }
+
     const [currencyFrom, setCurrencyFrom] = useState('tez');
     const [currencyFromNumber, setCurrencyFromNumber] = useState("");
     const [currencyTo, setCurrencyTo] = useState(KOLIBRI_TOKEN_ADDRESS);
@@ -20,6 +36,7 @@ function Transaction(props) {
     const [rate, setRate] = useState(null);
 
     const { TESTNET, reget, connect, wal, balance } = props;
+
 
 
     const handleChangeFromNumber = async (e) => {
@@ -141,10 +158,10 @@ function Transaction(props) {
                                     Rate: {rate}
                                 </div>
                                 <IconButton
-                                    className="rotate-90 rounded-full border-gr"
-                                    style={{ height: "40px", width: "40px", border: "solid #324054", background: "#0E1012", transform: "rotate(90deg)", color: "#258991" }}
+                                    className="rotate-90 rounded-full"
+                                    sx={{height: "40px", width: "40px", border: "solid #258991", background: buttonColorDark, transform: "rotate(90deg)", color: "#258991" }}
                                     onClick={handleChangeCurrencies}>
-                                    <CompareArrowsOutlinedIcon />
+                                    <CompareArrowsOutlinedIcon/>
                                 </IconButton>
                             </div>
 
