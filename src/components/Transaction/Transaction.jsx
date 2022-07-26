@@ -117,8 +117,8 @@ if (
 
     return (
 
-        <div className="sm:pl-10 h-fit bg-transparent flex items-center justify-center">
-            <div className="w-full sm:w-6/12 bg-white dark:bg-dark-grey p-8 shadow-lg rounded-lg">
+        <div className="h-fit bg-transparent flex items-center justify-center">
+            <div className="max-w-md w-fit sm:w-6/12 bg-white dark:bg-dark-grey p-8 shadow-lg rounded-lg">
                 <div className="mb-6 pl-2 text-light-grey dark:text-white text-left font-light">Swap</div>
                 <div className="flex">
 
@@ -129,6 +129,7 @@ if (
                             <div className="relative mb-5 bg-dark-white dark:bg-black border-transparent h-28 w-80 sm:w-96 rounded-lg hover:border-green border-2">
 
                                 <div className="text-light-grey absolute inset-3 font-light"> From</div>
+                                <div className="text-light-grey absolute top-3 right-3 font-light"> Balance: {currencyFrom === 'tez' ? balance.xtzBalance : balance.kolibriBalance} {currencyFrom === 'tez' ? "XTZ" : "kUSD"}</div>
 
                                 <img src={currencyFrom === 'tez' ? "./Tezos.png" : "./KolibriCurrency.png"}
                                     alt="Currency Icon"
@@ -167,6 +168,7 @@ if (
 
                             <div className="relative mb-3 bg-dark-white dark:bg-black border-transparent h-28 w-80 sm:w-96 rounded-lg hover:border-green border-2">
                                 <div className="text-light-grey absolute inset-3 font-light"> To</div>
+                                <div className="text-light-grey absolute top-3 right-3 font-light"> Balance: {currencyFrom === 'tez' ? balance.xtzBalance : balance.kolibriBalance} {currencyFrom === 'tez' ? "XTZ" : "kUSD"} </div>
                                 <img src={currencyTo === 'tez' ? "./Tezos.png" : "./KolibriCurrency.png"}
                                     alt="Currency Icon" className="absolute bottom-7 left-2 p-1 rounded-md" style={{ background: "rgba(37, 137, 145, 10%)" }}></img>
                                 <div className="dark:text-white font-light absolute bottom-8 left-14 ">
@@ -196,7 +198,7 @@ if (
                             </LoadingButton>
                         </div>
                     </div>
-
+                    <div className="hidden">
                     <div className="hidden sm:block ml-4 text-light-green dark:text-white font-light space-y-1">
                         <div
                             style={{ background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)' }}
@@ -212,6 +214,7 @@ if (
                             <div>kUSD Holdings</div>
                             <div>{balance.kolibriBalance} kUSD</div>
                         </div>
+                    </div>
                     </div>
                 </div>
 

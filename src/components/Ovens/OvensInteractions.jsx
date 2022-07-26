@@ -132,7 +132,7 @@ function OvensInteractions(props) {
             <div>
                 <div className="relative bg-dark-white dark:bg-black border-transparent h-28 w-96 rounded-lg hover:border-green border-2">
                     <div className="text-light-grey absolute inset-3 font-light"> From</div>
-
+                    <div className="text-light-grey absolute top-3 right-3 font-light"> Balance: {currency === 'tez' ? balance.xtzBalance : balance.kolibriBalance} {currency === 'tez' ? "XTZ" : "kUSD"}</div>
                     <img src={currency === 'tez' ? "./Tezos.png" : "./KolibriCurrency.png"}
                         alt="Currency Icon"
                         className="absolute bottom-7 left-2 p-1 rounded-md"
