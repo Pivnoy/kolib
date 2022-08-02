@@ -49,7 +49,7 @@ function Footer(props) {
 
           {/* menu */}
 
-          {/* <div
+          <div
             className="absolute p-1 py-1 text-white space-y-1 rounded-lg bg-gradient-to-r from-light-blue via-turquouse to-emerald border-1 w-36 hover:block"
             style={{ bottom: "50px", zIndex: "1" }}
             onChange={handleChangeTESTNET}
@@ -59,7 +59,7 @@ function Footer(props) {
             <div style={{ border: "none", borderBottom: "2px solid #FFFFFF", outline: "0" }}></div>
             <div value={true}>TESTNET</div>
 
-          </div> */}
+          </div>
 
 
         </div>

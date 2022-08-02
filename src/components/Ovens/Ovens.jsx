@@ -6,9 +6,13 @@ import { getOvenDescription } from "../../utils/kolibri_api/ovens";
 import { ovenButtons } from "../../utils/kolibri_api/oven_buttons";
 import OvensInteractions from "./OvensInteractions";
 import BigNumber from 'bignumber.js'
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 
 function Ovens(props) {
+
 
 
     const [ownedOvens, setOwnedOvens] = useState([]);
@@ -171,15 +175,32 @@ function Ovens(props) {
     return (
         <div className="flex justify-center space-x-10">
             <div className=" bg-transparent h-fit flex items-start">
-                <div className="relative h-fit w-fit bg-white dark:bg-dark-grey p-8 shadow-lg rounded-lg">
+                <div className="relative h-fit w-fit flex bg-white dark:bg-dark-grey p-8 shadow-lg rounded-lg">
 
                     {/* nav for ovens  */}
                     
+                    
 
-                    <div className="items-center justify-between">
-                        <div>
-
-                            <button
+                    <div className="items-center">
+                        <div className="space-x-10">
+                                <FormControl size="small" sx={{border: "none", outline: "0"}}
+                            >
+                            <Select
+                                value={chosenButton}
+                                onChange={handleOvenButtonClick}
+                                displayEmpty
+                                inputProps={{ 'aria-label': 'Without label' }}
+                                sx={{ border: "none", border: "2px solid #258991", outline: "0", color: "#FFFFFF", outlineWidth: "0"}}
+                                className="mt-3"
+                            >
+                                <MenuItem value={ovenButtons.borrow}>Borrow kUSD</MenuItem>
+                                <MenuItem value={ovenButtons.payback}>Payback kUSD</MenuItem>
+                                <MenuItem value={ovenButtons.withdraw}>Withdraw XTZ</MenuItem>
+                                <MenuItem value={ovenButtons.deposit}>Deposit XTZ</MenuItem>
+                            </Select>
+                            </FormControl>
+                            
+                            {/* <button
                                 className={chosenButton === ovenButtons.borrow ?
                                     chosenButtonStyle : buttonStyle}
                                 value={ovenButtons.borrow}
@@ -209,10 +230,10 @@ function Ovens(props) {
                                 value={ovenButtons.deposit}
                                 onClick={handleOvenButtonClick}>
                                 Deposit XTZ
-                            </button>
+                            </button> */}
 
                             <button 
-                                className="ml-24 bg-gradient-to-r from-light-blue via-turquouse to-emerald text-white p-2 h-auto w-auto rounded-lg"> 
+                                className="bg-gradient-to-r from-light-blue via-turquouse to-emerald text-white p-2 mt-3 rounded-lg"> 
                                 Create new oven
                             </button>
 
