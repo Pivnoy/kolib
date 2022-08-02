@@ -118,15 +118,15 @@ if (
     return (
 
         <div className="h-fit bg-transparent flex items-center justify-center">
-            <div className="max-w-md w-fit sm:w-6/12 bg-white dark:bg-dark-grey p-8 shadow-lg rounded-lg">
-                <div className="mb-6 pl-2 text-light-grey dark:text-white text-left font-light">Swap</div>
+            <div className="max-w-md bg-white dark:bg-dark-grey p-8 shadow-lg rounded-lg">
+                <div className="mb-6 text-light-grey dark:text-white text-left font-light">Swap</div>
                 <div className="flex">
 
                 {/* all inputs with button and holdings */}
                     <div>
                         {/* all inputs */}
                         <div>
-                            <div className="relative mb-5 bg-dark-white dark:bg-black border-transparent h-28 w-80 sm:w-96 rounded-lg hover:border-green border-2">
+                            <div className="relative mb-5 bg-dark-white dark:bg-black border-transparent h-28 w-fit rounded-lg hover:border-green border-2">
 
                                 <div className="text-light-grey absolute inset-3 font-light"> From</div>
                                 <div className="text-light-grey absolute top-3 right-3 font-light"> Balance: {currencyFrom === 'tez' ? balance.xtzBalance : balance.kolibriBalance} {currencyFrom === 'tez' ? "XTZ" : "kUSD"}</div>
@@ -168,7 +168,7 @@ if (
 
                             <div className="relative mb-3 bg-dark-white dark:bg-black border-transparent h-28 w-80 sm:w-96 rounded-lg hover:border-green border-2">
                                 <div className="text-light-grey absolute inset-3 font-light"> To</div>
-                                <div className="text-light-grey absolute top-3 right-3 font-light"> Balance: {currencyFrom === 'tez' ? balance.xtzBalance : balance.kolibriBalance} {currencyFrom === 'tez' ? "XTZ" : "kUSD"} </div>
+                                <div className="text-light-grey absolute top-3 right-3 font-light"> Balance: {currencyTo === 'tez' ? balance.xtzBalance : balance.kolibriBalance} {currencyTo === 'tez' ? "XTZ" : "kUSD"} </div>
                                 <img src={currencyTo === 'tez' ? "./Tezos.png" : "./KolibriCurrency.png"}
                                     alt="Currency Icon" className="absolute bottom-7 left-2 p-1 rounded-md" style={{ background: "rgba(37, 137, 145, 10%)" }}></img>
                                 <div className="dark:text-white font-light absolute bottom-8 left-14 ">

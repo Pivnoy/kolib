@@ -161,7 +161,7 @@ function MainPage() {
 
                     <div>
                     <img
-                        className="sm:hidden absolute top-0 left-2 h-16 w-fit mt-3 mr-5"
+                        className="sm:hidden absolute top-0 left-2 h-12 w-fit mt-3 mr-5"
                         src="./KolibriIcon.png"
                         alt="Kolibri logo"
                       />

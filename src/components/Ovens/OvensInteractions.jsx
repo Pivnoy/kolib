@@ -169,7 +169,7 @@ function OvensInteractions(props) {
             </div>
 
             <div className="absolute right-4 top-16 mb-12 mt-2">
-                <div className="mt-6 ml-10 dark:text-white font-light space-y-1">
+                {/* <div className="mt-6 ml-10 dark:text-white font-light space-y-1">
                     <div 
                         style={{ background: 'linear-gradient(to right, transparent 50%, rgba(37, 137, 145, 20%) 50%)' }} 
                         className="justify-between rounded-lg flex p-3 h-auto w-80 border-solid border-2 border-grey"
@@ -184,7 +184,7 @@ function OvensInteractions(props) {
                         <div>kUSD Holdings</div>
                         <div>{balance.kolibriBalance} kUSD</div>
                     </div>
-                </div>
+                </div> */}
                 <div
                     className="border-solid border-2 border-grey mt-3 ml-10 text-white font-light space-y-1 p-4 rounded-lg"
                     hidden={!oven}
@@ -197,6 +197,7 @@ function OvensInteractions(props) {
                     </div>
                 </div>
             </div>
+            
 
             
 
